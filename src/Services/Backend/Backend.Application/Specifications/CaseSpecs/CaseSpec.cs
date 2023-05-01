@@ -13,12 +13,29 @@ namespace Backend.Application.Specifications.CaseSpecs
         public CaseSpec(Guid id)
         {
             Query
+                .Include(x => x.OriginDocument)
+                .Include(x => x.Brand)
+                .Include(x => x.Department)
+                .Include(x => x.User)
+                .Include(x => x.Reminder)
+                .Include(x => x.Province)
+                .Include(x => x.CaseStatus)
+                .Include(x => x.CaseStatusSecretary)
                 .Where(x => x.Status != CatalogsStatus.Deleted && x.Id == id);
         }
 
         public CaseSpec(Guid? brandId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool isPagingEnabled, int page, int pageSize)
         {
-            Query.Where(x => x.Status != CatalogsStatus.Deleted);
+            Query
+                .Include(x => x.OriginDocument)
+                .Include(x => x.Brand)
+                .Include(x => x.Department)
+                .Include(x => x.User)
+                .Include(x => x.Reminder)
+                .Include(x => x.Province)
+                .Include(x => x.CaseStatus)
+                .Include(x => x.CaseStatusSecretary)
+                .Where(x => x.Status != CatalogsStatus.Deleted);
 
             if (brandId != null)
                 Query.Where(x => x.BrandId.Equals(brandId));
@@ -43,6 +60,14 @@ namespace Backend.Application.Specifications.CaseSpecs
         public CaseSpec()
         {
             Query
+                .Include(x => x.OriginDocument)
+                .Include(x => x.Brand)
+                .Include(x => x.Department)
+                .Include(x => x.User)
+                .Include(x => x.Reminder)
+                .Include(x => x.Province)
+                .Include(x => x.CaseStatus)
+                .Include(x => x.CaseStatusSecretary)
                 .Where(x => x.Status != CatalogsStatus.Deleted)
                 .OrderByDescending(x => x.ReceptionDate);
 

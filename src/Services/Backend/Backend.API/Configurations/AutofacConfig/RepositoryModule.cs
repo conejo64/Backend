@@ -4,6 +4,7 @@ using Shared.Domain.Interfaces.Repositories;
 using Backend.Infrastructure.Services;
 using Shared.Domain.Interfaces.Services;
 using Backend.Domain.Interfaces.Services;
+using backend.Infrastructure.Services;
 
 namespace Backend.API.Configurations.AutofacConfig;
 
@@ -19,6 +20,10 @@ public class RepositoryModule : Module
 
         builder.RegisterType<NotificationService>()
             .As<INotificationService>()
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<ExportExcelService>()
+            .As<IExportExcelService>()
             .InstancePerLifetimeScope();
     }
 }

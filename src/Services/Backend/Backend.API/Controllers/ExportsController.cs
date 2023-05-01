@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Backend.API.DTOs.Requests.CaseRequests;
 using backend.Infrastructure.Services;
 using Backend.API.DTOs.Requests.UserRequests;
 using Backend.Domain.DTOs.Requests;
@@ -18,14 +19,16 @@ namespace Backend.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [Route("export")]
-        public IActionResult Export([FromBody] ExportExcelModel request)
+        public async Task<IActionResult> Export([FromBody] ReadCasesToExcelRequest request)
         {
-            if (request == null)
+            var query = request.ToApplicationRequest();
+            var response = await Mediator.Send(query);
+            if (!response.IsSuccess)
+            {
                 return BadRequest();
-            var service = new ExportExcelService();
-            var document = service.GenerateExcel(request);
+            }
             var xlsContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            return File(document!, xlsContentType, $"Reporte-{DateTime.Now.Ticks}.xlsx");
+            return File(response.Value!, xlsContentType, $"Reporte-{DateTime.Now.Ticks}.xlsx");
             
         }
     }
