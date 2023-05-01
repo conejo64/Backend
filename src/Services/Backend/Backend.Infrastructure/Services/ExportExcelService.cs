@@ -15,22 +15,10 @@ namespace backend.Infrastructure.Services
 {
     public class ExportExcelService : IExportExcelService
     {
-        public byte[]? GenerateExcel(ExportExcelModel model)
+        public async Task<byte[]?> GenerateExcel(List<CaseEntity> cases)
         {
             try
             {
-                var db = new BackendDbContext();
-                var query = db.CaseEntities.Where(x => x.Status != CatalogsStatus.Deleted);
-                if(model.BrandId != null)
-                query.Where(x => x.BrandId.Equals(model.BrandId));
-                if (model.CaseStatusId != null)
-                    query.Where(x => x.CaseStatusId.Equals(model.CaseStatusId));
-                if (model.DepartmentId != null)
-                    query.Where(x => x.DepartmentId.Equals(model.DepartmentId));
-                if (model.InitialDate != null)
-                    query.Where(x => x.ReceptionDate >= model.InitialDate);
-                if (model.FinalDate != null)
-                    query.Where(x => x.ReceptionDate <= model.FinalDate);
                 var workbook = new XLWorkbook();
                 var worksheet = workbook.Worksheets.Add("Casos Secretaria");
                 worksheet.Cell("A3").Value = "Fecha Recepción";
@@ -71,7 +59,7 @@ namespace backend.Infrastructure.Services
                 Titulos.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 Titulos.Style.Font.FontSize = 18;
                 var i = 3;
-                foreach (var c in query)
+                foreach (var c in cases)
                 {
                     i++;
                     worksheet.Cell(string.Format("A{0}", i)).Value = c.ReceptionDate;

@@ -9,6 +9,6 @@ namespace Backend.Domain.Interfaces.Services
 {
     public interface IExportExcelService
     {
-        byte[]? GenerateExcel(ExportExcelModel model);
+        Task<byte[]?> GenerateExcel(List<CaseEntity> cases);
     }
 }
