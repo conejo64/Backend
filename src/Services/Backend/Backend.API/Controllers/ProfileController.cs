@@ -16,7 +16,8 @@ public class ProfileController : BaseController
     #endregion
 
     [HttpGet]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> ReadProfiles([FromQuery] ReadProfilesRequest request)
@@ -28,7 +29,8 @@ public class ProfileController : BaseController
     }
 
     [HttpGet]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReadProfilesResponse>))]
@@ -47,7 +49,8 @@ public class ProfileController : BaseController
     }
 
     [HttpGet]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.Unauthorized)]
     [Produces(typeof(List<PermissionResponse>))]
@@ -61,7 +64,8 @@ public class ProfileController : BaseController
     }
 
     [HttpGet]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.Unauthorized)]
     [Route("{profileId:guid}")]

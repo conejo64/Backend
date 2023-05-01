@@ -66,6 +66,7 @@ public class UsersController : BaseController
     
     [HttpGet]
     //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReadUsersResponse>))]
@@ -84,6 +85,7 @@ public class UsersController : BaseController
 
     [HttpGet]
     //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReadUsersResponse>))]
@@ -103,6 +105,7 @@ public class UsersController : BaseController
    
     [HttpGet]
     //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.NotFound)]
     [Produces(typeof(ReadUserResponse))]
@@ -122,6 +125,7 @@ public class UsersController : BaseController
     
     [HttpPut]
     //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}")]
@@ -140,6 +144,7 @@ public class UsersController : BaseController
     
     [HttpPatch]
     //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}")]
@@ -158,6 +163,7 @@ public class UsersController : BaseController
     
     [HttpPost]
     //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Produces(typeof(JwtResponse))]
@@ -176,6 +182,7 @@ public class UsersController : BaseController
 
     [HttpPost]
     //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}/changepassword")]
@@ -215,7 +222,8 @@ public class UsersController : BaseController
     #region HttDelete Methods
 
     [HttpDelete]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{userId:guid}")]
