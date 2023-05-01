@@ -1,0 +1,15 @@
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\bin\Debug\net6.0\Surveys.Domain.deps.json
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\bin\Debug\net6.0\Surveys.Domain.dll
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\bin\Debug\net6.0\Surveys.Domain.pdb
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\bin\Debug\net6.0\Shared.Domain.dll
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\bin\Debug\net6.0\Shared.Domain.pdb
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.csproj.AssemblyReference.cache
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.AssemblyInfoInputs.cache
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.AssemblyInfo.cs
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.csproj.CoreCompileInputs.cache
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.csproj.CopyComplete
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.dll
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\refint\Surveys.Domain.dll
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\Surveys.Domain.pdb
+D:\DEV\SURVEYS\survey_backend\src\Services\Surveys\Surveys.Domain\obj\Debug\net6.0\ref\Surveys.Domain.dll

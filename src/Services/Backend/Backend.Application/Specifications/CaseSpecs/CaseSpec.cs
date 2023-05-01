@@ -1,0 +1,51 @@
+﻿using Ardalis.Specification;
+using Shared.Domain.Specification;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Backend.Application.Specifications.CaseSpecs
+{
+    public sealed class CaseSpec : Ardalis.Specification.Specification<CaseEntity>, ISingleResultSpecification
+    {
+        public CaseSpec(Guid id)
+        {
+            Query
+                .Where(x => x.Status != CatalogsStatus.Deleted && x.Id == id);
+        }
+
+        public CaseSpec(Guid? brandId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool isPagingEnabled, int page, int pageSize)
+        {
+            Query.Where(x => x.Status != CatalogsStatus.Deleted);
+
+            if (brandId != null)
+                Query.Where(x => x.BrandId.Equals(brandId));
+            if (caseStatusId != null)
+                Query.Where(x => x.CaseStatusId.Equals(caseStatusId));
+            if (departmentId != null)
+                Query.Where(x => x.DepartmentId.Equals(departmentId));
+            if (initialDate != null)
+                Query.Where(x => x.ReceptionDate >= initialDate);
+            if (finalDate != null)
+                Query.Where(x => x.ReceptionDate <= finalDate);
+            if (isPagingEnabled)
+                Query
+                    .OrderByDescending(x => x.ReceptionDate)
+                    .Skip(PaginationHelper.CalculateSkip(pageSize, page))
+                    .Take(PaginationHelper.CalculateTake(pageSize));
+            else
+                Query
+                    .OrderByDescending(x => x.ReceptionDate);
+        }
+
+        public CaseSpec()
+        {
+            Query
+                .Where(x => x.Status != CatalogsStatus.Deleted)
+                .OrderByDescending(x => x.ReceptionDate);
+
+        }
+    }
+}
