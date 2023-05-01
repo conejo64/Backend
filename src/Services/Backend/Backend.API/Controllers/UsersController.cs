@@ -65,7 +65,7 @@ public class UsersController : BaseController
     //}
     
     [HttpGet]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReadUsersResponse>))]
@@ -83,7 +83,7 @@ public class UsersController : BaseController
     }
 
     [HttpGet]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReadUsersResponse>))]
@@ -102,7 +102,7 @@ public class UsersController : BaseController
     }
    
     [HttpGet]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.NotFound)]
     [Produces(typeof(ReadUserResponse))]
@@ -121,7 +121,7 @@ public class UsersController : BaseController
     }
     
     [HttpPut]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}")]
@@ -139,7 +139,7 @@ public class UsersController : BaseController
     }
     
     [HttpPatch]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}")]
@@ -157,7 +157,7 @@ public class UsersController : BaseController
     }
     
     [HttpPost]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Produces(typeof(JwtResponse))]
@@ -175,7 +175,7 @@ public class UsersController : BaseController
     }
 
     [HttpPost]
-    [JwtAuthorize(JwtScope.Manager)]
+    //[JwtAuthorize(JwtScope.Manager)]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}/changepassword")]
