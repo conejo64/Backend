@@ -1,4 +1,5 @@
-﻿using backend.Infrastructure.Services;
+﻿using Azure;
+using backend.Infrastructure.Services;
 using Backend.API.DTOs.Requests.UserRequests;
 using Backend.Domain.DTOs.Requests;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +13,7 @@ namespace Backend.API.Controllers
         public ExportsController(IMediator mediator) : base(mediator)
         {
         }
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -23,7 +24,9 @@ namespace Backend.API.Controllers
                 return BadRequest();
             var service = new ExportExcelService();
             var document = service.GenerateExcel(request);
-            return Ok(document);
+            var xlsContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            return File(document!, xlsContentType, $"Reporte-{DateTime.Now.Ticks}.xlsx");
+            
         }
     }
 }
