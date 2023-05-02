@@ -4,7 +4,6 @@ namespace Backend.API.DTOs.Requests.CaseRequests
 {
     public class CreateCaseRequest
     {
-        public Guid Id { get; }
         public string? RequirementNumber { get; set; }
         public DateTime? ReceptionDate { get; set; }
         public Guid? OriginDocumentId { get; set; }
@@ -40,13 +39,12 @@ namespace Backend.API.DTOs.Requests.CaseRequests
         public DateTime? NewExtensionRequestDate { get; set; }
         public string? ObservationExtension { get; set; }
 
-        public CreateCaseRequest(Guid id, string? requirementNumber, DateTime? receptionDate, Guid? originDocumentId, string? physicallyReceived, string? digitallyReceived, 
+        public CreateCaseRequest(string? requirementNumber, DateTime? receptionDate, Guid? originDocumentId, string? physicallyReceived, string? digitallyReceived, 
                 string? documentNumber, string? sbsNumber, string? judgmentNumber, DateTime? issueDate, string? description, Guid? brandId, Guid? departmentId, Guid? userId, 
                 Guid? typeRequirementId, string? notification, string? subject, DateTime? transferDate, DateTime? deadline, Guid? provinceId, DateTime? dueDate, 
                 Guid? reminderId, DateTime? replyDate, string? comments, DateTime? responseDate, Guid? caseStatusId, string? observationDepartment, 
                 Guid? caseStatusSecretaryId, DateTime? acknowledgmentDate, DateTime? extensionRequestDate, DateTime? newExtensionRequestDate, string? observationExtension)
         {
-            Id = id;
             RequirementNumber = requirementNumber;
             ReceptionDate = receptionDate;
             OriginDocumentId = originDocumentId;

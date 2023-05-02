@@ -136,4 +136,24 @@ public class CasesController : BaseController
         return Ok(response.Value);
     }
     #endregion
+    
+    [HttpPost]
+    // [JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Route("{caseId:guid}/extend")]
+    public async Task<IActionResult> UpdateExtensionCase(Guid caseId,
+        [FromBody] UpdateExtensionCaseRequest request)
+    {
+        var command = request.ToApplicationRequest(caseId);
+
+        var response = await Mediator.Send(command);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+
+        return Ok();
+    }
 }
