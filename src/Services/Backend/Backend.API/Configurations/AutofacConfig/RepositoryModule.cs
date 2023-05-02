@@ -25,5 +25,9 @@ public class RepositoryModule : Module
         builder.RegisterType<ExportExcelService>()
             .As<IExportExcelService>()
             .InstancePerLifetimeScope();
+        
+        builder.RegisterType<ProrrogationService>()
+            .As<IProrrogationService>()
+            .InstancePerLifetimeScope();
     }
 }

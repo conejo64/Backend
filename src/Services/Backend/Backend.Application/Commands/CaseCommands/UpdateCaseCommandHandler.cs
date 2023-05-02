@@ -25,9 +25,9 @@ namespace Backend.Application.Commands.CaseCommands
             return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
         }
 
-        entity.AcknowledgmentDate = command.AcknowledgmentDate;
-        entity.BrandId = command.BrandId;
-        entity.CaseStatusId = command.CaseStatusId;
+            entity.AcknowledgmentDate = command.AcknowledgmentDate;
+            entity.BrandId = command.BrandId;
+            entity.CaseStatusId = command.CaseStatusId;
             entity.CaseStatusSecretaryId = command.CaseStatusSecretaryId;
             entity.Comments = command.Comments;
             entity.Deadline = command.Deadline;

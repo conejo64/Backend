@@ -12,6 +12,12 @@ namespace Backend.Application.Specifications.CaseStatusSpecs
                 .Where(x => x.Status != CatalogsStatus.Deleted && x.Id == id);
         }
 
+        public CaseStatusSpec(string description)
+        {
+            Query
+                .Where(x => x.Status != CatalogsStatus.Deleted && x.Description!.ToUpper() == description.ToUpper());
+        }
+
         public CaseStatusSpec(string? description, bool isPagingEnabled, int page, int pageSize)
         {
             Query.Where(x => x.Status != CatalogsStatus.Deleted);
@@ -33,5 +39,6 @@ namespace Backend.Application.Specifications.CaseStatusSpecs
                 .OrderBy(x => x.Description);
 
         }
+
     }
 }
