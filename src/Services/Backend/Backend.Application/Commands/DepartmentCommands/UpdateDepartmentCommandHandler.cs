@@ -15,7 +15,7 @@ namespace Backend.Application.Commands.DepartmentCommands
 
             if (entity == null)
             {
-                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.DepartmentNotFound));
             }
 
             entity.Description = command.Description;

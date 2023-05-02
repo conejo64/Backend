@@ -22,7 +22,7 @@ namespace Backend.Application.Commands.CaseCommands
 
         if (entity == null)
         {
-            return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+            return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.CaseNotFound));
         }
 
             entity.AcknowledgmentDate = command.AcknowledgmentDate;

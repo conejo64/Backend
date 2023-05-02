@@ -37,5 +37,11 @@ public static class MessageHandler
     public const string OriginDocumentNotFound = "Origen de documento no encontrado";
     public const string BrandNotFound = "Marca no encontrada";
     public const string CaseNotFound = "Caso no encontrado";
+    public const string CaseStausNotFound = "Estado de caso no encontrado";
+    public const string CaseStatusSecretayNotFound = "Estado de Caso Secretaria no encontrado";
+    public const string ProvinceNotFound = "Provincia no encontrado";
+    public const string DepartmentNotFound = "Departamento no encontrado";
+    public const string RemainderNotFound = "Recordatorio no encontrado";
+    public const string TypeRequireNotFound = "Tipo de Requerimiento no encontrado";
 
 }

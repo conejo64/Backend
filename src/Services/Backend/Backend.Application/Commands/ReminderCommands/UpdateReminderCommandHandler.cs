@@ -15,7 +15,7 @@ namespace Backend.Application.Commands.ReminderCommands
 
             if (entity == null)
             {
-                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.RemainderNotFound));
             }
 
             entity.Description = command.Description;
