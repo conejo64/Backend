@@ -156,4 +156,61 @@ public class CasesController : BaseController
 
         return Ok();
     }
+    [HttpPost]
+    // [JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Route("{caseId:guid}/close")]
+    public async Task<IActionResult> UpdateCloseCase(Guid caseId,
+        [FromBody] UpdateCloseCaseRequest request)
+    {
+        var command = request.ToApplicationRequest(caseId);
+
+        var response = await Mediator.Send(command);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+
+        return Ok();
+    }
+    [HttpPost]
+    // [JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Route("{caseId:guid}/reply")]
+    public async Task<IActionResult> UpdateReplyCase(Guid caseId,
+        [FromBody] UpdateReplyCaseRequest request)
+    {
+        var command = request.ToApplicationRequest(caseId);
+
+        var response = await Mediator.Send(command);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+
+        return Ok();
+    }
+    [HttpPost]
+    // [JwtAuthorize(JwtScope.Manager)]
+    [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Route("{caseId:guid}/information")]
+    public async Task<IActionResult> UpdateInformationCase(Guid caseId,
+        [FromBody] UpdateInformationCaseRequest request)
+    {
+        var command = request.ToApplicationRequest(caseId);
+
+        var response = await Mediator.Send(command);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+
+        return Ok();
+    }
 }
