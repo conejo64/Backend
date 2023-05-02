@@ -97,7 +97,7 @@ namespace backend.Infrastructure.Services
                 Cabecera1.Style.Fill.BackgroundColor = XLColor.BeauBlue;
                 Cabecera1.Cells().Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
                 Cabecera1.Columns().Style.Border.OutsideBorder = XLBorderStyleValues.Medium;
-                var Tabla1 = worksheet.Range("A3:Z" + (i).ToString());
+                var Tabla1 = worksheet.Range("A3:AC" + (i).ToString());
                 Tabla1.Cells().Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
                 Tabla1.Columns().Style.Border.OutsideBorder = XLBorderStyleValues.Medium;
                 Tabla1.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
