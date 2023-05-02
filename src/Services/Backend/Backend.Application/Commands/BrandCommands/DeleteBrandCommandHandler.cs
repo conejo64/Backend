@@ -15,7 +15,7 @@ namespace Backend.Application.Commands.BrandCommands
 
             if (entity == null)
             {
-                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.BrandNotFound));
             }
 
             entity.Status = CatalogsStatus.Deleted;

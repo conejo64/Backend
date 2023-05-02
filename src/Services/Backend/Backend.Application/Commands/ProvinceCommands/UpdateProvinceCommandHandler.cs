@@ -16,7 +16,7 @@ namespace Backend.Application.Commands.ProvinceCommands
 
             if (entity == null)
             {
-                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.ProvinceNotFound));
             }
 
             entity.Description = command.Description;

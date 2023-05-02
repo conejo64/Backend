@@ -18,7 +18,7 @@ namespace Backend.Application.Commands.CaseStatusSecretaryCommands
 
             if (entity == null)
             {
-                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.CaseStatusSecretayNotFound));
             }
 
             entity.Description = command.Description;

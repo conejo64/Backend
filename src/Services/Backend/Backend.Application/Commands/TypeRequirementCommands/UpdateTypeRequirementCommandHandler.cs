@@ -18,7 +18,7 @@ namespace Backend.Application.Commands.TypeRequirementCommands
 
             if (entity == null)
             {
-                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+                return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.TypeRequireNotFound));
             }
 
             entity.Description = command.Description;
