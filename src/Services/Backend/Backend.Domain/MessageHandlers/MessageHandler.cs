@@ -36,5 +36,6 @@ public static class MessageHandler
     // Catalogs
     public const string OriginDocumentNotFound = "Origen de documento no encontrado";
     public const string BrandNotFound = "Marca no encontrada";
+    public const string CaseNotFound = "Caso no encontrado";
 
 }
