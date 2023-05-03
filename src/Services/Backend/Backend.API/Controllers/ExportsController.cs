@@ -14,12 +14,12 @@ namespace Backend.API.Controllers
         public ExportsController(IMediator mediator) : base(mediator)
         {
         }
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [Route("export")]
-        public async Task<IActionResult> Export([FromBody] ReadCasesToExcelRequest request)
+        [Route("excel")]
+        public async Task<IActionResult> Export([FromQuery] ReadCasesToExcelRequest request)
         {
             var query = request.ToApplicationRequest();
             var response = await Mediator.Send(query);

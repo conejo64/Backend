@@ -4,7 +4,7 @@ using Shared.Domain.Specification;
 
 namespace Backend.Application.Queries.ManagerUserQueries
 {
-    public class ReadManagerUsersQuery : BaseFilter, IRequest<EntityResponse<GetEntitiesResponse<ReadUserResponse>>>
+    public class ReadManagerUsersQuery : BaseFilter, IRequest<EntityResponse<GetEntitiesResponse<ReadUsersResponse>>>
     {
         public string? QueryParam { get; set; }
 

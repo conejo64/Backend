@@ -18,18 +18,13 @@ namespace Backend.Application.Queries.CaseQueries
         public DateTime? FinalDate { get; set; }
 
 
-        public ReadCasesToExcelQuery(Guid? brandId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool loadChildren,
-            bool isPagingEnabled, int page, int pageSize)
+        public ReadCasesToExcelQuery(Guid? brandId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate)
         {
             BrandId = brandId;
             CaseStatusId = caseStatusId;
             DepartmentId = departmentId;
             InitialDate = initialDate;
             FinalDate = finalDate;
-            LoadChildren = loadChildren;
-            IsPagingEnabled = isPagingEnabled;
-            Page = page;
-            PageSize = pageSize;
         }
     }
 }

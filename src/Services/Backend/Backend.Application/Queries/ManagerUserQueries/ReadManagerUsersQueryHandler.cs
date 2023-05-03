@@ -5,7 +5,7 @@ using Backend.Application.Specifications.MemberSpecs;
 namespace Backend.Application.Queries.ManagerUserQueries
 {
     public class ReadManagerUsersQueryHandler : IRequestHandler<ReadManagerUsersQuery,
-        EntityResponse<GetEntitiesResponse<ReadUserResponse>>>
+        EntityResponse<GetEntitiesResponse<ReadUsersResponse>>>
     {
         #region Constructor & Properties
 
@@ -18,7 +18,7 @@ namespace Backend.Application.Queries.ManagerUserQueries
 
         #endregion
 
-        public async Task<EntityResponse<GetEntitiesResponse<ReadUserResponse>>> Handle(ReadManagerUsersQuery query,
+        public async Task<EntityResponse<GetEntitiesResponse<ReadUsersResponse>>> Handle(ReadManagerUsersQuery query,
             CancellationToken cancellationToken)
         {
             var spec = new ManagerSpec(query.QueryParam, query.IsPagingEnabled, query.Page, query.PageSize);
@@ -31,8 +31,8 @@ namespace Backend.Application.Queries.ManagerUserQueries
 
             var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
 
-            return new GetEntitiesResponse<ReadUserResponse>(
-                entityCollection.Select(ReadUserResponse.FromEntity).ToList(),
+            return new GetEntitiesResponse<ReadUsersResponse>(
+                entityCollection.Select(ReadUsersResponse.FromEntity).ToList(),
                 filterResponse
             );
         }
