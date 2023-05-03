@@ -976,3 +976,4 @@ D:\DEV\Jonas\git\Backend\src\Services\Backend\Backend.API\obj\Debug\net6.0\refin
 D:\DEV\Jonas\git\Backend\src\Services\Backend\Backend.API\obj\Debug\net6.0\Backend.API.pdb
 D:\DEV\Jonas\git\Backend\src\Services\Backend\Backend.API\obj\Debug\net6.0\Backend.API.genruntimeconfig.cache
 D:\DEV\Jonas\git\Backend\src\Services\Backend\Backend.API\obj\Debug\net6.0\ref\Backend.API.dll
+D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\bin\Debug\net6.0\Backend.API.staticwebassets.runtime.json
