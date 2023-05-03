@@ -40,7 +40,7 @@ namespace Backend.Application.Commands.CaseCommands
         {
             var statusSpec = new CaseStatusSpec("ABIERTO");
             var statusId = await _repositoryCaseStatus.GetBySpecAsync(statusSpec, cancellationToken);
-            var entity = new CaseEntity(command.RequirementNumber, command.ReceptionDate, command.OriginDocumentId, command.PhysicallyReceived, command.DigitallyReceived, command.DocumentNumber,
+            var entity = new CaseEntity(command.RequirementNumber, DateTime.Now, command.OriginDocumentId, command.PhysicallyReceived, command.DigitallyReceived, command.DocumentNumber,
                                         command.SbsNumber, command.JudgmentNumber, command.IssueDate, command.Description, command.BrandId, command.DepartmentId, command.UserId, command.TypeRequirementId,
                                         command.Notification, command.Subject, command.TransferDate, command.Deadline, command.ProvinceId, command.DueDate, command.ReminderId, command.ReplyDate, command.Comments,
                                         command.ResponseDate, statusId!.Id, command.ObservationDepartment, command.CaseStatusSecretaryId, command.AcknowledgmentDate, command.ExtensionRequestDate, command.NewExtensionRequestDate, 
