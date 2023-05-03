@@ -26,8 +26,10 @@ namespace Backend.Infrastructure.Services
             try
             {
                 var configurationEmail = new EmailConfigurationModel();
-                var mail = new System.Net.Mail.MailMessage();
-                mail.From = new System.Net.Mail.MailAddress(configurationEmail.EmailFrom);
+                var mail = new System.Net.Mail.MailMessage
+                {
+                    From = new System.Net.Mail.MailAddress(configurationEmail.EmailFrom)
+                };
                 mail.To.Add(to);
 
                 if (!string.IsNullOrEmpty(cc))
