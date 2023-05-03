@@ -17,10 +17,10 @@ public class EmailConfigurationModel
 
     public EmailConfigurationModel()
     {
-        EmailFrom = "";
+        EmailFrom = "conejo64@gmail.com";
         EmailServer = "smtp.gmail.com";
-        EmailUser = "";
-        EmailPass = "";
+        EmailUser = "conejo64@gmail.com";
+        EmailPass = "dhjrpzomgzksqbjm";
         EmailPort = 587;
         EmailEnabledSsl = true;
     }

@@ -28,7 +28,7 @@ namespace Backend.Application.Queries.CaseQueries
         if (entity is null)
         {
             return EntityResponse<CaseResponse>.Error(
-                EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
+                EntityResponseUtils.GenerateMsg(MessageHandler.CaseNotFound));
         }
 
         return CaseResponse.FromEntity(entity);
