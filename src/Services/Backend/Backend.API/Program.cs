@@ -32,6 +32,9 @@ try
                 .AllowAnyHeader()
                 .AllowCredentials());
     });
+    
+    builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
+    builder.WebHost.UseStaticWebAssets();
 
     var app = builder
         .ConfigureServices(configuration)
@@ -60,9 +63,25 @@ try
 
     //app.UseHttpsRedirection();
     app.UseCors("CorsPolicy"); //"CorsPolicy"
-    app.UseSpaStaticFiles();
-    app.UseDefaultFiles();
+    app.UseSpaStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, @"wwwroot/dist"))
+    });
+    DefaultFilesOptions options = new DefaultFilesOptions();
+    options.DefaultFileNames.Clear();
+    options.DefaultFileNames.Add("dist/index.html");
+    app.UseDefaultFiles(options);
     app.MapDefaultControllerRoute();
+    
+    app.UseSpa(spa =>
+    {
+        spa.Options.SourcePath = "wwwroot";
+
+        if (app.Environment.IsDevelopment())
+        {
+        }
+    });
     
     app.Run();
 }
