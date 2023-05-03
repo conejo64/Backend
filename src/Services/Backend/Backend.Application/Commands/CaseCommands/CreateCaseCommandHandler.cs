@@ -82,7 +82,6 @@ namespace Backend.Application.Commands.CaseCommands
                     To = destinationUser.Email,
                     Body = body
                 });
-    
             }
             
             return EntityResponse.Success(entity.Id);
