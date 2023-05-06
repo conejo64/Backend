@@ -34,3 +34,15 @@ D:\DEV\Jonas\git\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Sh
 D:\DEV\Jonas\git\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\refint\Shared.Domain.dll
 D:\DEV\Jonas\git\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.pdb
 D:\DEV\Jonas\git\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\ref\Shared.Domain.dll
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\bin\Release\net6.0\Shared.Domain.deps.json
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\bin\Release\net6.0\Shared.Domain.dll
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\bin\Release\net6.0\Shared.Domain.pdb
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.csproj.AssemblyReference.cache
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.AssemblyInfoInputs.cache
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.AssemblyInfo.cs
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.csproj.CoreCompileInputs.cache
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.dll
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\refint\Shared.Domain.dll
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\Shared.Domain.pdb
+D:\DEV\Jonas\backend\Backend\src\Services\Shared\Shared.Domain\obj\Release\net6.0\ref\Shared.Domain.dll

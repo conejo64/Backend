@@ -1,28 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj": {}
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj": {}
   },
   "projects": {
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
         "projectName": "Backend.API",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -30,6 +29,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -37,11 +37,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj"
               },
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj"
               }
             }
           }
@@ -182,7 +182,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -194,29 +195,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj",
         "projectName": "Backend.Application",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Application\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -224,6 +224,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -231,11 +232,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj"
               },
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj"
               }
             }
           }
@@ -277,7 +278,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -286,29 +288,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj",
         "projectName": "Backend.Domain",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Domain\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Domain\\Backend.Domain.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -316,6 +317,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -323,8 +325,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj"
               }
             }
           }
@@ -362,7 +364,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -371,29 +374,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj",
         "projectName": "Backend.Infrastructure",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -401,6 +403,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -408,11 +411,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Backend\\Backend.Application\\Backend.Application.csproj"
               },
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj"
               }
             }
           }
@@ -468,7 +471,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -477,29 +481,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj",
         "projectName": "Shared.API",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -507,6 +510,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -514,8 +518,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj"
               }
             }
           }
@@ -541,7 +545,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -553,29 +558,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj",
         "projectName": "Shared.Application",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -583,6 +587,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -590,8 +595,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj"
               }
             }
           }
@@ -637,7 +642,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -646,29 +652,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj",
         "projectName": "Shared.Domain",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -676,6 +681,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -706,7 +712,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -715,29 +722,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj": {
+    "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj",
+        "projectUniqueName": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj",
         "projectName": "Shared.Infrastructure",
-        "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
-        "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Infrastructure\\obj\\",
+        "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\Shared.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
-          "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\DEV\\Jonas\\backend\\Backend\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -745,6 +751,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\KG\\Packages\\ComunApi": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -752,8 +759,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj": {
-                "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj"
+              "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj": {
+                "projectPath": "D:\\DEV\\Jonas\\backend\\Backend\\src\\Services\\Shared\\Shared.Application\\Shared.Application.csproj"
               }
             }
           }
@@ -807,7 +814,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -816,7 +824,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
