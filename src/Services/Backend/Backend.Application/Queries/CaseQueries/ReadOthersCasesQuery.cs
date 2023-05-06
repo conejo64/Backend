@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace Backend.Application.Queries.CaseQueries
 {
-    public class ReadCasesQuery : BaseFilter, IRequest<EntityResponse<GetEntitiesResponse<CaseResponse>>>
+    public class ReadOthersCasesQuery : BaseFilter, IRequest<EntityResponse<GetEntitiesResponse<CaseResponse>>>
     {
+        public Guid UserId { get; set; }
         public Guid? OriginDocumentId { get; set; }
         public Guid? CaseStatusId { get; set; }
         public Guid? DepartmentId { get; set; }
@@ -18,9 +19,10 @@ namespace Backend.Application.Queries.CaseQueries
         public DateTime? FinalDate { get; set; }
 
 
-        public ReadCasesQuery(Guid? originDocumentId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool loadChildren,
+        public ReadOthersCasesQuery(Guid userId, Guid? originDocumentId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool loadChildren,
             bool isPagingEnabled, int page, int pageSize)
         {
+            UserId = userId;
             OriginDocumentId =  originDocumentId;
             CaseStatusId = caseStatusId;
             DepartmentId = departmentId;

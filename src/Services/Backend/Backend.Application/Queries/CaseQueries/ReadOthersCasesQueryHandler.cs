@@ -10,24 +10,24 @@ using System.Threading.Tasks;
 
 namespace Backend.Application.Queries.CaseQueries
 {
-    public class ReadCasesQueryHandler : IRequestHandler<ReadCasesQuery,
+    public class ReadOthersCasesQueryHandler : IRequestHandler<ReadOthersCasesQuery,
         EntityResponse<GetEntitiesResponse<CaseResponse>>>
     {
         #region Constructor & Properties
 
         private readonly IReadRepository<CaseEntity> _repository;
 
-        public ReadCasesQueryHandler(IReadRepository<CaseEntity> repository)
+        public ReadOthersCasesQueryHandler(IReadRepository<CaseEntity> repository)
         {
             _repository = repository;
         }
 
         #endregion
 
-        public async Task<EntityResponse<GetEntitiesResponse<CaseResponse>>> Handle(ReadCasesQuery query,
+        public async Task<EntityResponse<GetEntitiesResponse<CaseResponse>>> Handle(ReadOthersCasesQuery query,
             CancellationToken cancellationToken)
         {
-            var spec = new CaseSpec(query.OriginDocumentId, query.CaseStatusId, query.DepartmentId, query.InitialDate, query.FinalDate, query.IsPagingEnabled, query.Page, query.PageSize);
+            var spec = new CaseSpec(query.UserId, query.OriginDocumentId, query.CaseStatusId, query.DepartmentId, query.InitialDate, query.FinalDate, query.IsPagingEnabled, query.Page, query.PageSize);
 
             //Get the total amount of entities
             var total = await _repository.CountAsync(spec, cancellationToken);

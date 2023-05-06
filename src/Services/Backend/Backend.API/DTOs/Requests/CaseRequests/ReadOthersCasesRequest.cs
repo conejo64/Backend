@@ -3,7 +3,7 @@ using Shared.API.DTOs;
 
 namespace Backend.API.DTOs.Requests.CaseRequests
 {
-    public class ReadCasesRequest : BaseFilterDto
+    public class ReadOthersCasesRequest : BaseFilterDto
     {
         public Guid? OriginDocumentId { get; set; }
         public Guid? CaseStatusId { get; set; }
@@ -11,9 +11,9 @@ namespace Backend.API.DTOs.Requests.CaseRequests
         public DateTime? InitialDate { get; set; }
         public DateTime? FinalDate { get; set; }
 
-        public ReadCasesQuery ToApplicationRequest()
+        public ReadOthersCasesQuery ToApplicationRequest(Guid userId)
         {
-            return new ReadCasesQuery(OriginDocumentId, CaseStatusId, DepartmentId, InitialDate, FinalDate, LoadChildren, IsPagingEnabled, Page, PageSize);
+            return new ReadOthersCasesQuery(userId, OriginDocumentId, CaseStatusId, DepartmentId, InitialDate, FinalDate, LoadChildren, IsPagingEnabled, Page, PageSize);
         }
     }
 }
