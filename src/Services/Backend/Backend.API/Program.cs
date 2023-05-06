@@ -20,7 +20,6 @@ try
     builder
         .Host
         .ConfigureAppConfiguration(x => x.AddConfiguration(configuration));
-
     builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
     builder.Services.AddCors(options =>
