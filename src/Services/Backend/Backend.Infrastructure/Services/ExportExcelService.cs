@@ -64,7 +64,7 @@ namespace backend.Infrastructure.Services
                     i++;
                     worksheet.Cell(string.Format("A{0}", i)).Value = c.ReceptionDate;
                     worksheet.Cell(string.Format("B{0}", i)).Value = c.PhysicallyReceived;
-                    worksheet.Cell(string.Format("C{0}", i)).Value = c.RequirementNumber;
+                    worksheet.Cell(string.Format("C{0}", i)).Value = c.DocumentNumber;
                     worksheet.Cell(string.Format("D{0}", i)).Value = c.IssueDate;
                     worksheet.Cell(string.Format("E{0}", i)).Value = c.SbsNumber;
                     worksheet.Cell(string.Format("F{0}", i)).Value = c.IssueDate;
@@ -81,7 +81,7 @@ namespace backend.Infrastructure.Services
                     worksheet.Cell(string.Format("Q{0}", i)).Value = !string.IsNullOrEmpty(c.Province?.Description) ? c.Province.Description : string.Empty;
                     worksheet.Cell(string.Format("R{0}", i)).Value = c.Deadline;
                     worksheet.Cell(string.Format("S{0}", i)).Value = c.Deadline - c.ReceptionDate;
-                    worksheet.Cell(string.Format("T{0}", i)).Value = c.RequirementNumber;
+                    worksheet.Cell(string.Format("T{0}", i)).Value = c.DocumentNumber;
                     worksheet.Cell(string.Format("U{0}", i)).Value = c.ResponseDate;
                     worksheet.Cell(string.Format("V{0}", i)).Value = c.ResponseDate - c.ReceptionDate;
                     worksheet.Cell(string.Format("W{0}", i)).Value = c.User?.FullName;

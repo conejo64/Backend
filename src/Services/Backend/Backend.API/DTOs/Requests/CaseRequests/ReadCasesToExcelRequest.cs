@@ -5,7 +5,7 @@ namespace Backend.API.DTOs.Requests.CaseRequests
 {
     public class ReadCasesToExcelRequest
     {
-        public Guid? BrandId { get; set; }
+        public Guid? OriginDocumentId { get; set; }
         public Guid? CaseStatusId { get; set; }
         public Guid? DepartmentId { get; set; }
         public DateTime? InitialDate { get; set; }
@@ -13,7 +13,7 @@ namespace Backend.API.DTOs.Requests.CaseRequests
 
         public ReadCasesToExcelQuery ToApplicationRequest()
         {
-            return new ReadCasesToExcelQuery(BrandId, CaseStatusId, DepartmentId, InitialDate, FinalDate);
+            return new ReadCasesToExcelQuery(OriginDocumentId, CaseStatusId, DepartmentId, InitialDate, FinalDate);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Backend.Application.Specifications.CaseSpecs
         }
 
         //filtrar por originDocument
-        public CaseSpec(Guid? brandId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool isPagingEnabled, int page, int pageSize)
+        public CaseSpec(Guid? originDocumentId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool isPagingEnabled, int page, int pageSize)
         {
             Query
                 .Include(x => x.OriginDocument)
@@ -38,8 +38,8 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.CaseStatusSecretary)
                 .Where(x => x.Status != CatalogsStatus.Deleted);
 
-            if (brandId != null)
-                Query.Where(x => x.BrandId.Equals(brandId));
+            if (originDocumentId != null)
+                Query.Where(x => x.BrandId.Equals(originDocumentId));
             if (caseStatusId != null)
                 Query.Where(x => x.CaseStatusId.Equals(caseStatusId));
             if (departmentId != null)

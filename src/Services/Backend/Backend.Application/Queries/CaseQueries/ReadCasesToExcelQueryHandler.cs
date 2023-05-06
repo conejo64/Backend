@@ -30,13 +30,13 @@ namespace Backend.Application.Queries.CaseQueries
         public async Task<EntityResponse<byte[]>> Handle(ReadCasesToExcelQuery query,
             CancellationToken cancellationToken)
         {
-            var spec = new CaseSpec(query.BrandId, query.CaseStatusId, query.DepartmentId, query.InitialDate, query.FinalDate, query.IsPagingEnabled, 1, Int32.MaxValue);
+            var spec = new CaseSpec(query.OriginDocumentId, query.CaseStatusId, query.DepartmentId, query.InitialDate, query.FinalDate, query.IsPagingEnabled, 1, Int32.MaxValue);
             //Get entity list
             var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
             var result = await _exportExcelService.GenerateExcel(entityCollection);
 
-            return result;
+            return result!;
         }
     }
 }

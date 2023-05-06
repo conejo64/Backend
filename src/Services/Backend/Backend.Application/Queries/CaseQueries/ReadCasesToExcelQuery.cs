@@ -11,16 +11,16 @@ namespace Backend.Application.Queries.CaseQueries
 {
     public class ReadCasesToExcelQuery : BaseFilter, IRequest<EntityResponse<byte[]>>
     {
-        public Guid? BrandId { get; set; }
+        public Guid? OriginDocumentId { get; set; }
         public Guid? CaseStatusId { get; set; }
         public Guid? DepartmentId { get; set; }
         public DateTime? InitialDate { get; set; }
         public DateTime? FinalDate { get; set; }
 
 
-        public ReadCasesToExcelQuery(Guid? brandId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate)
+        public ReadCasesToExcelQuery(Guid? originDocumentId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate)
         {
-            BrandId = brandId;
+            OriginDocumentId = originDocumentId;
             CaseStatusId = caseStatusId;
             DepartmentId = departmentId;
             InitialDate = initialDate;
