@@ -36,6 +36,33 @@ public class CasesController : BaseController
     }
 
     [HttpGet]
+    [JwtAuthorize(JwtScope.Manager)]
+    // [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Produces(typeof(IReadOnlyCollection<CaseResponse>))]
+    [Route("others")]
+    public async Task<IActionResult> ReadOthersCases([FromQuery] ReadOthersCasesRequest request)
+    {
+        var claim = HttpContext.User.Claims.FirstOrDefault(t => t.Type.Equals("id"));
+        var claimValue = claim?.Value;
+        if (claimValue == null)
+        {
+            return BadRequest();
+        }
+        var userId = Guid.Parse(claimValue);
+        var query = request.ToApplicationRequest(userId);
+
+        var response = await Mediator.Send(query);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+
+        return Ok(response.Value);
+    }
+
+    [HttpGet]
     [JwtAuthorize(JwtScope.Manager)] 
     // [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
