@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LPZZcISkTOLSSw7QXnrZKBE+e48A7vWxzJCSoQEkptb6fh4T6Y8nMgoLIJQOI298Urbce5fsNab1ZhFUod0JKA==",
+  "dgSpecHash": "Fvi0L+CBUb+NvvsY3ifpQ/UadxcLZ3p5lMBRMePU06tAq62gcHH/CHxx1ZEp+221a5EOxitUdg1JW6XtjB+Y4A==",
   "success": true,
-  "projectFilePath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj",
+  "projectFilePath": "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Shared\\Shared.Domain\\Shared.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ortizja\\.nuget\\packages\\ardalis.specification\\6.0.1\\ardalis.specification.6.0.1.nupkg.sha512"
+    "C:\\Users\\PC\\.nuget\\packages\\ardalis.specification\\6.0.1\\ardalis.specification.6.0.1.nupkg.sha512"
   ],
   "logs": []
 }

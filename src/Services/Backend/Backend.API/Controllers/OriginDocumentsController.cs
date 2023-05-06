@@ -15,8 +15,8 @@ public class OriginDocumentsController : BaseController
     #endregion
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<OriginDocumentResponse>))]
@@ -35,8 +35,8 @@ public class OriginDocumentsController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<OriginDocumentResponse>))]
@@ -55,8 +55,8 @@ public class OriginDocumentsController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(OriginDocumentResponse))]
@@ -76,8 +76,8 @@ public class OriginDocumentsController : BaseController
     }
 
     [HttpPost]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> CreateOriginDocument([FromBody] CreateOriginDocumentRequest request)
@@ -94,8 +94,8 @@ public class OriginDocumentsController : BaseController
     }
 
     [HttpPut]
-    // [JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{originDocumentId:guid}")]
@@ -116,8 +116,8 @@ public class OriginDocumentsController : BaseController
     #region HttDelete Methods
 
     [HttpDelete]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{originDocumentId:guid}")]

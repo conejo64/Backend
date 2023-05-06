@@ -2,6 +2,7 @@ using Backend.API.DTOs.Requests.ManagerUserRequests;
 using Backend.API.DTOs.Requests.UserRequests;
 using Backend.Application.DTOs.Responses.ManagerUserResponses;
 using Backend.Application.DTOs.Responses.OriginDocumentResponses;
+using Backend.Application.DTOs.Responses.UserResponses;
 using Backend.Application.Queries.ManagerUserQueries;
 using Backend.Application.Queries.UserQueries;
 
@@ -36,37 +37,37 @@ public class UsersController : BaseController
         return Ok(response.Value);
     }
 
-    //[HttpGet]
-    //[AllowAnonymous]
-    //[ProducesResponseType((int)HttpStatusCode.OK)]
-    //[ProducesResponseType((int)HttpStatusCode.NotFound)]
-    //[Produces(typeof(ReadUserMeResponse))]
-    //[Route("me")]
-    //public async Task<IActionResult> Me()
-    //{
-    //    var claim = HttpContext.User.Claims.FirstOrDefault(t => t.Type.Equals("id"));
-    //    var claimValue = claim?.Value;
-    //    if (claimValue == null)
-    //    {
-    //        return BadRequest();
-    //    }
-
-    //    var userId = Guid.Parse(claimValue);
-    //    var command = new ReadUserMeQuery(userId);
-
-    //    var result = await Mediator.Send(command);
-
-    //    if (!result.IsSuccess)
-    //    {
-    //        return BadRequest();
-    //    }
-
-    //    return Ok(result.Value);
-    //}
+    // [HttpGet]
+    // [JwtAuthorize(JwtScope.Manager)]
+    // [ProducesResponseType((int)HttpStatusCode.OK)]
+    // [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    // [Produces(typeof(ReadUserMeResponse))]
+    // [Route("me")]
+    // public async Task<IActionResult> Me()
+    // {
+    //     var claim = HttpContext.User.Claims.FirstOrDefault(t => t.Type.Equals("id"));
+    //     var claimValue = claim?.Value;
+    //     if (claimValue == null)
+    //     {
+    //         return BadRequest();
+    //     }
+    //
+    //     var userId = Guid.Parse(claimValue);
+    //     var command = new ReadUserMeQuery(userId);
+    //
+    //     var result = await Mediator.Send(command);
+    //
+    //     if (!result.IsSuccess)
+    //     {
+    //         return BadRequest();
+    //     }
+    //
+    //     return Ok(result.Value);
+    // }
     
     [HttpGet]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReadUsersResponse>))]
@@ -84,8 +85,8 @@ public class UsersController : BaseController
     }
 
     [HttpGet]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReadUsersResponse>))]
@@ -104,8 +105,8 @@ public class UsersController : BaseController
     }
    
     [HttpGet]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.NotFound)]
     [Produces(typeof(ReadUserResponse))]
@@ -124,8 +125,8 @@ public class UsersController : BaseController
     }
     
     [HttpPut]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}")]
@@ -143,8 +144,8 @@ public class UsersController : BaseController
     }
     
     [HttpPatch]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}")]
@@ -162,8 +163,8 @@ public class UsersController : BaseController
     }
     
     [HttpPost]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     [Produces(typeof(JwtResponse))]
@@ -181,8 +182,8 @@ public class UsersController : BaseController
     }
 
     [HttpPost]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{managerId:guid}/changepassword")]
@@ -222,8 +223,8 @@ public class UsersController : BaseController
     #region HttDelete Methods
 
     [HttpDelete]
-    //[JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{userId:guid}")]

@@ -15,7 +15,8 @@ namespace Backend.API.Controllers
         {
         }
         [HttpGet]
-        [AllowAnonymous]
+        [JwtAuthorize(JwtScope.Manager)]
+        // [AllowAnonymous]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [Route("excel")]
