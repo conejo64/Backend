@@ -15,8 +15,8 @@ public class ProvincesController : BaseController
     #endregion
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ProvinceResponse>))]
@@ -35,8 +35,8 @@ public class ProvincesController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ProvinceResponse>))]
@@ -55,8 +55,8 @@ public class ProvincesController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(ProvinceResponse))]
@@ -76,8 +76,8 @@ public class ProvincesController : BaseController
     }
 
     [HttpPost]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> CreateProvince([FromBody] CreateProvinceRequest request)
@@ -94,8 +94,8 @@ public class ProvincesController : BaseController
     }
 
     [HttpPut]
-    // [JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{provinceId:guid}")]
@@ -116,8 +116,8 @@ public class ProvincesController : BaseController
     #region HttDelete Methods
 
     [HttpDelete]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{provinceId:guid}")]

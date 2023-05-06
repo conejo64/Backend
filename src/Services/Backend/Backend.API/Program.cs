@@ -35,6 +35,7 @@ try
     
     builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
     builder.WebHost.UseStaticWebAssets();
+    builder.WebHost.UseIISIntegration();
 
     var app = builder
         .ConfigureServices(configuration)

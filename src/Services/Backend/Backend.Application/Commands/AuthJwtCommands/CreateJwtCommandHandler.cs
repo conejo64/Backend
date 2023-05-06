@@ -91,9 +91,9 @@ namespace Backend.Application.Commands.AuthJwtCommands
         private async Task<ICollection<string>> GetScopedPermissions(User applicationUser,
             CancellationToken cancellationToken)
         {
-            var profilesIds = applicationUser.UserProfiles.Select(profile => profile.ProfileId).ToList();
+            var profilesIds = applicationUser.UserProfiles.Select(profile => profile.ProfileId.Value).ToList();
 
-            var profilesPermissions = await _mediator.Send(new ReadProfilePermissionService((ICollection<Guid>)profilesIds),
+            var profilesPermissions = await _mediator.Send(new ReadProfilePermissionService(profilesIds),
                 cancellationToken);
 
             var permissions = profilesPermissions.Select(permission => permission.Permission);

@@ -15,8 +15,8 @@ public class RemindersController : BaseController
     #endregion
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReminderResponse>))]
@@ -35,8 +35,8 @@ public class RemindersController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<ReminderResponse>))]
@@ -55,8 +55,8 @@ public class RemindersController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(ReminderResponse))]
@@ -76,8 +76,8 @@ public class RemindersController : BaseController
     }
 
     [HttpPost]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> CreateReminder([FromBody] CreateReminderRequest request)
@@ -94,8 +94,8 @@ public class RemindersController : BaseController
     }
 
     [HttpPut]
-    // [JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{reminderId:guid}")]
@@ -116,8 +116,8 @@ public class RemindersController : BaseController
     #region HttDelete Methods
 
     [HttpDelete]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{reminderId:guid}")]

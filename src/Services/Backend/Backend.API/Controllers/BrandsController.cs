@@ -15,8 +15,8 @@ public class BrandsController : BaseController
     #endregion
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    // [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<BrandResponse>))]
@@ -35,8 +35,8 @@ public class BrandsController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    // [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<BrandResponse>))]
@@ -55,8 +55,8 @@ public class BrandsController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    // [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(BrandResponse))]
@@ -76,8 +76,8 @@ public class BrandsController : BaseController
     }
 
     [HttpPost]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    // [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> CreateBrand([FromBody] CreateBrandRequest request)
@@ -94,8 +94,8 @@ public class BrandsController : BaseController
     }
 
     [HttpPut]
-    // [JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    // [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{brandId:guid}")]
@@ -116,8 +116,8 @@ public class BrandsController : BaseController
     #region HttDelete Methods
 
     [HttpDelete]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    // [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{brandId:guid}")]

@@ -15,8 +15,8 @@ public class DepartmentsController : BaseController
     #endregion
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<DepartmentResponse>))]
@@ -35,8 +35,8 @@ public class DepartmentsController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(IReadOnlyCollection<DepartmentResponse>))]
@@ -55,8 +55,8 @@ public class DepartmentsController : BaseController
     }
 
     [HttpGet]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Produces(typeof(DepartmentResponse))]
@@ -76,8 +76,8 @@ public class DepartmentsController : BaseController
     }
 
     [HttpPost]
-    // [JwtAuthorize(JwtScope.Manager)] 
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)] 
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> CreateDepartment([FromBody] CreateDepartmentRequest request)
@@ -94,8 +94,8 @@ public class DepartmentsController : BaseController
     }
 
     [HttpPut]
-    // [JwtAuthorize(JwtScope.Manager)]
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{departmentId:guid}")]
@@ -116,8 +116,8 @@ public class DepartmentsController : BaseController
     #region HttDelete Methods
 
     [HttpDelete]
-    // [JwtAuthorize(JwtScope.Manager)]    
-    [AllowAnonymous]
+    [JwtAuthorize(JwtScope.Manager)]    
+    //[AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [Route("{departmentId:guid}")]

@@ -24,6 +24,8 @@ namespace Backend.Application.Queries.ProfileQueries
                 return EntityResponse<List<PermissionResponse>>.Error(MessageHandler.PermissionNotFound);
             }
 
+            permissions = permissions.OrderBy(x => x.ResourceCode).ToList();
+
             return PermissionResponse.FromEntity(permissions);
         }
     }
