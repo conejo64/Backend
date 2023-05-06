@@ -42,13 +42,17 @@ namespace Backend.Application.Commands.CaseCommands
         public DateTime? ExtensionRequestDate { get; set; }
         public DateTime? NewExtensionRequestDate { get; set; }
         public string? ObservationExtension { get; set; }
+        // Attachement
+        public List<string>? DocumentString { get; set; }
+        public Guid? UserOriginId { get; set; }
+        public List<string>? DocumentStringNames { get; set; }
 
         public CreateCaseCommand(string? requirementNumber, DateTime? receptionDate, Guid? originDocumentId, string? physicallyReceived, string? digitallyReceived, 
             string? documentNumber, string? sbsNumber, string? judgmentNumber, DateTime? issueDate, string? description, Guid? brandId, Guid? departmentId, 
             Guid? userId, Guid? typeRequirementId, string? notification, string? subject, DateTime? transferDate, DateTime? deadline, Guid? provinceId, 
             DateTime? dueDate, Guid? reminderId, DateTime? replyDate, string? comments, DateTime? responseDate, Guid? caseStatusId, 
             string? observationDepartment, Guid? caseStatusSecretaryId, DateTime? acknowledgmentDate, DateTime? extensionRequestDate, DateTime? newExtensionRequestDate, 
-            string? observationExtension)
+            string? observationExtension, Guid? userOriginId, List<string>? documentString, List<string>? documentStringNames)
         {
             RequirementNumber = requirementNumber;
             ReceptionDate = receptionDate;
@@ -81,6 +85,9 @@ namespace Backend.Application.Commands.CaseCommands
             ExtensionRequestDate = extensionRequestDate;
             NewExtensionRequestDate = newExtensionRequestDate;
             ObservationExtension = observationExtension;
+            UserOriginId = userOriginId;
+            DocumentString = documentString;
+            DocumentStringNames = documentStringNames;
         }
     }
 }

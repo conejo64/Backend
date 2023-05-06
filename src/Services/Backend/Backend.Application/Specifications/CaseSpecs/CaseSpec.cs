@@ -24,6 +24,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Where(x => x.Status != CatalogsStatus.Deleted && x.Id == id);
         }
 
+        //filtrar por originDocument
         public CaseSpec(Guid? brandId, Guid? caseStatusId, Guid? departmentId, DateTime? initialDate, DateTime? finalDate, bool isPagingEnabled, int page, int pageSize)
         {
             Query
