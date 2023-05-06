@@ -1977,6 +1977,21 @@
           }
         }
       },
+      "Microsoft.NET.Sdk.Razor/3.1.32": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "build": {
+          "build/netstandard2.0/Microsoft.NET.Sdk.Razor.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.NET.Sdk.Razor.props": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/5.0.0": {
         "type": "package",
         "compile": {
@@ -6852,6 +6867,83 @@
         "lib/netstandard2.0/Microsoft.Net.Http.Headers.xml",
         "microsoft.net.http.headers.2.1.1.nupkg.sha512",
         "microsoft.net.http.headers.nuspec"
+      ]
+    },
+    "Microsoft.NET.Sdk.Razor/3.1.32": {
+      "sha512": "9/DyCcwqIjP70i44qVR1Az/5+teybsaGpqgUdadU9++N0YeSTpZCBxczTgaKN+zArzC2/8uvHDKdqqvHoCK4Kg==",
+      "type": "package",
+      "path": "microsoft.net.sdk.razor/3.1.32",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "Sdk/Sdk.Razor.StaticAssets.ProjectSystem.props",
+        "Sdk/Sdk.props",
+        "Sdk/Sdk.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.CodeGeneration.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.Compilation.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.Component.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.Configuration.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.DesignTime.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.GenerateAssemblyInfo.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.MvcApplicationPartsDiscovery.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.StaticWebAssets.targets",
+        "build/netstandard2.0/Microsoft.NET.Sdk.Razor.props",
+        "build/netstandard2.0/Rules/RazorComponentWithTargetPath.xaml",
+        "build/netstandard2.0/Rules/RazorConfiguration.xaml",
+        "build/netstandard2.0/Rules/RazorExtension.xaml",
+        "build/netstandard2.0/Rules/RazorGeneral.xaml",
+        "build/netstandard2.0/Rules/RazorGenerateWithTargetPath.xaml",
+        "build/netstandard2.0/Sdk.Razor.CurrentVersion.props",
+        "build/netstandard2.0/Sdk.Razor.CurrentVersion.targets",
+        "buildMultiTargeting/Microsoft.NET.Sdk.Razor.props",
+        "buildMultiTargeting/Sdk.Razor.CurrentVersion.MultiTargeting.targets",
+        "extensions/mvc-3-0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll",
+        "lib/netstandard2.0/_._",
+        "microsoft.net.sdk.razor.3.1.32.nupkg.sha512",
+        "microsoft.net.sdk.razor.nuspec",
+        "tasks/net46/Microsoft.NET.Sdk.Razor.Tasks.dll",
+        "tasks/net46/System.Collections.Immutable.dll",
+        "tasks/net46/System.Reflection.Metadata.dll",
+        "tasks/netcoreapp3.1/Microsoft.NET.Sdk.Razor.Tasks.dll",
+        "tools/netcoreapp3.0/Microsoft.AspNetCore.Razor.Language.dll",
+        "tools/netcoreapp3.0/Microsoft.AspNetCore.Razor.Language.xml",
+        "tools/netcoreapp3.0/Microsoft.CodeAnalysis.CSharp.dll",
+        "tools/netcoreapp3.0/Microsoft.CodeAnalysis.Razor.dll",
+        "tools/netcoreapp3.0/Microsoft.CodeAnalysis.Razor.xml",
+        "tools/netcoreapp3.0/Microsoft.CodeAnalysis.dll",
+        "tools/netcoreapp3.0/Newtonsoft.Json.dll",
+        "tools/netcoreapp3.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/cs/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/de/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/es/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/fr/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/it/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/ja/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/ko/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/pl/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/pt-BR/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/ru/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/rzc.deps.json",
+        "tools/netcoreapp3.0/rzc.dll",
+        "tools/netcoreapp3.0/rzc.runtimeconfig.json",
+        "tools/netcoreapp3.0/rzc.xml",
+        "tools/netcoreapp3.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/tr/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll",
+        "tools/netcoreapp3.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll",
+        "tools/netcoreapp3.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll"
       ]
     },
     "Microsoft.NETCore.Platforms/5.0.0": {
@@ -12121,6 +12213,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 6.0.4",
       "Microsoft.Identity.Web >= 1.23.0",
       "Microsoft.Identity.Web.UI >= 1.23.0",
+      "Microsoft.NET.Sdk.Razor >= 3.1.32",
       "Quartz >= 3.4.0",
       "Quartz.Extensions.Hosting >= 3.4.0",
       "Serilog.AspNetCore >= 5.0.0",
@@ -12137,28 +12230,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {},
+    "C:\\Users\\ortizja\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
+      "projectUniqueName": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
       "projectName": "Backend.API",
-      "projectPath": "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Backend\\Backend.API\\obj\\",
+      "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\Backend.API.csproj",
+      "packagesPath": "C:\\Users\\ortizja\\.nuget\\packages\\",
+      "outputPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "D:\\DEV\\Jonas\\git\\Backend\\NuGet.Config",
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\NuGet.Config",
+        "C:\\Users\\ortizja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -12166,7 +12260,6 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "D:\\KG\\Packages\\ComunApi": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -12174,11 +12267,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj": {
-              "projectPath": "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj"
+            "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj": {
+              "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Backend\\Backend.Infrastructure\\Backend.Infrastructure.csproj"
             },
-            "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj": {
-              "projectPath": "D:\\DEV\\Jonas\\git\\Backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj"
+            "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj": {
+              "projectPath": "D:\\Jonathan\\OpenKm\\Diners\\Aplicacion\\Backend\\backend\\src\\Services\\Shared\\Shared.API\\Shared.API.csproj"
             }
           }
         }
@@ -12260,6 +12353,10 @@
             "target": "Package",
             "version": "[1.23.0, )"
           },
+          "Microsoft.NET.Sdk.Razor": {
+            "target": "Package",
+            "version": "[3.1.32, )"
+          },
           "Quartz": {
             "target": "Package",
             "version": "[3.4.0, )"
@@ -12315,8 +12412,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -12328,7 +12424,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
       }
     }
   }
