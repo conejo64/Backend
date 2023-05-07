@@ -27,7 +27,7 @@ namespace Backend.Application.DTOs.Responses.DocumentResponses
 
         public static DocumentResponse FromEntity(DocumentEntity documentEntity)
         {
-            return new DocumentResponse(documentEntity.CaseId, documentEntity.CaseEntity, documentEntity.Document64, documentEntity.Document64Name, 
+            return new DocumentResponse(documentEntity.CaseEntityId, documentEntity.CaseEntity, documentEntity.Document64, documentEntity.Document64Name, 
                 documentEntity.Id, documentEntity.Status);
         }
     }

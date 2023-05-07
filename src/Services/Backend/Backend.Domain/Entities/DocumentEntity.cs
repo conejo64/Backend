@@ -10,7 +10,7 @@ namespace Backend.Domain.Entities
     public class DocumentEntity : BaseEntity
     {
         public string Status { get; set; } = CatalogsStatus.Active;
-        public Guid? CaseId { get; set; }
+        public Guid? CaseEntityId { get; set; }
         public CaseEntity? CaseEntity { get; set; }
         public string? Document64 { get; set; }
         public string? Document64Name { get; set; }
