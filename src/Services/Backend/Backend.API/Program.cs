@@ -1,11 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
-<<<<<<< HEAD
-using Microsoft.AspNetCore.Hosting;
-=======
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Server.IIS;
->>>>>>> 3cb7ffceacb8bfd8592a413ff99efbc03f26f820
 using Microsoft.Extensions.FileProviders;
 using ServiceReference;
 
