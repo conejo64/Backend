@@ -83,7 +83,7 @@ namespace Backend.Application.Commands.CaseCommands
             {
                 var document = new DocumentEntity
                 {
-                    CaseId = entity.Id,
+                    CaseEntityId = entity.Id,
                     DocumentSource = DocumentSourceEnum.Create,
                     Document64 = command.DocumentString.ElementAt(i),
                     Document64Name = command.DocumentStringNames!.ElementAt(i),
