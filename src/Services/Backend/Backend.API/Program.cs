@@ -6,7 +6,7 @@ using Microsoft.Extensions.FileProviders;
 using ServiceReference;
 
 var configuration = GetConfiguration();
-ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es_EC");
+//ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es_EC");
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -39,7 +39,7 @@ try
     });
     builder.Services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
     builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
-    builder.WebHost.UseStaticWebAssets();
+    //builder.WebHost.UseStaticWebAssets();
     builder.WebHost.UseIISIntegration();
 
     var app = builder
