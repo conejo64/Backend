@@ -22,10 +22,11 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<Brand> _brandRepository;
         private readonly IRepository<TypeRequirement> _typeRepository;
         private readonly IRepository<Department> _departmentRepository;
+        private readonly IRepository<DocumentEntity> _documentRepository;
 
         public CreateCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus,
-            INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository, IRepository<OriginDocument> originRepository, 
-            IRepository<TypeRequirement> typeRepository, IRepository<Department> departmentRepository)
+            INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository, IRepository<OriginDocument> originRepository,
+            IRepository<TypeRequirement> typeRepository, IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository)
         {
             _repository = repository;
             _repositoryCaseStatus = repositoryCaseStatus;
@@ -35,6 +36,7 @@ namespace Backend.Application.Commands.CaseCommands
             _originRepository = originRepository;
             _typeRepository = typeRepository;
             _departmentRepository = departmentRepository;
+            _documentRepository = documentRepository;
         }
 
         public async Task<EntityResponse<Guid>> Handle(CreateCaseCommand command, CancellationToken cancellationToken)
@@ -67,7 +69,7 @@ namespace Backend.Application.Commands.CaseCommands
             }
             //Notificacion de Adjuntos
             var attachemt = command.DocumentString;
-            if (!string.IsNullOrEmpty(command.Notification))
+            if (!string.IsNullOrEmpty(command.Notification) && attachemt!.Any())
             {
                 _notificationService.SendEmailNotification(new EmailNotifictionModel()
                 {
@@ -77,7 +79,21 @@ namespace Backend.Application.Commands.CaseCommands
                     Body = body
                 });
             }
+            for (int i = 0; i < command.DocumentString!.Count; i++)
+            {
+                var document = new DocumentEntity
+                {
+                    CaseId = entity.Id,
+                    DocumentSource = DocumentSourceEnum.Create,
+                    Document64 = command.DocumentString.ElementAt(i),
+                    Document64Name = command.DocumentStringNames!.ElementAt(i),
+
+                };
+                await _documentRepository.AddAsync(document, cancellationToken);
+                document = new DocumentEntity();
+            }
             
+            await _documentRepository.SaveChangesAsync(cancellationToken);
             return EntityResponse.Success(entity.Id);
         }
 

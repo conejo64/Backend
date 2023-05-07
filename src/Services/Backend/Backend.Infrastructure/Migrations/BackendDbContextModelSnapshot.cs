@@ -255,6 +255,44 @@ namespace backend.Infrastructure.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("Backend.Domain.Entities.DocumentEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CaseEntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CaseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Document64")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Document64Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentSource")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseEntityId");
+
+                    b.ToTable("DocumentEntities");
+                });
+
             modelBuilder.Entity("Backend.Domain.Entities.OriginDocument", b =>
                 {
                     b.Property<Guid>("Id")
@@ -610,6 +648,15 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("User");
 
                     b.Navigation("UserOrigin");
+                });
+
+            modelBuilder.Entity("Backend.Domain.Entities.DocumentEntity", b =>
+                {
+                    b.HasOne("Backend.Domain.Entities.CaseEntity", "CaseEntity")
+                        .WithMany()
+                        .HasForeignKey("CaseEntityId");
+
+                    b.Navigation("CaseEntity");
                 });
 
             modelBuilder.Entity("Backend.Domain.Entities.ProfilePermission", b =>

@@ -1,5 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Server.IIS;
 using Microsoft.Extensions.FileProviders;
 using ServiceReference;
 
@@ -31,7 +33,11 @@ try
                 .AllowAnyHeader()
                 .AllowCredentials());
     });
-    
+    builder.Services.Configure<IISServerOptions>(options =>
+    {
+        options.AutomaticAuthentication = false;
+    });
+    builder.Services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
     builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
     builder.WebHost.UseStaticWebAssets();
     builder.WebHost.UseIISIntegration();

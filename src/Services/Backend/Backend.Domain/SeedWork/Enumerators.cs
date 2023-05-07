@@ -40,3 +40,11 @@ public static class UserTypes
     public static List<string> All => new() { Manager, Member };
 }
 
+public static class DocumentSourceEnum
+{
+    public static string Create => nameof(Create).ToLowerInvariant();
+    public static string Reply => nameof(Reply).ToLowerInvariant();
+    public static string Close => nameof(Close).ToLowerInvariant();
+
+    public static List<string> All => new() { Create, Reply, Close };
+}
