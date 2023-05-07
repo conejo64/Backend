@@ -116,14 +116,14 @@ namespace Backend.Application.DTOs.Responses.CaseResponses
             return new CaseResponse(caseEntity.Id, caseEntity.Status, caseEntity.RequirementNumber, caseEntity.ReceptionDate, 
                 caseEntity!.OriginDocumentId, caseEntity?.OriginDocument?.Description, caseEntity?.PhysicallyReceived,
                 caseEntity?.DigitallyReceived, caseEntity?.DocumentNumber, caseEntity?.SbsNumber, caseEntity?.JudgmentNumber, 
-                caseEntity?.IssueDate, caseEntity?.Description, caseEntity.BrandId, caseEntity?.Brand!.Description,
-                caseEntity.DepartmentId, caseEntity?.Department?.Description, caseEntity!.UserId,
-                caseEntity?.User?.FullName, caseEntity.TypeRequirementId, caseEntity?.TypeRequirement?.Description, 
+                caseEntity?.IssueDate, caseEntity?.Description, caseEntity!.BrandId, caseEntity?.Brand!.Description,
+                caseEntity!.DepartmentId, caseEntity?.Department?.Description, caseEntity!.UserId,
+                caseEntity?.User?.FullName, caseEntity!.TypeRequirementId, caseEntity?.TypeRequirement?.Description, 
                 caseEntity?.Notification, caseEntity?.Subject, caseEntity?.TransferDate, caseEntity?.Deadline, caseEntity!.ProvinceId,
-                caseEntity?.Province?.Description, caseEntity?.DueDate, caseEntity.ReminderId,
+                caseEntity?.Province?.Description, caseEntity?.DueDate, caseEntity!.ReminderId,
                 caseEntity?.Reminder?.Description, caseEntity?.ReplyDate, caseEntity?.Comments,
-                caseEntity?.ResponseDate, caseEntity.CaseStatusId, caseEntity?.CaseStatus?.Description,
-                caseEntity?.ObservationDepartment, caseEntity.CaseStatusSecretaryId, caseEntity?.CaseStatusSecretary?.Description,
+                caseEntity?.ResponseDate, caseEntity!.CaseStatusId, caseEntity?.CaseStatus?.Description,
+                caseEntity?.ObservationDepartment, caseEntity!.CaseStatusSecretaryId, caseEntity?.CaseStatusSecretary?.Description,
                 caseEntity?.AcknowledgmentDate, caseEntity?.ExtensionRequestDate, caseEntity?.NewExtensionRequestDate, caseEntity?.ObservationExtension);
         }
     }

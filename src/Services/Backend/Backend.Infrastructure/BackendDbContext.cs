@@ -12,6 +12,7 @@ public class BackendDbContext : DbContext
     public DbSet<CaseStatus> CaseStatuses=> Set<CaseStatus>();
     public DbSet<CaseStatusSecretary> CaseStatusSecretaries=> Set<CaseStatusSecretary>();
     public DbSet<CaseEntity> CaseEntities=> Set<CaseEntity>();
+    public DbSet<DocumentEntity> DocumentEntities=> Set<DocumentEntity>();  
     // Permissions
     public DbSet<User> Users => Set<User>();
     public DbSet<Permission> Permissions => Set<Permission>();
