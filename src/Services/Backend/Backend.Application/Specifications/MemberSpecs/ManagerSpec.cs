@@ -8,8 +8,8 @@ public sealed class ManagerSpec : Ardalis.Specification.Specification<User>, ISi
     public ManagerSpec(Guid id)
     {
         Query
-            //.Include(user => user.UserProfiles)
-            //.ThenInclude(userProfiles => userProfiles.Profile)
+            .Include(user => user.UserProfiles)
+            .ThenInclude(userProfiles => userProfiles.Profile)
             .Where(user => user.Status != UserState.Deleted);
 
         Query
@@ -19,8 +19,8 @@ public sealed class ManagerSpec : Ardalis.Specification.Specification<User>, ISi
     public ManagerSpec(string? queryParam, bool isPagingEnabled, int page, int pageSize)
     {
         Query
-            //.Include(user => user.UserProfiles)
-            //.ThenInclude(userProfiles => userProfiles.Profile)
+            .Include(user => user.UserProfiles)
+            .ThenInclude(userProfiles => userProfiles.Profile)
             .Where(user => user.Status != UserState.Deleted);
 
         if (!string.IsNullOrEmpty(queryParam))
@@ -39,8 +39,8 @@ public sealed class ManagerSpec : Ardalis.Specification.Specification<User>, ISi
     public ManagerSpec()
     {
         Query
-            //.Include(user => user.UserProfiles)
-            //.ThenInclude(userProfiles => userProfiles.Profile)
+            .Include(user => user.UserProfiles)
+            .ThenInclude(userProfiles => userProfiles.Profile)
             .Where(x => x.Status != CatalogsStatus.Deleted);
 
     }
