@@ -18,13 +18,15 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly INotificationService _notificationService;
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<CaseStatusSecretary> _repositoryCaseStatusSecretary;
-        public UpdateCloseCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus, INotificationService notificationService, IRepository<User> userRepository, IRepository<CaseStatusSecretary> repositoryCaseStatusSecretary)
+        private readonly IRepository<DocumentEntity> _documentRepository;
+        public UpdateCloseCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus, INotificationService notificationService, IRepository<User> userRepository, IRepository<CaseStatusSecretary> repositoryCaseStatusSecretary, IRepository<DocumentEntity> documentRepository)
         {
             _repository = repository;
             _repositoryCaseStatus = repositoryCaseStatus;
             _notificationService = notificationService;
             _userRepository = userRepository;
             _repositoryCaseStatusSecretary = repositoryCaseStatusSecretary;
+            _documentRepository = documentRepository;
         }
 
         public async Task<EntityResponse<bool>> Handle(UpdateCloseCaseCommand command, CancellationToken cancellationToken)
@@ -65,6 +67,21 @@ namespace Backend.Application.Commands.CaseCommands
                     Body = body
                 });
             }
+            for (int i = 0; i < command.DocumentString!.Count; i++)
+            {
+                var document = new DocumentEntity
+                {
+                    CaseId = entity.Id,
+                    DocumentSource = DocumentSourceEnum.Create,
+                    Document64 = command.DocumentString.ElementAt(i),
+                    Document64Name = command.DocumentStringNames!.ElementAt(i),
+
+                };
+                await _documentRepository.AddAsync(document, cancellationToken);
+                document = new DocumentEntity();
+            }
+
+            await _documentRepository.SaveChangesAsync(cancellationToken);
             return true;
         }
 

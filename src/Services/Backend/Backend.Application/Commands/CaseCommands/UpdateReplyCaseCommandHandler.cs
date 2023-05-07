@@ -16,12 +16,14 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<CaseEntity> _repository;
         private readonly IRepository<User> _userRepository;
         private readonly INotificationService _notificationService;
+        private readonly IRepository<DocumentEntity> _documentRepository;
 
-        public UpdateReplyCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<User> userRepository, INotificationService notificationService)
+        public UpdateReplyCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<User> userRepository, INotificationService notificationService, IRepository<DocumentEntity> documentRepository)
         {
             _repository = repository;
             _userRepository = userRepository;
             _notificationService = notificationService;
+            _documentRepository = documentRepository;
         }
 
         public async Task<EntityResponse<bool>> Handle(UpdateReplyCaseCommand command, CancellationToken cancellationToken)
@@ -56,6 +58,20 @@ namespace Backend.Application.Commands.CaseCommands
                     Body = body
                 });
             }
+            for (int i = 0; i < command.DocumentString!.Count; i++)
+            {
+                var document = new DocumentEntity
+                {
+                    CaseId = entity.Id,
+                    DocumentSource = DocumentSourceEnum.Create,
+                    Document64 = command.DocumentString.ElementAt(i),
+                    Document64Name = command.DocumentStringNames!.ElementAt(i),
+
+                };
+                await _documentRepository.AddAsync(document, cancellationToken);
+                document = new DocumentEntity();
+            }
+
             return true;
         }
 

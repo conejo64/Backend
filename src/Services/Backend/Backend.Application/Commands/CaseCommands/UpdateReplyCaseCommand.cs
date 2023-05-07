@@ -12,12 +12,16 @@ namespace Backend.Application.Commands.CaseCommands
         //Screen Department
         public DateTime? ReplyDate { get; set; }
         public string? Comments { get; set; }
+        public List<string>? DocumentString { get; set; }
+        public List<string>? DocumentStringNames { get; set; }
 
-        public UpdateReplyCaseCommand(Guid id, DateTime? replyDate, string? comments)
+        public UpdateReplyCaseCommand(Guid id, DateTime? replyDate, string? comments, List<string>? documentString, List<string>? documentStringNames)
         {
             Id = id;
             ReplyDate = replyDate;
             Comments = comments;
+            DocumentString = documentString;
+            DocumentStringNames = documentStringNames;
         }
     }
 }

@@ -43,8 +43,8 @@ namespace Backend.Application.Commands.CaseCommands
         public DateTime? NewExtensionRequestDate { get; set; }
         public string? ObservationExtension { get; set; }
         // Attachement
-        public List<string>? DocumentString { get; set; }
         public Guid? UserOriginId { get; set; }
+        public List<string>? DocumentString { get; set; }
         public List<string>? DocumentStringNames { get; set; }
 
         public CreateCaseCommand(string? requirementNumber, DateTime? receptionDate, Guid? originDocumentId, string? physicallyReceived, string? digitallyReceived, 
