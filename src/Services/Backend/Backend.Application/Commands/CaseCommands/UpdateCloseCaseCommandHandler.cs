@@ -72,7 +72,7 @@ namespace Backend.Application.Commands.CaseCommands
                 var document = new DocumentEntity
                 {
                     CaseEntityId = entity.Id,
-                    DocumentSource = DocumentSourceEnum.Create,
+                    DocumentSource = DocumentSourceEnum.Close,
                     Document64 = command.DocumentString.ElementAt(i),
                     Document64Name = command.DocumentStringNames!.ElementAt(i),
 
@@ -80,7 +80,6 @@ namespace Backend.Application.Commands.CaseCommands
                 await _documentRepository.AddAsync(document, cancellationToken);
                 document = new DocumentEntity();
             }
-
             await _documentRepository.SaveChangesAsync(cancellationToken);
             return true;
         }
