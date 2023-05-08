@@ -1,7 +1,7 @@
 using Microsoft.Extensions.FileProviders;
 
 var configuration = GetConfiguration();
-ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es_EC");
+//ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es_EC");
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
