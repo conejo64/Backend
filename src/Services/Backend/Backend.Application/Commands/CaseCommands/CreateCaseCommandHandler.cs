@@ -69,7 +69,7 @@ namespace Backend.Application.Commands.CaseCommands
             }
             //Notificacion de Adjuntos
             var attachemt = command.DocumentString;
-            if (!string.IsNullOrEmpty(command.Notification) && attachemt!.Any())
+            if (!string.IsNullOrEmpty(command.Notification))
             {
                 _notificationService.SendEmailNotification(new EmailNotifictionModel()
                 {
