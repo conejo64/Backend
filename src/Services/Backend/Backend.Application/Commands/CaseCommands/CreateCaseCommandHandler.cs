@@ -96,7 +96,7 @@ namespace Backend.Application.Commands.CaseCommands
                     DocumentSource = DocumentSourceEnum.Create,
                     Document64 = documentSplit[1],
                     Document64Name = command.DocumentStringNames!.ElementAt(i),
-                    ContextType = contentTypeSplit[1],
+                    ContextType = contentTypeSplit[1].Split(';')[0],
 
                 };
                 await _documentRepository.AddAsync(document, cancellationToken);
