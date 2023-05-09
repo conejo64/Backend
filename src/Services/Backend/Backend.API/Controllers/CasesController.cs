@@ -105,8 +105,8 @@ public class CasesController : BaseController
     }
 
     [HttpPost]
-    [JwtAuthorize(JwtScope.Manager)] 
-    // [AllowAnonymous]
+    //[JwtAuthorize(JwtScope.Manager)] 
+    [AllowAnonymous]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> CreateCase([FromBody] CreateCaseRequest request)

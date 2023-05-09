@@ -69,18 +69,20 @@ namespace Backend.Application.Commands.CaseCommands
             }
             for (int i = 0; i < command.DocumentString!.Count; i++)
             {
+                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+                var contentTypeSplit = documentSplit[0].Split(':');
                 var document = new DocumentEntity
                 {
                     CaseEntityId = entity.Id,
-                    DocumentSource = DocumentSourceEnum.Create,
-                    Document64 = command.DocumentString.ElementAt(i),
+                    DocumentSource = DocumentSourceEnum.Close,
+                    Document64 = documentSplit[1],
                     Document64Name = command.DocumentStringNames!.ElementAt(i),
+                    ContextType = contentTypeSplit[1],
 
                 };
                 await _documentRepository.AddAsync(document, cancellationToken);
                 document = new DocumentEntity();
             }
-
             await _documentRepository.SaveChangesAsync(cancellationToken);
             return true;
         }

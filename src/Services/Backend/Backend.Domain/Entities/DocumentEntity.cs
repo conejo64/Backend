@@ -15,5 +15,6 @@ namespace Backend.Domain.Entities
         public string? Document64 { get; set; }
         public string? Document64Name { get; set; }
         public string? DocumentSource { get; set; }
+        public string? ContextType { get; set; }
     }
 }

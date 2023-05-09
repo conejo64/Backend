@@ -57,7 +57,7 @@ namespace Backend.Application.Commands.CaseCommands
             var department = await _departmentRepository.GetByIdAsync(command.DepartmentId, cancellationToken);
             var body = GetBody(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.RequirementNumber, command.Description, brand!.Description,
                                 department!.Description, destinationUser!.FullName, command.TransferDate.ToString());
-            //Notificar a responsable
+            //Notification
             if (destinationUser is not null)
             {
                 _notificationService.SendEmailNotification(new EmailNotifictionModel()
@@ -67,9 +67,15 @@ namespace Backend.Application.Commands.CaseCommands
                     Body = body
                 });
             }
-            //Notificacion de Adjuntos
-            var attachemt = command.DocumentString;
-            if (!string.IsNullOrEmpty(command.Notification) && attachemt!.Any())
+            //Notification Attachement
+            var documentList = new List<string>();
+            foreach(var d in command.DocumentString!)
+            {
+                var documentSplit = d.Split(',');
+                documentList.Add(documentSplit[1]);
+            }
+            var attachemt = documentList;
+            if (!string.IsNullOrEmpty(command.Notification))
             {
                 _notificationService.SendEmailNotification(new EmailNotifictionModel()
                 {
@@ -79,14 +85,18 @@ namespace Backend.Application.Commands.CaseCommands
                     Body = body
                 });
             }
+            //Save Documents
             for (int i = 0; i < command.DocumentString!.Count; i++)
             {
+                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+                var contentTypeSplit = documentSplit[0].Split(':');
                 var document = new DocumentEntity
                 {
                     CaseEntityId = entity.Id,
                     DocumentSource = DocumentSourceEnum.Create,
-                    Document64 = command.DocumentString.ElementAt(i),
+                    Document64 = documentSplit[1],
                     Document64Name = command.DocumentStringNames!.ElementAt(i),
+                    ContextType = contentTypeSplit[1],
 
                 };
                 await _documentRepository.AddAsync(document, cancellationToken);
