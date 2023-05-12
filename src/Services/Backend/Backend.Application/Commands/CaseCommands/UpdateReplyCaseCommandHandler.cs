@@ -37,6 +37,7 @@ namespace Backend.Application.Commands.CaseCommands
 
             entity.ReplyDate = command.ReplyDate;
             entity.Comments = entity.Comments + " / " + command.Comments;
+            entity.CaseStage = StageEnum.Secretary;
 
             await _repository.UpdateAsync(entity, cancellationToken);
             var destinationUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);

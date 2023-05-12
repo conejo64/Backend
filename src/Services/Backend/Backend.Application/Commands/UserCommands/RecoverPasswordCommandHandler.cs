@@ -1,4 +1,5 @@
 using Backend.Application.Commands.AuthJwtCommands;
+using Backend.Application.Commands.NotificationCommands;
 using Backend.Application.DTOs.Responses.UserResponses;
 using Backend.Application.Queries.UserQueries;
 using Backend.Application.Services.Reads;
@@ -33,7 +34,8 @@ namespace Backend.Application.Commands.UserCommands
 
             //Send email
             var sendEmailModel = new SendEmailNotificationCommand(command.Email,"","","Backend - Recuperar contrase�a",
-                String.Format("Se ha generado su nueva contrase�a: <br> Contrase�a: {0}", newPassword),new List<string>());
+                String.Format("Se ha generado su nueva contrase�a: <br> Contrase�a: {0}", newPassword),new List<string>(),
+                new List<string>());
             await _mediator.Send(sendEmailModel, cancellationToken);
 
             user.Password = StringHandler.CreateMD5Hash(newPassword); 

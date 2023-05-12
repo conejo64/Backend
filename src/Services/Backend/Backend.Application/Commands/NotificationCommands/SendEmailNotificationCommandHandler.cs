@@ -1,4 +1,5 @@
 using Backend.Application.Commands.AuthJwtCommands;
+using Backend.Application.Commands.NotificationCommands;
 using Backend.Application.DTOs;
 using Backend.Application.DTOs.Responses.UserResponses;
 using Backend.Application.Queries.UserQueries;
@@ -30,6 +31,7 @@ namespace Backend.Application.Commands.UserCommands
                 Subject = command.Subject,  
                 Body = command.Body,
                 Attachment = command.Attachment,
+                AttachmentNames = command.AttachmentNames,
                 Cco = command.Cco,
                 Cc = command.Cc
             };

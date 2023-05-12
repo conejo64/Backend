@@ -23,10 +23,13 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<TypeRequirement> _typeRepository;
         private readonly IRepository<Department> _departmentRepository;
         private readonly IRepository<DocumentEntity> _documentRepository;
+        private readonly IRepository<Reminder> _reminderRepository;
 
         public CreateCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus,
-            INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository, IRepository<OriginDocument> originRepository,
-            IRepository<TypeRequirement> typeRepository, IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository)
+            INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository,
+            IRepository<OriginDocument> originRepository, IRepository<TypeRequirement> typeRepository, 
+            IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository,
+            IRepository<Reminder> reminderRepository)
         {
             _repository = repository;
             _repositoryCaseStatus = repositoryCaseStatus;
@@ -37,17 +40,25 @@ namespace Backend.Application.Commands.CaseCommands
             _typeRepository = typeRepository;
             _departmentRepository = departmentRepository;
             _documentRepository = documentRepository;
+            _reminderRepository = reminderRepository;
         }
 
         public async Task<EntityResponse<Guid>> Handle(CreateCaseCommand command, CancellationToken cancellationToken)
         {
             var statusSpec = new CaseStatusSpec("ABIERTO");
             var statusId = await _repositoryCaseStatus.GetBySpecAsync(statusSpec, cancellationToken);
+            var reminderSelect = await _reminderRepository.GetByIdAsync(command.ReminderId!, cancellationToken);
+            var reminderDate = DateTime.Now;
+            if (reminderSelect != null)
+            {
+                var hour = Int32.Parse(reminderSelect.Description!);
+                reminderDate = reminderDate.AddHours(hour);
+            }
             var entity = new CaseEntity(command.RequirementNumber, DateTime.Now, command.OriginDocumentId, command.PhysicallyReceived, command.DigitallyReceived, command.DocumentNumber,
                                         command.SbsNumber, command.JudgmentNumber, command.IssueDate, command.Description, command.BrandId, command.DepartmentId, command.UserId, command.TypeRequirementId,
                                         command.Notification, command.Subject, command.TransferDate, command.Deadline, command.ProvinceId, command.DueDate, command.ReminderId, command.ReplyDate, command.Comments,
                                         command.ResponseDate, statusId!.Id, command.ObservationDepartment, command.CaseStatusSecretaryId, command.AcknowledgmentDate, command.ExtensionRequestDate, command.NewExtensionRequestDate, 
-                                        command.ObservationExtension, command.UserOriginId);
+                                        command.ObservationExtension, command.UserOriginId, reminderDate, command.CaseStage);
             await _repository.AddAsync(entity, cancellationToken);
                        
             var destinationUser = await _userRepository.GetByIdAsync(command.UserId, cancellationToken);
@@ -69,10 +80,12 @@ namespace Backend.Application.Commands.CaseCommands
             }
             //Notification Attachement
             var documentList = new List<string>();
-            foreach(var d in command.DocumentString!)
+            var documentNamesList = new List<string>();
+            for (int i = 0; i < command.DocumentString!.Count; i++)
             {
-                var documentSplit = d.Split(',');
+                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
                 documentList.Add(documentSplit[1]);
+                documentNamesList.Add(command.DocumentStringNames!.ElementAt(i));
             }
             var attachemt = documentList;
             if (!string.IsNullOrEmpty(command.Notification))
@@ -82,6 +95,7 @@ namespace Backend.Application.Commands.CaseCommands
                     Subject = string.IsNullOrEmpty(command.Subject) ? "NOTIFICACION SECRETARIA" : command.Subject,
                     To = command.Notification!,
                     Attachment = attachemt!,
+                    AttachmentNames = documentNamesList!,
                     Body = body
                 });
             }

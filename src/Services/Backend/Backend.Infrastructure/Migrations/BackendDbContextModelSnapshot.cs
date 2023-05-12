@@ -58,6 +58,9 @@ namespace backend.Infrastructure.Migrations
                     b.Property<Guid?>("BrandId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CaseStage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("CaseStatusId")
                         .HasColumnType("uniqueidentifier");
 
@@ -119,6 +122,9 @@ namespace backend.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ReceptionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReminderDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("ReminderId")

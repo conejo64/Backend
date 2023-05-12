@@ -57,13 +57,16 @@ namespace Backend.Domain.Entities
         //
         public Guid? UserOriginId { get; set; }
         public User? UserOrigin { get; set; }
+        //Reminders
+        public DateTime? ReminderDate { get; set; }
+        public string? CaseStage { get; set; }
         public CaseEntity(string? requirementNumber, DateTime? receptionDate, Guid? originDocumentId, string? physicallyReceived, 
                             string? digitallyReceived, string? documentNumber, string? sbsNumber, string? judgmentNumber, DateTime? issueDate, 
                             string? description, Guid? brandId, Guid? departmentId, Guid? userId, Guid? typeRequirementId, string? notification, 
                             string? subject, DateTime? transferDate, DateTime? deadline, Guid? provinceId, DateTime? dueDate, Guid? reminderId, 
                             DateTime? replyDate, string? comments, DateTime? responseDate, Guid? caseStatusId, string? observationDepartment, 
                             Guid? caseStatusSecretaryId, DateTime? acknowledgmentDate, DateTime? extensionRequestDate, DateTime? newExtensionRequestDate, 
-                            string? observationExtension, Guid? userOriginId)
+                            string? observationExtension, Guid? userOriginId, DateTime? reminderDate, string? caseStage)
         {
             RequirementNumber = requirementNumber;
             ReceptionDate = receptionDate;
@@ -97,6 +100,8 @@ namespace Backend.Domain.Entities
             NewExtensionRequestDate = newExtensionRequestDate;
             ObservationExtension = observationExtension;
             UserOriginId = userOriginId;
+            ReminderDate = reminderDate;
+            CaseStage = caseStage;
         }
     }
 }
