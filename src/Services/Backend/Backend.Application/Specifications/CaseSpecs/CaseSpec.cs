@@ -106,6 +106,8 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .OrderByDescending(x => x.ReceptionDate);
 
         }
+        
+        }
 
     }
 }
