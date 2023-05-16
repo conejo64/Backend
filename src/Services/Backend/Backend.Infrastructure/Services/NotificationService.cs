@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +18,11 @@ namespace Backend.Infrastructure.Services
     {
         public bool SendEmailNotification(EmailNotifictionModel notification)
         {
-            var send = SendEmail(notification.To, notification.Subject, notification.Body, notification.Attachment, notification.Cc, notification.Cco);
+            var send = SendEmail(notification.To, notification.Subject, notification.Body, notification.Attachment, notification.AttachmentNames, notification.Cc, notification.Cco);
             return send;
         }
 
-        private bool SendEmail(string to, string subject, string body, List<string> attachment, string cc = "", string bcc = "")
+        private bool SendEmail(string to, string subject, string body, List<string> attachment, List<string> attachmentNames, string cc = "", string bcc = "")
         {
             try
             {
@@ -47,23 +48,16 @@ namespace Backend.Infrastructure.Services
 
                 if (attachment != null)
                 {
-                    foreach (var pathFile in attachment)
+                    for (int i = 0; i < attachment.Count; i++)
                     {
-                        //Agrego el archivo que puse en la ruta anterior "PathFile", y su tipo.
-                        var Data = new Attachment(pathFile);
-                        //Obtengo las propiedades del archivo.
-                        ContentDisposition disposition = Data.ContentDisposition;
-                        disposition.CreationDate = System.IO.File.GetCreationTime(pathFile);
-                        disposition.ModificationDate = System.IO.File.GetLastWriteTime(pathFile);
-                        disposition.ReadDate = System.IO.File.GetLastAccessTime(pathFile);
-                        //Agrego el archivo al mensaje
-                        mail.Attachments.Add(Data);
+                        var f = Convert.FromBase64String(attachment.ElementAt(i));
+                        var data = new Attachment(new MemoryStream(f), attachmentNames.ElementAt(i));
+                        mail.Attachments.Add(data);
                     }
                 }
 
                 IList<string> Att = new List<string>();
                 #endregion
-
 
                 var smtp1 = new SmtpClient();
                 var credential = new NetworkCredential

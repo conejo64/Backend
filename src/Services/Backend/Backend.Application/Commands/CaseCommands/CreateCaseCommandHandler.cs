@@ -23,10 +23,13 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<TypeRequirement> _typeRepository;
         private readonly IRepository<Department> _departmentRepository;
         private readonly IRepository<DocumentEntity> _documentRepository;
+        private readonly IRepository<Reminder> _reminderRepository;
 
         public CreateCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus,
-            INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository, IRepository<OriginDocument> originRepository,
-            IRepository<TypeRequirement> typeRepository, IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository)
+            INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository,
+            IRepository<OriginDocument> originRepository, IRepository<TypeRequirement> typeRepository, 
+            IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository,
+            IRepository<Reminder> reminderRepository)
         {
             _repository = repository;
             _repositoryCaseStatus = repositoryCaseStatus;
@@ -37,17 +40,25 @@ namespace Backend.Application.Commands.CaseCommands
             _typeRepository = typeRepository;
             _departmentRepository = departmentRepository;
             _documentRepository = documentRepository;
+            _reminderRepository = reminderRepository;
         }
 
         public async Task<EntityResponse<Guid>> Handle(CreateCaseCommand command, CancellationToken cancellationToken)
         {
             var statusSpec = new CaseStatusSpec("ABIERTO");
             var statusId = await _repositoryCaseStatus.GetBySpecAsync(statusSpec, cancellationToken);
+            var reminderSelect = await _reminderRepository.GetByIdAsync(command.ReminderId!, cancellationToken);
+            var reminderDate = DateTime.Now;
+            if (reminderSelect != null)
+            {
+                var hour = Int32.Parse(reminderSelect.Description!);
+                reminderDate = reminderDate.AddHours(hour);
+            }
             var entity = new CaseEntity(command.RequirementNumber, DateTime.Now, command.OriginDocumentId, command.PhysicallyReceived, command.DigitallyReceived, command.DocumentNumber,
                                         command.SbsNumber, command.JudgmentNumber, command.IssueDate, command.Description, command.BrandId, command.DepartmentId, command.UserId, command.TypeRequirementId,
                                         command.Notification, command.Subject, command.TransferDate, command.Deadline, command.ProvinceId, command.DueDate, command.ReminderId, command.ReplyDate, command.Comments,
                                         command.ResponseDate, statusId!.Id, command.ObservationDepartment, command.CaseStatusSecretaryId, command.AcknowledgmentDate, command.ExtensionRequestDate, command.NewExtensionRequestDate, 
-                                        command.ObservationExtension, command.UserOriginId);
+                                        command.ObservationExtension, command.UserOriginId, reminderDate, command.CaseStage);
             await _repository.AddAsync(entity, cancellationToken);
                        
             var destinationUser = await _userRepository.GetByIdAsync(command.UserId, cancellationToken);
@@ -55,7 +66,9 @@ namespace Backend.Application.Commands.CaseCommands
             var typeRequirement = await _typeRepository.GetByIdAsync(command.TypeRequirementId, cancellationToken);
             var originDocument = await _originRepository.GetByIdAsync(command.OriginDocumentId, cancellationToken);
             var department = await _departmentRepository.GetByIdAsync(command.DepartmentId, cancellationToken);
-            var body = GetBody(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.RequirementNumber, command.Description, brand!.Description,
+            var body = GetBody(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.DocumentNumber, command.Description, brand!.Description,
+                                department!.Description, destinationUser!.FullName, command.TransferDate.ToString());
+            var bodyAttachment = GetBodyAttachment(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.DocumentNumber, command.Description, brand!.Description,
                                 department!.Description, destinationUser!.FullName, command.TransferDate.ToString());
             //Notification
             if (destinationUser is not null)
@@ -69,10 +82,12 @@ namespace Backend.Application.Commands.CaseCommands
             }
             //Notification Attachement
             var documentList = new List<string>();
-            foreach(var d in command.DocumentString!)
+            var documentNamesList = new List<string>();
+            for (int i = 0; i < command.DocumentString!.Count; i++)
             {
-                var documentSplit = d.Split(',');
+                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
                 documentList.Add(documentSplit[1]);
+                documentNamesList.Add(command.DocumentStringNames!.ElementAt(i));
             }
             var attachemt = documentList;
             if (!string.IsNullOrEmpty(command.Notification))
@@ -82,7 +97,8 @@ namespace Backend.Application.Commands.CaseCommands
                     Subject = string.IsNullOrEmpty(command.Subject) ? "NOTIFICACION SECRETARIA" : command.Subject,
                     To = command.Notification!,
                     Attachment = attachemt!,
-                    Body = body
+                    AttachmentNames = documentNamesList!,
+                    Body = bodyAttachment
                 });
             }
             //Save Documents
@@ -122,6 +138,32 @@ namespace Backend.Application.Commands.CaseCommands
                     + "Destinatario Responsable:" + user + "<br/>"
                     + "Fecha Límite: " + transferDate + "<br/>"
                     + "<a href=" + ">Por favor haga click en el siguiente enlace</a>"
+                    + "<br />"
+                    + "<br />"
+                    + "<br />"
+                    + "Atentamente" + "<br/>"
+                    + "Secretaria General"
+                    + "<br />"
+                    + "<br />"
+                    + "PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)"
+                    + "</p>";
+            return body!;
+        }
+
+        public static string GetBodyAttachment(string? descriptiontype, string? receptionDate, string? descriptionOrigin, string? number, string? description, string? entidad,
+                                        string? department, string? user, string? transferDate)
+        {
+            var body = "<p><br/>"
+                    + "A continuación se adjunta un detalle del caso:<br/><br/>"
+                    + "Tipo Requerimiento: " + descriptiontype + "<br/>"
+                    + "Fecha de Recepción: " + receptionDate + "<br/>"
+                    + "Origen del Documento: " + descriptionOrigin + "<br/>"
+                    + "Nro. Documento: " + number + "<br/>"
+                    + "Descripción: " + description + "<br/>"
+                    + "Entidad: " + entidad + "<br/>"
+                    + "Area Responsable: " + department + "<br/>"
+                    + "Destinatario Responsable:" + user + "<br/>"
+                    + "Fecha Límite: " + transferDate + "<br/>"
                     + "<br />"
                     + "<br />"
                     + "<br />"

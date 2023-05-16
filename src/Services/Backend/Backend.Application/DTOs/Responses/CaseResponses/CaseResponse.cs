@@ -53,6 +53,8 @@ namespace Backend.Application.DTOs.Responses.CaseResponses
         public DateTime? ExtensionRequestDate { get; set; }
         public DateTime? NewExtensionRequestDate { get; set; }
         public string? ObservationExtension { get; set; }
+        public DateTime? ReminderDate { get; set; }
+        public string CaseStage { get; set; }
 
         public CaseResponse(Guid id, string status, string? requirementNumber, DateTime? receptionDate, 
             Guid? originDocumentId, string? originDocumentDescription, string? physicallyReceived, 
@@ -65,7 +67,7 @@ namespace Backend.Application.DTOs.Responses.CaseResponses
             DateTime? replyDate, string? comments, DateTime? responseDate, Guid? caseStatusId, 
             string? caseStatusDescription, string? observationDepartment, Guid? caseStatusSecretaryId,
             string? caseStatusSecretaryDescription, DateTime? acknowledgmentDate, DateTime? extensionRequestDate,
-            DateTime? newExtensionRequestDate, string? observationExtension)
+            DateTime? newExtensionRequestDate, string? observationExtension, DateTime? reminderDate, string caseStage)
         {
             Id = id;
             Status = status;
@@ -109,6 +111,8 @@ namespace Backend.Application.DTOs.Responses.CaseResponses
             ExtensionRequestDate = extensionRequestDate;
             NewExtensionRequestDate = newExtensionRequestDate;
             ObservationExtension = observationExtension;
+            ReminderDate = reminderDate;
+            CaseStage = caseStage;
         }
 
         public static CaseResponse FromEntity(CaseEntity caseEntity)
@@ -124,7 +128,8 @@ namespace Backend.Application.DTOs.Responses.CaseResponses
                 caseEntity?.Reminder?.Description, caseEntity?.ReplyDate, caseEntity?.Comments,
                 caseEntity?.ResponseDate, caseEntity!.CaseStatusId, caseEntity?.CaseStatus?.Description,
                 caseEntity?.ObservationDepartment, caseEntity!.CaseStatusSecretaryId, caseEntity?.CaseStatusSecretary?.Description,
-                caseEntity?.AcknowledgmentDate, caseEntity?.ExtensionRequestDate, caseEntity?.NewExtensionRequestDate, caseEntity?.ObservationExtension);
+                caseEntity?.AcknowledgmentDate, caseEntity?.ExtensionRequestDate, caseEntity?.NewExtensionRequestDate, caseEntity?.ObservationExtension,
+                caseEntity!.ReminderDate, caseEntity.CaseStage!);
         }
     }
 }

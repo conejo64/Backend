@@ -14,6 +14,7 @@ public class EmailNotifictionModel
     public string Subject { get; set; }
     public string Body { get; set; }
     public List<string> Attachment { get; set; } = new();
+    public List<string> AttachmentNames { get; set; } = new();
 
 }
 

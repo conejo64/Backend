@@ -1,5 +1,6 @@
 using Backend.API.DTOs.Requests.CaseRequests;
 using Backend.Application.DTOs.Responses.CaseResponses;
+using Backend.Application.DTOs.Responses.DocumentResponses;
 using Backend.Application.Queries.CaseQueries;
 using Backend.Domain.Entities;
 
@@ -191,6 +192,7 @@ public class CasesController : BaseController
 
         return Ok();
     }
+    
     [HttpPost]
     [JwtAuthorize(JwtScope.Manager)]
     // [AllowAnonymous]
@@ -210,6 +212,7 @@ public class CasesController : BaseController
 
         return Ok();
     }
+    
     [HttpPost]
     [JwtAuthorize(JwtScope.Manager)]
     // [AllowAnonymous]
@@ -229,6 +232,7 @@ public class CasesController : BaseController
 
         return Ok();
     }
+    
     [HttpPost]
     [JwtAuthorize(JwtScope.Manager)]
     // [AllowAnonymous]
@@ -247,5 +251,69 @@ public class CasesController : BaseController
         }
 
         return Ok();
+    }
+    
+    [HttpPost]
+    [JwtAuthorize(JwtScope.Manager)]
+    // [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Route("{caseId:guid}/notification")]
+    public async Task<IActionResult> SendNotificationCase(Guid caseId,
+        [FromBody] SendNotificationCaseRequest request)
+    {
+        var command = request.ToApplicationRequest(caseId);
+
+        var response = await Mediator.Send(command);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+
+        return Ok();
+    }
+    
+    [HttpGet]
+    [JwtAuthorize(JwtScope.Manager)] 
+    // [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Produces(typeof(List<DocumentResponse>))]
+    [Route("{caseId:guid}/attachments")]
+    public async Task<IActionResult> ReadAttachmentsCase(Guid caseId)
+    {
+        var request = new ReadCaseDocumentsRequest(caseId);
+        var query = request.ToApplicationRequest();
+
+        var response = await Mediator.Send(query);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+
+        return Ok(response.Value);
+    }
+    
+    [HttpGet]
+    // [JwtAuthorize(JwtScope.Manager)] 
+    [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Produces(typeof(List<DocumentResponse>))]
+    [Route("{caseId:guid}/attachment/{attachmentId:guid}")]
+    public async Task<IActionResult> ReadAttachmentsCase(Guid caseId, Guid attachmentId)
+    {
+        var request = new ReadCaseDocumentRequest(caseId, attachmentId);
+        var query = request.ToApplicationRequest();
+
+        var response = await Mediator.Send(query);
+        if (!response.IsSuccess)
+        {
+            return BadRequest();
+        }
+        
+        var contentType = response.Value!.ContentType;
+        var byteAttachment = Convert.FromBase64String(response.Value.Document64!);
+        return File(byteAttachment, contentType!, response.Value.Document64Name);
     }
 }

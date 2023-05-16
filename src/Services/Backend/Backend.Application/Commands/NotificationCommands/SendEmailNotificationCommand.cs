@@ -1,6 +1,4 @@
-using Backend.Application.DTOs.Responses.UserResponses;
-
-namespace Backend.Application.Commands.UserCommands
+namespace Backend.Application.Commands.NotificationCommands
 {
     public class SendEmailNotificationCommand : IRequest<EntityResponse<bool>>
     {
@@ -10,9 +8,10 @@ namespace Backend.Application.Commands.UserCommands
         public string Subject { get; set; }
         public string Body { get; set; }
         public List<string> Attachment { get; set; }
+        public List<string> AttachmentNames { get; set; }
 
         public SendEmailNotificationCommand(string to, string cc, string cco, 
-            string subject, string body, List<string> attachment)
+            string subject, string body, List<string> attachment, List<string> attachmentNames)
         {
             To = to;
             Cc = cc;
@@ -20,6 +19,7 @@ namespace Backend.Application.Commands.UserCommands
             Subject = subject;
             Body = body;
             Attachment = attachment;
+            AttachmentNames = attachmentNames;
         }
     }
 }

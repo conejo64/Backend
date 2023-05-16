@@ -43,5 +43,6 @@ public static class MessageHandler
     public const string DepartmentNotFound = "Departamento no encontrado";
     public const string RemainderNotFound = "Recordatorio no encontrado";
     public const string TypeRequireNotFound = "Tipo de Requerimiento no encontrado";
-
+    public const string AttachmentNotFound = "Documento de Caso no encontrado";
+    public const string CaseAttachmentNotFound = "Documentos de Caso no encontrado";
 }

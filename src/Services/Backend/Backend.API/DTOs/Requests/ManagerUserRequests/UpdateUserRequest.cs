@@ -11,12 +11,12 @@ public class UpdateUserRequest
     public string LastName { get; }
     public string? Identification { get; }
     public string Email { get; }
-    public string Phone { get; }
+    public string? Phone { get; }
     public DateTime? DateOfBirth { get; }
     public string? Avatar { get; set; }
     public List<string> ProfileIds { get; set; }
 
-    public UpdateUserRequest(string username, string firstName, string lastName, string email, string phone,
+    public UpdateUserRequest(string username, string firstName, string lastName, string email, string? phone,
         string? identification, DateTime? dateOfBirth, string? avatar, List<string> profileIds)
     {
         Username = username;

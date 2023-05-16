@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using Backend.Application.Jobs;
+using Quartz;
 
 namespace Backend.API.Extensions;
 
@@ -12,7 +13,8 @@ public static class AddBackgroundTasksExtensions
             // Use a Scoped container to create jobs. I'll touch on this later
             q.UseMicrosoftDependencyInjectionJobFactory();
 
-            //q.AddJobAndTrigger<>(config);
+            q.AddJobAndTrigger<SendCasesDeadlineTodayJob>(config);
+            q.AddJobAndTrigger<SendRemindersJob>(config);
         });
 
         // Add the Quartz.NET hosted service

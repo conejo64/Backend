@@ -1,9 +1,4 @@
-using DinkToPdf;
-using DinkToPdf.Contracts;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Server.IIS;
 using Microsoft.Extensions.FileProviders;
-using ServiceReference;
 
 var configuration = GetConfiguration();
 //ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es_EC");
@@ -22,7 +17,7 @@ try
     builder
         .Host
         .ConfigureAppConfiguration(x => x.AddConfiguration(configuration));
-    builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+    //builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
     builder.Services.AddCors(options =>
     {
@@ -33,14 +28,14 @@ try
                 .AllowAnyHeader()
                 .AllowCredentials());
     });
-    builder.Services.Configure<IISServerOptions>(options =>
-    {
-        options.AutomaticAuthentication = false;
-    });
-    builder.Services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
+    //builder.Services.Configure<IISServerOptions>(options =>
+    //{
+    //    options.AutomaticAuthentication = false;
+    //});
+    //builder.Services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
     builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
     //builder.WebHost.UseStaticWebAssets();
-    builder.WebHost.UseIISIntegration();
+
 
     var app = builder
         .ConfigureServices(configuration)
@@ -66,8 +61,23 @@ try
         //app.UseExceptionHandler("/Error");
         app.UseHsts();
     }
+   
+    //var serilog = new LoggerConfiguration()
+    //    .Enrich.FromLogContext()
+    //    .WriteTo.Console(
+    //        outputTemplate:
+    //        "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+    //        theme: AnsiConsoleTheme.Code)
+    //    .WriteTo.File(
+    //        @"logs/cd.txt",
+    //        fileSizeLimitBytes: 1_000_000,
+    //        rollOnFileSizeLimit: true,
+    //        rollingInterval: RollingInterval.Day,
+    //        shared: true,
+    //        flushToDiskInterval: TimeSpan.FromSeconds(1));
+    //        loggerFactory.AddSerilog(serilog.CreateLogger());
 
-    //app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
     app.UseCors("CorsPolicy"); //"CorsPolicy"
     app.UseSpaStaticFiles(new StaticFileOptions()
     {

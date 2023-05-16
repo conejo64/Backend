@@ -48,3 +48,11 @@ public static class DocumentSourceEnum
 
     public static List<string> All => new() { Create, Reply, Close };
 }
+
+public static class StageEnum
+{
+    public static string Secretary => nameof(Secretary).ToLowerInvariant();
+    public static string Others => nameof(Others).ToLowerInvariant();
+
+    public static List<string> All => new() { Secretary, Others };
+}

@@ -7,7 +7,7 @@ namespace Backend.Application.Specifications.MemberSpecs
     {
         public UserSpec(Guid? id, string? username, string? password)
         {
-            //Query.Include(user => user.UserProfiles).ThenInclude(i => i.Profile);
+            Query.Include(user => user.UserProfiles).ThenInclude(i => i.Profile);
 
             Query.Where(user => user.Status != UserState.Deleted);
 
@@ -23,7 +23,7 @@ namespace Backend.Application.Specifications.MemberSpecs
 
         public UserSpec(string identification, string? userType)
         {
-            //Query.Include(user => user.UserProfiles).ThenInclude(i => i.Profile);
+            Query.Include(user => user.UserProfiles).ThenInclude(i => i.Profile);
             Query.Where(i => i.Email == identification);
 
             Query.Where(user => user.Status == UserState.Active);
@@ -31,7 +31,7 @@ namespace Backend.Application.Specifications.MemberSpecs
 
         public UserSpec(string identification)
         {
-            //Query.Include(user => user.UserProfiles).ThenInclude(i => i.Profile);
+            Query.Include(user => user.UserProfiles).ThenInclude(i => i.Profile);
             Query.Where(i => i.Identification == identification);
 
             Query.Where(user => user.Status == UserState.Active);
