@@ -22,6 +22,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.Province)
                 .Include(x => x.CaseStatus)
                 .Include(x => x.CaseStatusSecretary)
+                .Include(x => x.TypeRequirement)
                 .Where(x => x.Status != CatalogsStatus.Deleted
                     && x.CaseStage == StageEnum.Others
                     // && x.ReminderDate!.Value.Year == today.Year

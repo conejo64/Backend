@@ -21,6 +21,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.Province)
                 .Include(x => x.CaseStatus)
                 .Include(x => x.CaseStatusSecretary)
+                .Include(x => x.TypeRequirement)
                 .Where(x => x.Status != CatalogsStatus.Deleted && x.Id == id);
         }
 
@@ -36,6 +37,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.Province)
                 .Include(x => x.CaseStatus)
                 .Include(x => x.CaseStatusSecretary)
+                .Include(x => x.TypeRequirement)
                 .Where(x => x.Status != CatalogsStatus.Deleted);
 
             if (originDocumentId != null)
@@ -69,6 +71,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.Province)
                 .Include(x => x.CaseStatus)
                 .Include(x => x.CaseStatusSecretary)
+                .Include(x => x.TypeRequirement)
                 .Where(x => x.Status != CatalogsStatus.Deleted);
 
             Query.Where(x => x.UserId == userId);
@@ -102,6 +105,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.Province)
                 .Include(x => x.CaseStatus)
                 .Include(x => x.CaseStatusSecretary)
+                .Include(x => x.TypeRequirement)
                 .Where(x => x.Status != CatalogsStatus.Deleted)
                 .OrderByDescending(x => x.ReceptionDate);
 
@@ -118,6 +122,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.Province)
                 .Include(x => x.CaseStatus)
                 .Include(x => x.CaseStatusSecretary)
+                .Include(x => x.TypeRequirement)
                 .Where(x => x.Status != CatalogsStatus.Deleted
                 && x.Deadline!.Value.Year == today.Year
                 && x.Deadline.Value.Month == today.Month
@@ -137,6 +142,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                 .Include(x => x.Province)
                 .Include(x => x.CaseStatus)
                 .Include(x => x.CaseStatusSecretary)
+                .Include(x => x.TypeRequirement)
                 .Where(x => x.Status != CatalogsStatus.Deleted
                     && x.CaseStage == StageEnum.Others
                     && x.ReminderDate!.Value.Year == today.Year
