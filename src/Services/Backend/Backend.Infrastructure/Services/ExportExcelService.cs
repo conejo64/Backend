@@ -70,7 +70,7 @@ namespace backend.Infrastructure.Services
                     worksheet.Cell(string.Format("F{0}", i)).Value = c.IssueDate;
                     worksheet.Cell(string.Format("G{0}", i)).Value = !string.IsNullOrEmpty(c.OriginDocument?.Description) ? c.OriginDocument.Description : string.Empty;
                     worksheet.Cell(string.Format("H{0}", i)).Value = !string.IsNullOrEmpty(c.Brand?.Description) ? c.Brand.Description : string.Empty;
-                    worksheet.Cell(string.Format("I{0}", i)).Value = c.Description;
+                    worksheet.Cell(string.Format("I{0}", i)).Value = !string.IsNullOrEmpty(c.TypeRequirement?.Description) ? c.TypeRequirement.Description : string.Empty;
                     worksheet.Cell(string.Format("J{0}", i)).Value = "Normal";
                     worksheet.Cell(string.Format("K{0}", i)).Value = "";
                     worksheet.Cell(string.Format("L{0}", i)).Value = !string.IsNullOrEmpty(c.Department?.Description) ? c.Department.Description : string.Empty;
