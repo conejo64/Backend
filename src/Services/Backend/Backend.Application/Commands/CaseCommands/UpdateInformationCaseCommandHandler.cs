@@ -36,9 +36,9 @@ namespace Backend.Application.Commands.CaseCommands
             var originUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
             string body = new("<p><br/>"
                     + "A continuación se adjunta un detalle del caso:<br/><br/>"
-                    + "Fecha de Contestación: " + DateTime.Now.ToString("dd/MM/yyyy") + "<br/>"
-                    + "Observaciones: " + command.Comments + "<br/>"
-                    + "<a href>Por favor haga click en el siguiente enlace</a>"
+                    + "<b>Fecha de Contestación: </b>" + DateTime.Now.ToString("dd/MM/yyyy") + "<br/>"
+                    + "<b>Observaciones: </b>" + command.Comments + "<br/>"
+                    + "<a href=http://openkmapp/workflow/>Por favor haga click en el siguiente enlace</a>"
                     + "</p>"); ;
             //Notificar a responsable
             if (destinationUser is not null)

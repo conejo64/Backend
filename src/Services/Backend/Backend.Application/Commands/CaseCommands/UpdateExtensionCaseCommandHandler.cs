@@ -40,9 +40,9 @@ namespace Backend.Application.Commands.CaseCommands
             var originUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
             string body = new("<p>Se le ha asignado una nueva tarea.<br/>"
                     + "A continuaciòn se adjunta un detalle de la Prorroga:<br/><br/>"
-                    + "Fecha de Prorroga: " + command.ExtensionRequestDate + "<br/>"
-                    + "fecha Limite: " + command.NewExtensionRequestDate + "<br/>"
-                    + "Observaciones: " + command.ObservationExtension + "<br/>"
+                    + "<b>Fecha de Prorroga: </b>" + command.ExtensionRequestDate + "<br/>"
+                    + "<b>fecha Limite: </b>" + command.NewExtensionRequestDate + "<br/>"
+                    + "<b>Observaciones: </b>" + command.ObservationExtension + "<br/>"
                     + "</p>");
             if (destinationUser is not null)
             {

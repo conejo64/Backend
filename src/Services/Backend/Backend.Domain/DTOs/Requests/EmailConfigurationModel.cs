@@ -15,13 +15,23 @@ public class EmailConfigurationModel
     public int EmailPort { get; set; }
     public bool EmailEnabledSsl { get; set; }
 
+    //public EmailConfigurationModel()
+    //{
+    //    EmailFrom = "conejo64@gmail.com";
+    //    EmailServer = "smtp.gmail.com";
+    //    EmailUser = "conejo64@gmail.com";
+    //    EmailPass = "dhjrpzomgzksqbjm";
+    //    EmailPort = 587;
+    //    EmailEnabledSsl = true;
+    //}
+    //Diners Configuration
     public EmailConfigurationModel()
     {
-        EmailFrom = "conejo64@gmail.com";
-        EmailServer = "smtp.gmail.com";
-        EmailUser = "conejo64@gmail.com";
-        EmailPass = "dhjrpzomgzksqbjm";
-        EmailPort = 587;
-        EmailEnabledSsl = true;
+        EmailFrom = "gestiondocumental@Dinersclub.com.ec";
+        EmailServer = "10.100.176.37";
+        EmailUser = "gestiondocumental@Dinersclub.com.ec";
+        EmailPass = "D!n3rs.2o2s.M0n9o";
+        EmailPort = 25;
+        EmailEnabledSsl = false;
     }
 }

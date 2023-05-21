@@ -35,8 +35,10 @@ public class SendCasesDeadlineTodayJob : IJob
 
         var arrayBuffer = await _exportExcelService.GenerateExcel(cases);
 
-        var attachemt = new List<string>();
-        attachemt.Add(Convert.ToBase64String(arrayBuffer!));
+        var attachemt = new List<string>
+        {
+            Convert.ToBase64String(arrayBuffer!)
+        };
         var attachmentNames = new List<string>();
         attachmentNames.Add($"Reporte_Casos_Por_Vencer_{today.ToShortDateString()}.xlsx");
         _notificationService.SendEmailNotification(new EmailNotifictionModel()

@@ -49,13 +49,13 @@ namespace Backend.Application.Commands.CaseCommands
             var origintionUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
             var caseStatus = await _repositoryCaseStatus.GetByIdAsync(entity.CaseStatusId, cancellationToken);
             var caseStatusSecretary = await _repositoryCaseStatusSecretary.GetByIdAsync(entity.CaseStatusSecretaryId, cancellationToken);
-            string body = new string("<p>Se ha finalizado la tarea.<br/>"
+            string body = new string("<p><b>Se ha finalizado la tarea.</b><br/>"
                     + "A continuación se adjunta un detalle del caso cerrado:<br/><br/>"
-                    + "Fecha Respuesta: " + command.ResponseDate + "<br/>"
-                    + "Estado del Caso: " + caseStatus!.Description + "<br/>"
-                    + "Comentarios Finales: " + command.ObservationDepartment! + "<br/>"
-                    + "Revisión de Secretaria: " + caseStatusSecretary!.Description + "<br/>"
-                    + "Fecha Acuse recibido: " + command.AcknowledgmentDate + "<br/>"
+                    + "<b>Fecha Respuesta: </b>" + command.ResponseDate + "<br/>"
+                    + "<b>Estado del Caso: </b>" + caseStatus!.Description + "<br/>"
+                    + "<b>Comentarios Finales: </b>" + command.ObservationDepartment! + "<br/>"
+                    + "<b>Revisión de Secretaria: </b>" + caseStatusSecretary!.Description + "<br/>"
+                    + "<b>Fecha Acuse recibido: </b>" + command.AcknowledgmentDate + "<br/>"
                     + "</p>");
             if (destinationUser is not null)
             {
