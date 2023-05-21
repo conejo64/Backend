@@ -17,8 +17,8 @@ namespace Backend.Application.Specifications.MemberSpecs
             if (!string.IsNullOrEmpty(username))
                 Query.Where(user => user.Username.ToUpper().Equals(username.ToUpper()));
 
-            if (!string.IsNullOrEmpty(password))
-                Query.Where(user => user.Password!.ToUpper().Equals(password.ToUpper()));
+            //if (!string.IsNullOrEmpty(password))
+            //    Query.Where(user => user.Password!.ToUpper().Equals(password.ToUpper()));
         }
 
         public UserSpec(string identification, string? userType)
