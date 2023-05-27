@@ -67,9 +67,9 @@ namespace Backend.Application.Commands.CaseCommands
             var originDocument = await _originRepository.GetByIdAsync(command.OriginDocumentId, cancellationToken);
             var department = await _departmentRepository.GetByIdAsync(command.DepartmentId, cancellationToken);
             var body = GetBody(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.DocumentNumber, command.Description, brand!.Description,
-                                department!.Description, destinationUser!.FullName, command.TransferDate.ToString());
+                                department!.Description, destinationUser!.FullName, command.Deadline.ToString());
             var bodyAttachment = GetBodyAttachment(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.DocumentNumber, command.Description, brand!.Description,
-                                department!.Description, destinationUser!.FullName, command.TransferDate.ToString());
+                                department!.Description, destinationUser!.FullName, command.Deadline.ToString());
             //Notification
             if (destinationUser is not null)
             {
@@ -137,7 +137,7 @@ namespace Backend.Application.Commands.CaseCommands
                   + "<b>Area Responsable: </b>" + department + "<br/>"
                   + "<b>Destinatario Responsable: </b>" + user + "<br/>"
                   + "<b>Fecha Límite: </b>" + transferDate + "<br/>"
-                  + "<a href=https://openkmapp/workflow/" + ">Por favor haga click en el siguiente enlace</a>"
+                  + "<a href=http://openkmapp/workflow/#//auth/login" + ">Por favor haga click en el siguiente enlace</a>"
                   + "<br />"
                   + "<br />"
                   + "<br />"

@@ -32,4 +32,10 @@
     <PackageReference Include="RestSharp" Version="108.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="OKMRest">
+      <HintPath>..\..\..\..\..\..\OKMRest-3.29.0\OKMRest.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

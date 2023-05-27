@@ -27,9 +27,9 @@ public class EmailConfigurationModel
     //Diners Configuration
     public EmailConfigurationModel()
     {
-        EmailFrom = "gestiondocumental@Dinersclub.com.ec";
+        EmailFrom = "gestiondocumental@dinersclub.com.ec";
         EmailServer = "10.100.176.37";
-        EmailUser = "gestiondocumental@Dinersclub.com.ec";
+        EmailUser = "gestiondocumental@dinersclub.com.ec";
         EmailPass = "D!n3rs.2o2s.M0n9o";
         EmailPort = 25;
         EmailEnabledSsl = false;

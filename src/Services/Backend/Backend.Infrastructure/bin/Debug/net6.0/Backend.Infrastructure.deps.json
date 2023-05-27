@@ -17,7 +17,8 @@
           "Quartz": "3.4.0",
           "Quartz.Extensions.Hosting": "3.4.0",
           "RestSharp": "108.0.1",
-          "Shared.Infrastructure": "1.0.0"
+          "Shared.Infrastructure": "1.0.0",
+          "OKMRest": "3.29.0.0"
         },
         "runtime": {
           "Backend.Infrastructure.dll": {}
@@ -1676,6 +1677,14 @@
         "runtime": {
           "Shared.Infrastructure.dll": {}
         }
+      },
+      "OKMRest/3.29.0.0": {
+        "runtime": {
+          "OKMRest.dll": {
+            "assemblyVersion": "3.29.0.0",
+            "fileVersion": "3.29.0.0"
+          }
+        }
       }
     }
   },
@@ -2897,6 +2906,11 @@
     },
     "Shared.Infrastructure/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OKMRest/3.29.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

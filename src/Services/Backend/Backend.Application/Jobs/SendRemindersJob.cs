@@ -50,7 +50,7 @@ public class SendRemindersJob : IJob
             var originDocument = await _originRepository.GetByIdAsync(item.OriginDocumentId, context.CancellationToken);
             var department = await _departmentRepository.GetByIdAsync(item.DepartmentId, context.CancellationToken);
             var body = GetBody(typeRequirement!.Description, item.ReceptionDate.ToString(), originDocument!.Description, item.DocumentNumber, item.Description, brand!.Description,
-                department!.Description, destinationUser!.FullName, item.TransferDate.ToString());
+                department!.Description, destinationUser!.FullName, item.Deadline.ToString());
             //Notification
             if (destinationUser is not null)
             {
@@ -87,7 +87,7 @@ public class SendRemindersJob : IJob
                    + "<b>Area Responsable: </b>" + department + "<br/>"
                    + "<b>Destinatario Responsable: </b>" + user + "<br/>"
                    + "<b>Fecha Límite: </b>" + transferDate + "<br/>"
-                   + "<a href=https://openkmapp/workflow/" + ">Por favor haga click en el siguiente enlace</a>"
+                   + "<a href=http://openkmapp/workflow/#//auth/login" + ">Por favor haga click en el siguiente enlace</a>"
                    + "<br />"
                    + "<br />"
                    + "<br />"

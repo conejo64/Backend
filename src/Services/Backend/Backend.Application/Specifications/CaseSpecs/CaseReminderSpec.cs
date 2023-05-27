@@ -29,6 +29,7 @@ namespace Backend.Application.Specifications.CaseSpecs
                     // && x.ReminderDate.Value.Month == today.Month
                     // && x.ReminderDate.Value.Day == today.Day
                     // && x.ReminderDate.Value.Hour == today.Hour
+                    
                     )
                 .OrderByDescending(x => x.ReceptionDate);
 

@@ -410,3 +410,4 @@ D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backen
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Debug\net6.0\staticwebassets\Backend.API.StaticWebAssets.xml
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Debug\net6.0\Backend.API.genruntimeconfig.cache
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Debug\net6.0\ref\Backend.API.dll
+D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\bin\Debug\net6.0\OKMRest.dll

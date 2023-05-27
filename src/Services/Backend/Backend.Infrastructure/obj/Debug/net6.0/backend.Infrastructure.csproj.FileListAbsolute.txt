@@ -148,3 +148,4 @@ D:\DEV\Jonas\backend\Backend\src\Services\Backend\Backend.Infrastructure\obj\Deb
 D:\DEV\Jonas\backend\Backend\src\Services\Backend\Backend.Infrastructure\obj\Debug\net6.0\Backend.Infrastructure.pdb
 D:\DEV\Jonas\backend\Backend\src\Services\Backend\Backend.Infrastructure\obj\Debug\net6.0\Backend.Infrastructure.genruntimeconfig.cache
 D:\DEV\Jonas\backend\Backend\src\Services\Backend\Backend.Infrastructure\obj\Debug\net6.0\ref\Backend.Infrastructure.dll
+D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.Infrastructure\bin\Debug\net6.0\OKMRest.dll
