@@ -43,7 +43,7 @@ namespace Backend.Application.Commands.CaseCommands
             entity.ObservationDepartment = entity.ObservationDepartment + " / " + command.ObservationDepartment;
             entity.CaseStatusSecretaryId = command.CaseStatusSecretaryId;
             entity.AcknowledgmentDate = command.AcknowledgmentDate;
-
+            entity.CaseStage = StageEnum.Secretary;
             await _repository.UpdateAsync(entity, cancellationToken);
             var destinationUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
             var origintionUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);

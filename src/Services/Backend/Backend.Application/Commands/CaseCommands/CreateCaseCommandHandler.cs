@@ -137,7 +137,7 @@ namespace Backend.Application.Commands.CaseCommands
                   + "<b>Area Responsable: </b>" + department + "<br/>"
                   + "<b>Destinatario Responsable: </b>" + user + "<br/>"
                   + "<b>Fecha Límite: </b>" + transferDate + "<br/>"
-                  + "<a href=http://openkmapp/workflow/#//auth/login" + ">Por favor haga click en el siguiente enlace</a>"
+                  + "<a href=http://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
                   + "<br />"
                   + "<br />"
                   + "<br />"
