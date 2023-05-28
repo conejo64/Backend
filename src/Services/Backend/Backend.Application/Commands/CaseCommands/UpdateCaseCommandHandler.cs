@@ -58,8 +58,8 @@ namespace Backend.Application.Commands.CaseCommands
             entity.TypeRequirementId = command.TypeRequirementId;
             entity.UserId = command.UserId;
             await _repository.UpdateAsync(entity, cancellationToken);
-
-        return true;
+            await _repository.SaveChangesAsync(cancellationToken);
+            return true;
     }
 
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
+using System.Threading;
 
 
 namespace backend.Infrastructure.Services
@@ -19,14 +20,31 @@ namespace backend.Infrastructure.Services
             var host = "http://localhost:8080/openkm";
             var username = "usropenkm";
             var password = "Temporal0penkm1";
+            var filePath = "/home/openkm/";
             var ws = OKMWebservicesFactory.newInstance(host);
             try
             {
-                ws.login(username, password);
-                FileStream fileStream = new("E:\\logo.png", FileMode.Open);
-                long nodeClass = 0;
-                ws.document.createDocument("4b88cbe9-e73d-45fc-bac0-35e0d6e59e43", "logo.png", fileStream, nodeClass);
-                fileStream.Dispose();
+                for (int i = 0; i < documents!.Count; i++)
+                {
+                    Guid code;
+                    code = Guid.NewGuid();
+                    var documentSplit = documents.ElementAt(i).Split(',');
+                    var contentTypeSplit = documentSplit[0].Split(':');
+                    var document = new DocumentEntity
+                    {
+                        Document64 = documentSplit[1],
+                        Document64Name = documentsNames!.ElementAt(i),
+                        ContextType = contentTypeSplit[1].Split(';')[0],
+                    };
+                    ws.login(username, password);
+                    byte[] documentBuffer = Convert.FromBase64String(document.Document64);
+                    FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                    fileStream.Write(documentBuffer, 0, documentBuffer.Length);
+                    long nodeClass = 0;
+
+                    ws.document.createDocument(code.ToString(), document.Document64Name, fileStream, nodeClass);
+                    fileStream.Dispose();
+                }
                 return true;
             }
             catch

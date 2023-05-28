@@ -17,13 +17,15 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<User> _userRepository;
         private readonly INotificationService _notificationService;
         private readonly IRepository<DocumentEntity> _documentRepository;
-
-        public UpdateReplyCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<User> userRepository, INotificationService notificationService, IRepository<DocumentEntity> documentRepository)
+        private readonly IOpenKmService _openKmService;
+        public UpdateReplyCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<User> userRepository, INotificationService notificationService, 
+            IRepository<DocumentEntity> documentRepository, IOpenKmService openKmService)
         {
             _repository = repository;
             _userRepository = userRepository;
             _notificationService = notificationService;
             _documentRepository = documentRepository;
+            _openKmService = openKmService;
         }
 
         public async Task<EntityResponse<bool>> Handle(UpdateReplyCaseCommand command, CancellationToken cancellationToken)
@@ -75,7 +77,8 @@ namespace Backend.Application.Commands.CaseCommands
                 await _documentRepository.AddAsync(document, cancellationToken);
                 document = new DocumentEntity();
             }
-
+            await _documentRepository.SaveChangesAsync(cancellationToken);
+            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
             return true;
         }
 

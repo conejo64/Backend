@@ -19,7 +19,9 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<CaseStatusSecretary> _repositoryCaseStatusSecretary;
         private readonly IRepository<DocumentEntity> _documentRepository;
-        public UpdateCloseCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus, INotificationService notificationService, IRepository<User> userRepository, IRepository<CaseStatusSecretary> repositoryCaseStatusSecretary, IRepository<DocumentEntity> documentRepository)
+        private readonly IOpenKmService _openKmService;
+        public UpdateCloseCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus, INotificationService notificationService, 
+            IRepository<User> userRepository, IRepository<CaseStatusSecretary> repositoryCaseStatusSecretary, IRepository<DocumentEntity> documentRepository, IOpenKmService openKmService)
         {
             _repository = repository;
             _repositoryCaseStatus = repositoryCaseStatus;
@@ -27,6 +29,7 @@ namespace Backend.Application.Commands.CaseCommands
             _userRepository = userRepository;
             _repositoryCaseStatusSecretary = repositoryCaseStatusSecretary;
             _documentRepository = documentRepository;
+            _openKmService = openKmService;
         }
 
         public async Task<EntityResponse<bool>> Handle(UpdateCloseCaseCommand command, CancellationToken cancellationToken)
@@ -84,6 +87,7 @@ namespace Backend.Application.Commands.CaseCommands
                 document = new DocumentEntity();
             }
             await _documentRepository.SaveChangesAsync(cancellationToken);
+            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
             return true;
         }
 

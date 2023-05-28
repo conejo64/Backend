@@ -24,12 +24,12 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<Department> _departmentRepository;
         private readonly IRepository<DocumentEntity> _documentRepository;
         private readonly IRepository<Reminder> _reminderRepository;
-
+        private readonly IOpenKmService  _openKmService;
         public CreateCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus,
             INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository,
             IRepository<OriginDocument> originRepository, IRepository<TypeRequirement> typeRepository, 
             IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository,
-            IRepository<Reminder> reminderRepository)
+            IRepository<Reminder> reminderRepository, IOpenKmService openKmService)
         {
             _repository = repository;
             _repositoryCaseStatus = repositoryCaseStatus;
@@ -41,6 +41,7 @@ namespace Backend.Application.Commands.CaseCommands
             _departmentRepository = departmentRepository;
             _documentRepository = documentRepository;
             _reminderRepository = reminderRepository;
+            _openKmService = openKmService;
         }
 
         public async Task<EntityResponse<Guid>> Handle(CreateCaseCommand command, CancellationToken cancellationToken)
@@ -120,6 +121,7 @@ namespace Backend.Application.Commands.CaseCommands
             }
             
             await _documentRepository.SaveChangesAsync(cancellationToken);
+            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
             return EntityResponse.Success(entity.Id);
         }
 
