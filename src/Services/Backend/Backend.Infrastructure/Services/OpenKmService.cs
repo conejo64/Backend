@@ -20,7 +20,7 @@ namespace backend.Infrastructure.Services
             var host = "http://localhost:8080/openkm";
             var username = "usropenkm";
             var password = "Temporal0penkm1";
-            var filePath = "/home/openkm/";
+            var filePath = "/home/openkm/temp";
             var ws = OKMWebservicesFactory.newInstance(host);
             try
             {

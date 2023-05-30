@@ -36,7 +36,7 @@ namespace Backend.Application.Commands.CaseCommands
             var destinationUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
             string body = new("<p><br/>"
                     + "A continuación los detalles de notficacion del caso:<br/><br/>"
-                    + "<b>Fecha: </b>" + DateTime.Now + "<br/>"
+                    + "<b>Fecha: </b>" + DateTime.Now.ToShortDateString() + "<br/>"
                     + "<b>Mensaje: </b>" + command.Message+ "<br/>"
                     + "</p>");
             //Notificar a responsable

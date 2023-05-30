@@ -128,17 +128,19 @@ namespace Backend.Application.Commands.CaseCommands
         public static string GetBody (string? descriptiontype, string? receptionDate, string? descriptionOrigin, string? number, string? description, string? entidad, 
                                         string? department, string? user, string? transferDate)
         {
+            var receptionDateShort = Convert.ToDateTime(receptionDate);
+            var deadLineDateShort = Convert.ToDateTime(transferDate);
             var body = "<p><br/>"
                   + "A continuación se adjunta un detalle del caso:<br/><br/>"
                   + "<b>Tipo Requerimiento:</b> " + descriptiontype + "<br/>"
-                  + "<b>Fecha de Recepción: </b>" + receptionDate + "<br/>"
+                  + "<b>Fecha de Recepción: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
                   + "<b>Origen del Documento: </b>" + descriptionOrigin + "<br/>"
                   + "<b>Nro. Documento: </b>" + number + "<br/>"
                   + "<b>Descripción: </b>" + description + "<br/>"
                   + "<b>Entidad: </b>" + entidad + "<br/>"
                   + "<b>Area Responsable: </b>" + department + "<br/>"
                   + "<b>Destinatario Responsable: </b>" + user + "<br/>"
-                  + "<b>Fecha Límite: </b>" + transferDate + "<br/>"
+                  + "<b>Fecha Límite: </b>" + deadLineDateShort.ToShortDateString() + "<br/>"
                   + "<a href=http://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
                   + "<br />"
                   + "<br />"
@@ -155,17 +157,19 @@ namespace Backend.Application.Commands.CaseCommands
         public static string GetBodyAttachment(string? descriptiontype, string? receptionDate, string? descriptionOrigin, string? number, string? description, string? entidad,
                                         string? department, string? user, string? transferDate)
         {
+            var receptionDateShort = Convert.ToDateTime(receptionDate);
+            var deadLineDateShort = Convert.ToDateTime(transferDate);
             var body = "<p><br/>"
                   + "A continuación se adjunta un detalle del caso:<br/><br/>"
                   + "<b>Tipo Requerimiento:</b> " + descriptiontype + "<br/>"
-                  + "<b>Fecha de Recepción: </b>" + receptionDate + "<br/>"
+                  + "<b>Fecha de Recepción: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
                   + "<b>Origen del Documento: </b>" + descriptionOrigin + "<br/>"
                   + "<b>Nro. Documento: </b>" + number + "<br/>"
                   + "<b>Descripción: </b>" + description + "<br/>"
                   + "<b>Entidad: </b>" + entidad + "<br/>"
                   + "<b>Area Responsable: </b>" + department + "<br/>"
                   + "<b>Destinatario Responsable: </b>" + user + "<br/>"
-                  + "<b>Fecha Límite: </b>" + transferDate + "<br/>"
+                  + "<b>Fecha Límite: </b>" + deadLineDateShort.ToShortDateString() + "<br/>"
                   + "<br />"
                   + "<br />"
                   + "<br />"
