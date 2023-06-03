@@ -431,7 +431,6 @@ D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backen
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Release\net6.0\PubTmp\Out\Shared.Application.dll
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Release\net6.0\PubTmp\Out\Shared.Domain.dll
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Release\net6.0\PubTmp\Out\Shared.Infrastructure.dll
-D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Release\net6.0\PubTmp\Out\OKMRest.dll
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Release\net6.0\PubTmp\Out\Shared.API.pdb
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Release\net6.0\PubTmp\Out\Backend.Infrastructure.pdb
 D:\Jonathan\OpenKm\Diners\Aplicacion\Backend\backend\src\Services\Backend\Backend.API\obj\Release\net6.0\PubTmp\Out\Backend.Application.pdb

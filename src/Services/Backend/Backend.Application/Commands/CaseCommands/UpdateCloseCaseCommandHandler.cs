@@ -40,7 +40,8 @@ namespace Backend.Application.Commands.CaseCommands
             {
                 return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.CaseNotFound));
             }
-
+            var receptionDateShort = Convert.ToDateTime(command.ResponseDate);
+            var deadLineDateShort = Convert.ToDateTime(command.AcknowledgmentDate);
             entity.ResponseDate = command.ResponseDate;
             entity.CaseStatusId = command.CaseStatusId;
             entity.ObservationDepartment = entity.ObservationDepartment + " / " + command.ObservationDepartment;
@@ -54,11 +55,11 @@ namespace Backend.Application.Commands.CaseCommands
             var caseStatusSecretary = await _repositoryCaseStatusSecretary.GetByIdAsync(entity.CaseStatusSecretaryId, cancellationToken);
             string body = new string("<p><b>Se ha finalizado la tarea.</b><br/>"
                     + "A continuación se adjunta un detalle del caso cerrado:<br/><br/>"
-                    + "<b>Fecha Respuesta: </b>" + command.ResponseDate + "<br/>"
+                    + "<b>Fecha Respuesta: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
                     + "<b>Estado del Caso: </b>" + caseStatus!.Description + "<br/>"
                     + "<b>Comentarios Finales: </b>" + command.ObservationDepartment! + "<br/>"
                     + "<b>Revisión de Secretaria: </b>" + caseStatusSecretary!.Description + "<br/>"
-                    + "<b>Fecha Acuse recibido: </b>" + command.AcknowledgmentDate + "<br/>"
+                    + "<b>Fecha Acuse recibido: </b>" + deadLineDateShort.ToShortDateString() + "<br/>"
                     + "</p>");
             if (destinationUser is not null)
             {
@@ -70,24 +71,27 @@ namespace Backend.Application.Commands.CaseCommands
                     Body = body
                 });
             }
-            for (int i = 0; i < command.DocumentString!.Count; i++)
+            if (command.DocumentString != null && command.DocumentStringNames != null)
             {
-                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
-                var contentTypeSplit = documentSplit[0].Split(':');
-                var document = new DocumentEntity
+                for (int i = 0; i < command.DocumentString!.Count; i++)
                 {
-                    CaseEntityId = entity.Id,
-                    DocumentSource = DocumentSourceEnum.Close,
-                    Document64 = documentSplit[1],
-                    Document64Name = command.DocumentStringNames!.ElementAt(i),
-                    ContextType = contentTypeSplit[1].Split(';')[0],
+                    var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+                    var contentTypeSplit = documentSplit[0].Split(':');
+                    var document = new DocumentEntity
+                    {
+                        CaseEntityId = entity.Id,
+                        DocumentSource = DocumentSourceEnum.Close,
+                        Document64 = documentSplit[1],
+                        Document64Name = command.DocumentStringNames!.ElementAt(i),
+                        ContextType = contentTypeSplit[1].Split(';')[0],
 
-                };
-                await _documentRepository.AddAsync(document, cancellationToken);
-                document = new DocumentEntity();
+                    };
+                    await _documentRepository.AddAsync(document, cancellationToken);
+                    document = new DocumentEntity();
+                }
+                await _documentRepository.SaveChangesAsync(cancellationToken);
+                _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
             }
-            await _documentRepository.SaveChangesAsync(cancellationToken);
-            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
             return true;
         }
 

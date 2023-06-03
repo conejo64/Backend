@@ -24,10 +24,10 @@ namespace Backend.Application.Commands.CaseCommands
         private readonly IRepository<Department> _departmentRepository;
         private readonly IRepository<DocumentEntity> _documentRepository;
         private readonly IRepository<Reminder> _reminderRepository;
-        private readonly IOpenKmService  _openKmService;
+        private readonly IOpenKmService _openKmService;
         public CreateCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<CaseStatus> repositoryCaseStatus,
             INotificationService notificationService, IRepository<User> userRepository, IRepository<Brand> brandRepository,
-            IRepository<OriginDocument> originRepository, IRepository<TypeRequirement> typeRepository, 
+            IRepository<OriginDocument> originRepository, IRepository<TypeRequirement> typeRepository,
             IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository,
             IRepository<Reminder> reminderRepository, IOpenKmService openKmService)
         {
@@ -58,10 +58,10 @@ namespace Backend.Application.Commands.CaseCommands
             var entity = new CaseEntity(command.RequirementNumber, DateTime.Now, command.OriginDocumentId, command.PhysicallyReceived, command.DigitallyReceived, command.DocumentNumber,
                                         command.SbsNumber, command.JudgmentNumber, command.IssueDate, command.Description, command.BrandId, command.DepartmentId, command.UserId, command.TypeRequirementId,
                                         command.Notification, command.Subject, command.TransferDate, command.Deadline, command.ProvinceId, command.DueDate, command.ReminderId, command.ReplyDate, command.Comments,
-                                        command.ResponseDate, statusId!.Id, command.ObservationDepartment, command.CaseStatusSecretaryId, command.AcknowledgmentDate, command.ExtensionRequestDate, command.NewExtensionRequestDate, 
+                                        command.ResponseDate, statusId!.Id, command.ObservationDepartment, command.CaseStatusSecretaryId, command.AcknowledgmentDate, command.ExtensionRequestDate, command.NewExtensionRequestDate,
                                         command.ObservationExtension, command.UserOriginId, reminderDate, command.CaseStage);
             await _repository.AddAsync(entity, cancellationToken);
-                       
+
             var destinationUser = await _userRepository.GetByIdAsync(command.UserId, cancellationToken);
             var brand = await _brandRepository.GetByIdAsync(command.BrandId, cancellationToken);
             var typeRequirement = await _typeRepository.GetByIdAsync(command.TypeRequirementId, cancellationToken);
@@ -84,11 +84,14 @@ namespace Backend.Application.Commands.CaseCommands
             //Notification Attachement
             var documentList = new List<string>();
             var documentNamesList = new List<string>();
-            for (int i = 0; i < command.DocumentString!.Count; i++)
+            if (command.DocumentString != null)
             {
-                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
-                documentList.Add(documentSplit[1]);
-                documentNamesList.Add(command.DocumentStringNames!.ElementAt(i));
+                for (int i = 0; i < command.DocumentString!.Count; i++)
+                {
+                    var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+                    documentList.Add(documentSplit[1]);
+                    documentNamesList.Add(command.DocumentStringNames!.ElementAt(i));
+                }
             }
             var attachemt = documentList;
             if (!string.IsNullOrEmpty(command.Notification))
@@ -103,29 +106,33 @@ namespace Backend.Application.Commands.CaseCommands
                 });
             }
             //Save Documents
-            for (int i = 0; i < command.DocumentString!.Count; i++)
+            if (command.DocumentString != null && command.DocumentStringNames != null)
             {
-                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
-                var contentTypeSplit = documentSplit[0].Split(':');
-                var document = new DocumentEntity
+                for (int i = 0; i < command.DocumentString!.Count; i++)
                 {
-                    CaseEntityId = entity.Id,
-                    DocumentSource = DocumentSourceEnum.Create,
-                    Document64 = documentSplit[1],
-                    Document64Name = command.DocumentStringNames!.ElementAt(i),
-                    ContextType = contentTypeSplit[1].Split(';')[0],
+                    var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+                    var contentTypeSplit = documentSplit[0].Split(':');
+                    var document = new DocumentEntity
+                    {
+                        CaseEntityId = entity.Id,
+                        DocumentSource = DocumentSourceEnum.Create,
+                        Document64 = documentSplit[1],
+                        Document64Name = command.DocumentStringNames!.ElementAt(i),
+                        ContextType = contentTypeSplit[1].Split(';')[0],
 
-                };
-                await _documentRepository.AddAsync(document, cancellationToken);
-                document = new DocumentEntity();
+                    };
+                    await _documentRepository.AddAsync(document, cancellationToken);
+                    document = new DocumentEntity();
+                }
+
+                await _documentRepository.SaveChangesAsync(cancellationToken);
+                _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
             }
             
-            await _documentRepository.SaveChangesAsync(cancellationToken);
-            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
             return EntityResponse.Success(entity.Id);
         }
 
-        public static string GetBody (string? descriptiontype, string? receptionDate, string? descriptionOrigin, string? number, string? description, string? entidad, 
+        public static string GetBody(string? descriptiontype, string? receptionDate, string? descriptionOrigin, string? number, string? description, string? entidad,
                                         string? department, string? user, string? transferDate)
         {
             var receptionDateShort = Convert.ToDateTime(receptionDate);
@@ -141,7 +148,7 @@ namespace Backend.Application.Commands.CaseCommands
                   + "<b>Area Responsable: </b>" + department + "<br/>"
                   + "<b>Destinatario Responsable: </b>" + user + "<br/>"
                   + "<b>Fecha Límite: </b>" + deadLineDateShort.ToShortDateString() + "<br/>"
-                  + "<a href=http://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
+                  + "<a href=https://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
                   + "<br />"
                   + "<br />"
                   + "<br />"
@@ -182,6 +189,6 @@ namespace Backend.Application.Commands.CaseCommands
             return body!;
         }
     }
-    
+
 }
 

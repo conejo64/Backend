@@ -38,7 +38,7 @@ namespace Backend.Application.Commands.CaseCommands
                     + "A continuación se adjunta un detalle del caso:<br/><br/>"
                     + "<b>Fecha de Contestación: </b>" + DateTime.Now.ToString("dd/MM/yyyy") + "<br/>"
                     + "<b>Observaciones: </b>" + command.Comments + "<br/>"
-                    + "<a href=http://openkmapp/workflow/#/auth/login>Por favor haga click en el siguiente enlace</a>"
+                    + "<a href=https://openkmapp/workflow/#/auth/login>Por favor haga click en el siguiente enlace</a>"
                     + "</p>"); ;
             //Notificar a responsable
             if (destinationUser is not null)

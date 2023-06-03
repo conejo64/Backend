@@ -3379,14 +3379,6 @@
           "Shared.Infrastructure.dll": {}
         }
       },
-      "OKMRest/3.29.0.0": {
-        "runtime": {
-          "OKMRest.dll": {
-            "assemblyVersion": "3.29.0.0",
-            "fileVersion": "3.29.0.0"
-          }
-        }
-      },
       "Microsoft.AspNetCore.Antiforgery/6.0.0.0": {
         "compile": {
           "Microsoft.AspNetCore.Antiforgery.dll": {}
@@ -6933,11 +6925,6 @@
     },
     "Shared.Infrastructure/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "OKMRest/3.29.0.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

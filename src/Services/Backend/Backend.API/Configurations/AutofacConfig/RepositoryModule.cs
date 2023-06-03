@@ -29,5 +29,9 @@ public class RepositoryModule : Module
         builder.RegisterType<ProrrogationService>()
             .As<IProrrogationService>()
             .InstancePerLifetimeScope();
+        
+        builder.RegisterType<OpenKmService>()
+            .As<IOpenKmService>()
+            .InstancePerLifetimeScope();
     }
 }

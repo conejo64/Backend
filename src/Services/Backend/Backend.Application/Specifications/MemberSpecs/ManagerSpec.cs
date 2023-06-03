@@ -41,7 +41,8 @@ public sealed class ManagerSpec : Ardalis.Specification.Specification<User>, ISi
         Query
             .Include(user => user.UserProfiles)
             .ThenInclude(userProfiles => userProfiles.Profile)
-            .Where(x => x.Status != CatalogsStatus.Deleted);
+            .Where(x => x.Status != CatalogsStatus.Deleted)
+            .OrderBy(x => x.FirstName);
 
     }
 }
