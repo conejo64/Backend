@@ -1,13 +1,11 @@
-namespace Backend.Application.Commands.TypeRequirementCommands
+namespace Backend.Application.Commands.TypeRequirementCommands;
 
+public class CreateTypeRequirementCommand : IRequest<EntityResponse<Guid>>
 {
-    public class CreateTypeRequirementCommand : IRequest<EntityResponse<Guid>>
-    {
-        public string Description { get; }
+    public string Description { get; }
 
-        public CreateTypeRequirementCommand(string description)
-        {
-            Description = description;
-        }
+    public CreateTypeRequirementCommand(string description)
+    {
+        Description = description;
     }
 }

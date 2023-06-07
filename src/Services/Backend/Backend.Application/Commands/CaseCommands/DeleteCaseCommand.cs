@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend.Application.Commands.CaseCommands
-{
-    public class DeleteCaseCommand : IRequest<EntityResponse<bool>>
-    {
-        public Guid Id { get; }
+namespace Backend.Application.Commands.CaseCommands;
 
-        public DeleteCaseCommand(Guid id)
-        {
-            Id = id;
-        }
+public class DeleteCaseCommand : IRequest<EntityResponse<bool>>
+{
+    public Guid Id { get; }
+
+    public DeleteCaseCommand(Guid id)
+    {
+        Id = id;
     }
 }

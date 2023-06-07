@@ -3,27 +3,26 @@ using Backend.Application.Queries.BrandQueries;
 using Backend.Application.Specifications.MemberSpecs;
 using Backend.Application.Specifications.BrandSpecs;
 
-namespace Backend.Application.Queries.BrandQueries
+namespace Backend.Application.Queries.BrandQueries;
+
+public class ReadAllBrandsQueryHandler : IRequestHandler<ReadAllBrandsQuery,
+    EntityResponse<List<BrandResponse>>>
 {
-    public class ReadAllBrandsQueryHandler : IRequestHandler<ReadAllBrandsQuery,
-        EntityResponse<List<BrandResponse>>>
+    private readonly IRepository<Brand> _repository;
+
+    public ReadAllBrandsQueryHandler(IRepository<Brand> repository)
     {
-        private readonly IRepository<Brand> _repository;
+        _repository = repository;
+    }
 
-        public ReadAllBrandsQueryHandler(IRepository<Brand> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<List<BrandResponse>>> Handle(ReadAllBrandsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new BrandSpec();
 
-        public async Task<EntityResponse<List<BrandResponse>>> Handle(ReadAllBrandsQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new BrandSpec();
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            return entityCollection.Select(BrandResponse.FromEntity).ToList();
-        }
+        return entityCollection.Select(BrandResponse.FromEntity).ToList();
     }
 }

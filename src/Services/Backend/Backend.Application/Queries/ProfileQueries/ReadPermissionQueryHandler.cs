@@ -1,32 +1,31 @@
 using Backend.Application.DTOs.Responses.ProfileResponses;
 
-namespace Backend.Application.Queries.ProfileQueries
+namespace Backend.Application.Queries.ProfileQueries;
+
+public class ReadPermissionQueryHandler : IRequestHandler<ReadPermissionQuery, EntityResponse<List<PermissionResponse>>>
 {
-    public class ReadPermissionQueryHandler : IRequestHandler<ReadPermissionQuery, EntityResponse<List<PermissionResponse>>>
+    #region Constructor && Properties
+
+    private readonly IReadRepository<Permission> _repository;
+
+    public ReadPermissionQueryHandler(IReadRepository<Permission> repository)
     {
-        #region Constructor && Properties
+        _repository = repository;
+    }
 
-        private readonly IReadRepository<Permission> _repository;
+    #endregion
 
-        public ReadPermissionQueryHandler(IReadRepository<Permission> repository)
+    public async Task<EntityResponse<List<PermissionResponse>>> Handle(ReadPermissionQuery request,
+        CancellationToken cancellationToken)
+    {
+        var permissions = await _repository.ListAsync(cancellationToken);
+        if (!permissions.Any())
         {
-            _repository = repository;
+            return EntityResponse<List<PermissionResponse>>.Error(MessageHandler.PermissionNotFound);
         }
 
-        #endregion
+        permissions = permissions.OrderBy(x => x.ResourceCode).ToList();
 
-        public async Task<EntityResponse<List<PermissionResponse>>> Handle(ReadPermissionQuery request,
-            CancellationToken cancellationToken)
-        {
-            var permissions = await _repository.ListAsync(cancellationToken);
-            if (!permissions.Any())
-            {
-                return EntityResponse<List<PermissionResponse>>.Error(MessageHandler.PermissionNotFound);
-            }
-
-            permissions = permissions.OrderBy(x => x.ResourceCode).ToList();
-
-            return PermissionResponse.FromEntity(permissions);
-        }
+        return PermissionResponse.FromEntity(permissions);
     }
 }

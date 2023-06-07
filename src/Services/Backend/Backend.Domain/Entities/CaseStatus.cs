@@ -1,20 +1,14 @@
 ﻿using Backend.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Backend.Domain.Entities
+namespace Backend.Domain.Entities;
+
+public class CaseStatus : BaseEntity
 {
-    public class CaseStatus : BaseEntity
-    {
-        public string? Description { get; set; }
-        public string Status { get; set; } = CatalogsStatus.Active;
+    public string? Description { get; set; }
+    public string Status { get; set; } = CatalogsStatus.Active;
 
-        public CaseStatus(string? description)
-        {
-            Description = description;
-        }
+    public CaseStatus(string? description)
+    {
+        Description = description;
     }
 }

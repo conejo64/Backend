@@ -1,12 +1,11 @@
-namespace Backend.Application.Commands.CaseStatusCommands
-{
-    public class DeleteCaseStatusCommand : IRequest<EntityResponse<bool>>
-    {
-        public Guid Id { get; }
+namespace Backend.Application.Commands.CaseStatusCommands;
 
-        public DeleteCaseStatusCommand(Guid id)
-        {
-            Id = id;
-        }
+public class DeleteCaseStatusCommand : IRequest<EntityResponse<bool>>
+{
+    public Guid Id { get; }
+
+    public DeleteCaseStatusCommand(Guid id)
+    {
+        Id = id;
     }
 }

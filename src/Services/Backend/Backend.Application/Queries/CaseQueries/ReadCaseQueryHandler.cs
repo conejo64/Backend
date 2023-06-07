@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend.Application.Queries.CaseQueries
+namespace Backend.Application.Queries.CaseQueries;
+
+public class ReadCaseQueryHandler : IRequestHandler<ReadCaseQuery, EntityResponse<CaseResponse>>
 {
-    public class ReadCaseQueryHandler : IRequestHandler<ReadCaseQuery, EntityResponse<CaseResponse>>
-    {
-        private readonly IReadRepository<CaseEntity> _repository;
+    private readonly IReadRepository<CaseEntity> _repository;
 
     public ReadCaseQueryHandler(IReadRepository<CaseEntity> repository)
     {
@@ -33,5 +33,4 @@ namespace Backend.Application.Queries.CaseQueries
 
         return CaseResponse.FromEntity(entity);
     }
-}
 }

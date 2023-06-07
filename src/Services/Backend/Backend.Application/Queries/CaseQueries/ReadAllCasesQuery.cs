@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend.Application.Queries.CaseQueries
+namespace Backend.Application.Queries.CaseQueries;
+
+public class ReadAllCasesQuery : IRequest<EntityResponse<List<CaseResponse>>>
 {
-    public class ReadAllCasesQuery : IRequest<EntityResponse<List<CaseResponse>>>
+    public ReadAllCasesQuery()
     {
-        public ReadAllCasesQuery()
-        {
-        }
     }
 }

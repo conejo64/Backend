@@ -8,39 +8,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend.Application.Queries.CaseQueries
+namespace Backend.Application.Queries.CaseQueries;
+
+public class ReadCasesQueryHandler : IRequestHandler<ReadCasesQuery,
+    EntityResponse<GetEntitiesResponse<CaseResponse>>>
 {
-    public class ReadCasesQueryHandler : IRequestHandler<ReadCasesQuery,
-        EntityResponse<GetEntitiesResponse<CaseResponse>>>
+    #region Constructor & Properties
+
+    private readonly IReadRepository<CaseEntity> _repository;
+
+    public ReadCasesQueryHandler(IReadRepository<CaseEntity> repository)
     {
-        #region Constructor & Properties
+        _repository = repository;
+    }
 
-        private readonly IReadRepository<CaseEntity> _repository;
+    #endregion
 
-        public ReadCasesQueryHandler(IReadRepository<CaseEntity> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<GetEntitiesResponse<CaseResponse>>> Handle(ReadCasesQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new CaseSpec(query.OriginDocumentId, query.CaseStatusId, query.DepartmentId, query.InitialDate, query.FinalDate, query.IsPagingEnabled, query.Page, query.PageSize);
 
-        #endregion
+        //Get the total amount of entities
+        var total = await _repository.CountAsync(spec, cancellationToken);
 
-        public async Task<EntityResponse<GetEntitiesResponse<CaseResponse>>> Handle(ReadCasesQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new CaseSpec(query.OriginDocumentId, query.CaseStatusId, query.DepartmentId, query.InitialDate, query.FinalDate, query.IsPagingEnabled, query.Page, query.PageSize);
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get the total amount of entities
-            var total = await _repository.CountAsync(spec, cancellationToken);
+        var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
-
-            return new GetEntitiesResponse<CaseResponse>(
-                entityCollection.Select(CaseResponse.FromEntity).ToList(),
-                filterResponse
-            );
-        }
+        return new GetEntitiesResponse<CaseResponse>(
+            entityCollection.Select(CaseResponse.FromEntity).ToList(),
+            filterResponse
+        );
     }
 }

@@ -2,29 +2,28 @@ using Backend.Application.DTOs.Responses.ManagerUserResponses;
 using Backend.Application.DTOs.Responses.OriginDocumentResponses;
 using Backend.Application.Specifications.MemberSpecs;
 
-namespace Backend.Application.Queries.ManagerUserQueries
+namespace Backend.Application.Queries.ManagerUserQueries;
+
+public class ReadManagerUserQueryQueryHandler : IRequestHandler<ReadManagerUserQuery, EntityResponse<ReadUserResponse>>
 {
-    public class ReadManagerUserQueryQueryHandler : IRequestHandler<ReadManagerUserQuery, EntityResponse<ReadUserResponse>>
+    private readonly IReadRepository<User> _repository;
+
+    public ReadManagerUserQueryQueryHandler(IReadRepository<User> repository)
     {
-        private readonly IReadRepository<User> _repository;
+        _repository = repository;
+    }
 
-        public ReadManagerUserQueryQueryHandler(IReadRepository<User> repository)
+    public async Task<EntityResponse<ReadUserResponse>> Handle(ReadManagerUserQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new ManagerSpec(query.UserId);
+        var user = await _repository.GetBySpecAsync(spec, cancellationToken);
+        if (user is null)
         {
-            _repository = repository;
+            return EntityResponse<ReadUserResponse>.Error(
+                EntityResponseUtils.GenerateMsg(MessageHandler.UserNotFound));
         }
 
-        public async Task<EntityResponse<ReadUserResponse>> Handle(ReadManagerUserQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new ManagerSpec(query.UserId);
-            var user = await _repository.GetBySpecAsync(spec, cancellationToken);
-            if (user is null)
-            {
-                return EntityResponse<ReadUserResponse>.Error(
-                    EntityResponseUtils.GenerateMsg(MessageHandler.UserNotFound));
-            }
-
-            return ReadUserResponse.FromEntity(user);
-        }
+        return ReadUserResponse.FromEntity(user);
     }
 }

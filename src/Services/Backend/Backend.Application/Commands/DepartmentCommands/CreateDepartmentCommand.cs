@@ -1,13 +1,11 @@
-namespace Backend.Application.Commands.DepartmentCommands
+namespace Backend.Application.Commands.DepartmentCommands;
 
+public class CreateDepartmentCommand : IRequest<EntityResponse<Guid>>
 {
-    public class CreateDepartmentCommand : IRequest<EntityResponse<Guid>>
-    {
-        public string Description { get; }
+    public string Description { get; }
 
-        public CreateDepartmentCommand(string description)
-        {
-            Description = description;
-        }
+    public CreateDepartmentCommand(string description)
+    {
+        Description = description;
     }
 }

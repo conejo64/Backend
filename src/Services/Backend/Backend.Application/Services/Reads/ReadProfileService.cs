@@ -1,18 +1,17 @@
-namespace Backend.Application.Services.Reads
+namespace Backend.Application.Services.Reads;
+
+public class ReadProfileService : IRequest<Profile?>
 {
-    public class ReadProfileService : IRequest<Profile?>
+    public Guid? Id { get; }
+    public string? Name { get; }
+
+    public ReadProfileService(Guid id)
     {
-        public Guid? Id { get; }
-        public string? Name { get; }
+        Id = id;
+    }
 
-        public ReadProfileService(Guid id)
-        {
-            Id = id;
-        }
-
-        public ReadProfileService(string name)
-        {
-            Name = name;
-        }
+    public ReadProfileService(string name)
+    {
+        Name = name;
     }
 }

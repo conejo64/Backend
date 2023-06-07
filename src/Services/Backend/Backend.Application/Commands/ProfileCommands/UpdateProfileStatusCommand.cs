@@ -1,14 +1,13 @@
-namespace Backend.Application.Commands.ProfileCommands
-{
-    public class UpdateProfileStatusCommand : IRequest<EntityResponse<bool>>
-    {
-        public Guid ProfileId { get; }
-        public string Status { get; }
+namespace Backend.Application.Commands.ProfileCommands;
 
-        public UpdateProfileStatusCommand(Guid profileId, string status)
-        {
-            ProfileId = profileId;
-            Status = status;
-        }
+public class UpdateProfileStatusCommand : IRequest<EntityResponse<bool>>
+{
+    public Guid ProfileId { get; }
+    public string Status { get; }
+
+    public UpdateProfileStatusCommand(Guid profileId, string status)
+    {
+        ProfileId = profileId;
+        Status = status;
     }
 }

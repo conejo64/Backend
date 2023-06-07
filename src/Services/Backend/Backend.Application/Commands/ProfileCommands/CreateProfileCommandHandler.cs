@@ -1,37 +1,36 @@
 using Backend.Application.Specifications.ProfileSpecs;
 
-namespace Backend.Application.Commands.ProfileCommands
+namespace Backend.Application.Commands.ProfileCommands;
+
+public class CreateProfileCommandHandler : IRequestHandler<CreateProfileCommand, EntityResponse<Guid>>
 {
-    public class CreateProfileCommandHandler : IRequestHandler<CreateProfileCommand, EntityResponse<Guid>>
+    private readonly IRepository<Profile> _repository;
+
+    public CreateProfileCommandHandler(IRepository<Profile> repository)
     {
-        private readonly IRepository<Profile> _repository;
+        _repository = repository;
+    }
 
-        public CreateProfileCommandHandler(IRepository<Profile> repository)
+    public async Task<EntityResponse<Guid>> Handle(CreateProfileCommand command, CancellationToken cancellationToken)
+    {
+        var spec = new ProfileSpec(null, command.Name);
+        var profileDb = await _repository.GetBySpecAsync(spec, cancellationToken);
+
+        if (profileDb != null)
         {
-            _repository = repository;
+            return EntityResponse<Guid>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.ProfileAlreadyExit));
         }
 
-        public async Task<EntityResponse<Guid>> Handle(CreateProfileCommand command, CancellationToken cancellationToken)
-        {
-            var spec = new ProfileSpec(null, command.Name);
-            var profileDb = await _repository.GetBySpecAsync(spec, cancellationToken);
+        var profile = new Profile(command.Name, command.Description);
 
-            if (profileDb != null)
-            {
-                return EntityResponse<Guid>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.ProfileAlreadyExit));
-            }
+        command.ProfilePermissions
+            .Where(s => Guid.TryParse(s, out _))
+            .Select(Guid.Parse)
+            .ToList()
+            .ForEach(profile.AddProfilePermission);
 
-            var profile = new Profile(command.Name, command.Description);
+        await _repository.AddAsync(profile, cancellationToken);
 
-            command.ProfilePermissions
-                .Where(s => Guid.TryParse(s, out _))
-                .Select(Guid.Parse)
-                .ToList()
-                .ForEach(profile.AddProfilePermission);
-
-            await _repository.AddAsync(profile, cancellationToken);
-
-            return EntityResponse.Success(profile.Id);
-        }
+        return EntityResponse.Success(profile.Id);
     }
 }

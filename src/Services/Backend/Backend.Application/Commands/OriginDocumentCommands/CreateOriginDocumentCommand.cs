@@ -1,12 +1,11 @@
-namespace Backend.Application.Commands.OriginDocumentCommands
-{
-    public class CreateOriginDocumentCommand : IRequest<EntityResponse<Guid>>
-    {
-        public string Description { get; }
+namespace Backend.Application.Commands.OriginDocumentCommands;
 
-        public CreateOriginDocumentCommand(string description)
-        {
-            Description = description;
-        }
+public class CreateOriginDocumentCommand : IRequest<EntityResponse<Guid>>
+{
+    public string Description { get; }
+
+    public CreateOriginDocumentCommand(string description)
+    {
+        Description = description;
     }
 }

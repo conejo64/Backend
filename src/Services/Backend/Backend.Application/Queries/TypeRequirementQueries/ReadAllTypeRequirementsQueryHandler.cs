@@ -3,27 +3,26 @@ using Backend.Application.Queries.TypeRequirementQueries;
 using Backend.Application.Specifications.MemberSpecs;
 using Backend.Application.Specifications.TypeRequirementSpecs;
 
-namespace Backend.Application.Queries.TypeRequirementQueries
+namespace Backend.Application.Queries.TypeRequirementQueries;
+
+public class ReadAllTypeRequirementsQueryHandler : IRequestHandler<ReadAllTypeRequirementsQuery,
+    EntityResponse<List<TypeRequirementResponse>>>
 {
-    public class ReadAllTypeRequirementsQueryHandler : IRequestHandler<ReadAllTypeRequirementsQuery,
-        EntityResponse<List<TypeRequirementResponse>>>
+    private readonly IRepository<TypeRequirement> _repository;
+
+    public ReadAllTypeRequirementsQueryHandler(IRepository<TypeRequirement> repository)
     {
-        private readonly IRepository<TypeRequirement> _repository;
+        _repository = repository;
+    }
 
-        public ReadAllTypeRequirementsQueryHandler(IRepository<TypeRequirement> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<List<TypeRequirementResponse>>> Handle(ReadAllTypeRequirementsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new TypeRequirementSpec();
 
-        public async Task<EntityResponse<List<TypeRequirementResponse>>> Handle(ReadAllTypeRequirementsQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new TypeRequirementSpec();
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            return entityCollection.Select(TypeRequirementResponse.FromEntity).ToList();
-        }
+        return entityCollection.Select(TypeRequirementResponse.FromEntity).ToList();
     }
 }

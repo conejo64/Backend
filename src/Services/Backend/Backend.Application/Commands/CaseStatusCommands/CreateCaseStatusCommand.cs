@@ -1,13 +1,11 @@
-namespace Backend.Application.Commands.CaseStatusCommands
+namespace Backend.Application.Commands.CaseStatusCommands;
 
+public class CreateCaseStatusCommand : IRequest<EntityResponse<Guid>>
 {
-    public class CreateCaseStatusCommand : IRequest<EntityResponse<Guid>>
-    {
-        public string Description { get; }
+    public string Description { get; }
 
-        public CreateCaseStatusCommand(string description)
-        {
-            Description = description;
-        }
+    public CreateCaseStatusCommand(string description)
+    {
+        Description = description;
     }
 }

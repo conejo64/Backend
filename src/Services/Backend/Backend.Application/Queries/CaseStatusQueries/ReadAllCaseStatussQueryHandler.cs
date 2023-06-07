@@ -3,27 +3,26 @@ using Backend.Application.Queries.CaseStatusQueries;
 using Backend.Application.Specifications.MemberSpecs;
 using Backend.Application.Specifications.CaseStatusSpecs;
 
-namespace Backend.Application.Queries.CaseStatusQueries
+namespace Backend.Application.Queries.CaseStatusQueries;
+
+public class ReadAllCaseStatussQueryHandler : IRequestHandler<ReadAllCaseStatussQuery,
+    EntityResponse<List<CaseStatusResponse>>>
 {
-    public class ReadAllCaseStatussQueryHandler : IRequestHandler<ReadAllCaseStatussQuery,
-        EntityResponse<List<CaseStatusResponse>>>
+    private readonly IRepository<CaseStatus> _repository;
+
+    public ReadAllCaseStatussQueryHandler(IRepository<CaseStatus> repository)
     {
-        private readonly IRepository<CaseStatus> _repository;
+        _repository = repository;
+    }
 
-        public ReadAllCaseStatussQueryHandler(IRepository<CaseStatus> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<List<CaseStatusResponse>>> Handle(ReadAllCaseStatussQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new CaseStatusSpec();
 
-        public async Task<EntityResponse<List<CaseStatusResponse>>> Handle(ReadAllCaseStatussQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new CaseStatusSpec();
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            return entityCollection.Select(CaseStatusResponse.FromEntity).ToList();
-        }
+        return entityCollection.Select(CaseStatusResponse.FromEntity).ToList();
     }
 }

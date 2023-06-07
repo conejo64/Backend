@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 using Backend.Application.DTOs.Responses.DocumentResponses;
 using Backend.Application.Specifications.CaseDocumentSpecs;
 
-namespace Backend.Application.Queries.CaseQueries
+namespace Backend.Application.Queries.CaseQueries;
+
+public class ReadAttachmentCaseQueryHandler : IRequestHandler<ReadAttachmentCaseQuery, EntityResponse<DocumentResponse>>
 {
-    public class ReadAttachmentCaseQueryHandler : IRequestHandler<ReadAttachmentCaseQuery, EntityResponse<DocumentResponse>>
-    {
-        private readonly IReadRepository<DocumentEntity> _repository;
+    private readonly IReadRepository<DocumentEntity> _repository;
 
     public ReadAttachmentCaseQueryHandler(IReadRepository<DocumentEntity> repository)
     {
@@ -35,5 +35,4 @@ namespace Backend.Application.Queries.CaseQueries
 
         return DocumentResponse.FromEntity(entity!);
     }
-}
 }

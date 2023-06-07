@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend.Application.Commands.CaseCommands
-{
-    public class SendNotificationCaseCommand : IRequest<EntityResponse<bool>>
-    {
-        public Guid CaseId { get; }
-        //Screen Department
-        public string? Message { get; set; }
+namespace Backend.Application.Commands.CaseCommands;
 
-        public SendNotificationCaseCommand(Guid caseId, string? message)
-        {
-            CaseId = caseId;
-            Message = message;
-        }
+public class SendNotificationCaseCommand : IRequest<EntityResponse<bool>>
+{
+    public Guid CaseId { get; }
+    //Screen Department
+    public string? Message { get; set; }
+
+    public SendNotificationCaseCommand(Guid caseId, string? message)
+    {
+        CaseId = caseId;
+        Message = message;
     }
 }

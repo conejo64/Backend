@@ -3,27 +3,26 @@ using Backend.Application.Queries.ProvinceQueries;
 using Backend.Application.Specifications.MemberSpecs;
 using Backend.Application.Specifications.ProvinceSpecs;
 
-namespace Backend.Application.Queries.ProvinceQueries
+namespace Backend.Application.Queries.ProvinceQueries;
+
+public class ReadAllProvincesQueryHandler : IRequestHandler<ReadAllProvincesQuery,
+    EntityResponse<List<ProvinceResponse>>>
 {
-    public class ReadAllProvincesQueryHandler : IRequestHandler<ReadAllProvincesQuery,
-        EntityResponse<List<ProvinceResponse>>>
+    private readonly IRepository<Province> _repository;
+
+    public ReadAllProvincesQueryHandler(IRepository<Province> repository)
     {
-        private readonly IRepository<Province> _repository;
+        _repository = repository;
+    }
 
-        public ReadAllProvincesQueryHandler(IRepository<Province> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<List<ProvinceResponse>>> Handle(ReadAllProvincesQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new ProvinceSpec();
 
-        public async Task<EntityResponse<List<ProvinceResponse>>> Handle(ReadAllProvincesQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new ProvinceSpec();
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            return entityCollection.Select(ProvinceResponse.FromEntity).ToList();
-        }
+        return entityCollection.Select(ProvinceResponse.FromEntity).ToList();
     }
 }

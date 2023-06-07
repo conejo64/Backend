@@ -1,5 +1,3 @@
-using Backend.Domain.Entities;
-
 namespace Backend.Infrastructure.SeedData.SeederConfigurations;
 
 public class ProfilePermissionSeeder

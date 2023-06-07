@@ -1,13 +1,11 @@
-namespace Backend.Application.Commands.ProvinceCommands
+namespace Backend.Application.Commands.ProvinceCommands;
 
+public class CreateProvinceCommand : IRequest<EntityResponse<Guid>>
 {
-    public class CreateProvinceCommand : IRequest<EntityResponse<Guid>>
-    {
-        public string Description { get; }
+    public string Description { get; }
 
-        public CreateProvinceCommand(string description)
-        {
-            Description = description;
-        }
+    public CreateProvinceCommand(string description)
+    {
+        Description = description;
     }
 }

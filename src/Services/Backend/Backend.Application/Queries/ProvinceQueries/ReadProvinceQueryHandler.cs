@@ -1,29 +1,28 @@
 using Backend.Application.DTOs.Responses.ProvinceResponses;
 using Backend.Application.Specifications.ProvinceSpecs;
 
-namespace Backend.Application.Queries.ProvinceQueries
+namespace Backend.Application.Queries.ProvinceQueries;
+
+public class ReadProvinceQueryHandler : IRequestHandler<ReadProvinceQuery, EntityResponse<ProvinceResponse>>
 {
-    public class ReadProvinceQueryHandler : IRequestHandler<ReadProvinceQuery, EntityResponse<ProvinceResponse>>
+    private readonly IReadRepository<Province> _repository;
+
+    public ReadProvinceQueryHandler(IReadRepository<Province> repository)
     {
-        private readonly IReadRepository<Province> _repository;
+        _repository = repository;
+    }
 
-        public ReadProvinceQueryHandler(IReadRepository<Province> repository)
+    public async Task<EntityResponse<ProvinceResponse>> Handle(ReadProvinceQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new ProvinceSpec(query.Id);
+        var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
+        if (entity is null)
         {
-            _repository = repository;
+            return EntityResponse<ProvinceResponse>.Error(
+                EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
         }
 
-        public async Task<EntityResponse<ProvinceResponse>> Handle(ReadProvinceQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new ProvinceSpec(query.Id);
-            var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
-            if (entity is null)
-            {
-                return EntityResponse<ProvinceResponse>.Error(
-                    EntityResponseUtils.GenerateMsg(MessageHandler.OriginDocumentNotFound));
-            }
-
-            return ProvinceResponse.FromEntity(entity);
-        }
+        return ProvinceResponse.FromEntity(entity);
     }
 }

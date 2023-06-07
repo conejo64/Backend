@@ -1,5 +1,4 @@
 using Backend.Application.Utils;
-using Backend.Domain.Entities;
 
 namespace Backend.Infrastructure.SeedData.SeederConfigurations;
 

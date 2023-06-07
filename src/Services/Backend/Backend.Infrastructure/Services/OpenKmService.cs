@@ -1,11 +1,4 @@
 ﻿using Backend.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using System.Threading;
 
 
 namespace backend.Infrastructure.Services

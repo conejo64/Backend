@@ -1,12 +1,11 @@
-namespace Backend.Application.DTOs.Responses
-{
-    public class JwtResponse
-    {
-        public string Jwt { get; }
+namespace Backend.Application.DTOs.Responses;
 
-        public JwtResponse(string jwt)
-        {
-            Jwt = jwt;
-        }
+public class JwtResponse
+{
+    public string Jwt { get; }
+
+    public JwtResponse(string jwt)
+    {
+        Jwt = jwt;
     }
 }

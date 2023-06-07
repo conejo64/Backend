@@ -1,16 +1,7 @@
-﻿using Newtonsoft.Json;
-using Backend.Application.DTOs;
-using Backend.Domain.DTOs.Requests;
+﻿using Backend.Domain.DTOs.Requests;
 using Backend.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Net.Mime;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Backend.Infrastructure.Services
 {

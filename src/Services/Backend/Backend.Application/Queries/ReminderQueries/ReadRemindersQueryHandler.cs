@@ -4,39 +4,38 @@ using Backend.Application.Queries.ManagerUserQueries;
 using Backend.Application.Specifications.MemberSpecs;
 using Backend.Application.Specifications.ReminderSpecs;
 
-namespace Backend.Application.Queries.ReminderQueries
+namespace Backend.Application.Queries.ReminderQueries;
+
+public class ReadRemindersQueryHandler : IRequestHandler<ReadRemindersQuery,
+    EntityResponse<GetEntitiesResponse<ReminderResponse>>>
 {
-    public class ReadRemindersQueryHandler : IRequestHandler<ReadRemindersQuery,
-        EntityResponse<GetEntitiesResponse<ReminderResponse>>>
+    #region Constructor & Properties
+
+    private readonly IReadRepository<Reminder> _repository;
+
+    public ReadRemindersQueryHandler(IReadRepository<Reminder> repository)
     {
-        #region Constructor & Properties
+        _repository = repository;
+    }
 
-        private readonly IReadRepository<Reminder> _repository;
+    #endregion
 
-        public ReadRemindersQueryHandler(IReadRepository<Reminder> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<GetEntitiesResponse<ReminderResponse>>> Handle(ReadRemindersQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new ReminderSpec(query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
 
-        #endregion
+        //Get the total amount of entities
+        var total = await _repository.CountAsync(spec, cancellationToken);
 
-        public async Task<EntityResponse<GetEntitiesResponse<ReminderResponse>>> Handle(ReadRemindersQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new ReminderSpec(query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get the total amount of entities
-            var total = await _repository.CountAsync(spec, cancellationToken);
+        var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
-
-            return new GetEntitiesResponse<ReminderResponse>(
-                entityCollection.Select(ReminderResponse.FromEntity).ToList(),
-                filterResponse
-            );
-        }
+        return new GetEntitiesResponse<ReminderResponse>(
+            entityCollection.Select(ReminderResponse.FromEntity).ToList(),
+            filterResponse
+        );
     }
 }

@@ -1,12 +1,11 @@
-namespace Backend.Application.Events.Domain
-{
-    public class UserCreatedDomainEvent : INotification
-    {
-        public User ApplicationUser { get; }
+namespace Backend.Application.Events.Domain;
 
-        public UserCreatedDomainEvent(User applicationUser)
-        {
-            ApplicationUser = applicationUser;
-        }
+public class UserCreatedDomainEvent : INotification
+{
+    public User ApplicationUser { get; }
+
+    public UserCreatedDomainEvent(User applicationUser)
+    {
+        ApplicationUser = applicationUser;
     }
 }

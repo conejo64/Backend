@@ -4,39 +4,38 @@ using Backend.Application.Queries.ManagerUserQueries;
 using Backend.Application.Specifications.MemberSpecs;
 using Backend.Application.Specifications.TypeRequirementSpecs;
 
-namespace Backend.Application.Queries.TypeRequirementQueries
+namespace Backend.Application.Queries.TypeRequirementQueries;
+
+public class ReadTypeRequirementsQueryHandler : IRequestHandler<ReadTypeRequirementsQuery,
+    EntityResponse<GetEntitiesResponse<TypeRequirementResponse>>>
 {
-    public class ReadTypeRequirementsQueryHandler : IRequestHandler<ReadTypeRequirementsQuery,
-        EntityResponse<GetEntitiesResponse<TypeRequirementResponse>>>
+    #region Constructor & Properties
+
+    private readonly IReadRepository<TypeRequirement> _repository;
+
+    public ReadTypeRequirementsQueryHandler(IReadRepository<TypeRequirement> repository)
     {
-        #region Constructor & Properties
+        _repository = repository;
+    }
 
-        private readonly IReadRepository<TypeRequirement> _repository;
+    #endregion
 
-        public ReadTypeRequirementsQueryHandler(IReadRepository<TypeRequirement> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<GetEntitiesResponse<TypeRequirementResponse>>> Handle(ReadTypeRequirementsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new TypeRequirementSpec(query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
 
-        #endregion
+        //Get the total amount of entities
+        var total = await _repository.CountAsync(spec, cancellationToken);
 
-        public async Task<EntityResponse<GetEntitiesResponse<TypeRequirementResponse>>> Handle(ReadTypeRequirementsQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new TypeRequirementSpec(query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get the total amount of entities
-            var total = await _repository.CountAsync(spec, cancellationToken);
+        var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
-
-            return new GetEntitiesResponse<TypeRequirementResponse>(
-                entityCollection.Select(TypeRequirementResponse.FromEntity).ToList(),
-                filterResponse
-            );
-        }
+        return new GetEntitiesResponse<TypeRequirementResponse>(
+            entityCollection.Select(TypeRequirementResponse.FromEntity).ToList(),
+            filterResponse
+        );
     }
 }

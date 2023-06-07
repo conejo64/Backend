@@ -4,39 +4,38 @@ using Backend.Application.Queries.ManagerUserQueries;
 using Backend.Application.Specifications.MemberSpecs;
 using Backend.Application.Specifications.BrandSpecs;
 
-namespace Backend.Application.Queries.BrandQueries
+namespace Backend.Application.Queries.BrandQueries;
+
+public class ReadBrandsQueryHandler : IRequestHandler<ReadBrandsQuery,
+    EntityResponse<GetEntitiesResponse<BrandResponse>>>
 {
-    public class ReadBrandsQueryHandler : IRequestHandler<ReadBrandsQuery,
-        EntityResponse<GetEntitiesResponse<BrandResponse>>>
+    #region Constructor & Properties
+
+    private readonly IReadRepository<Brand> _repository;
+
+    public ReadBrandsQueryHandler(IReadRepository<Brand> repository)
     {
-        #region Constructor & Properties
+        _repository = repository;
+    }
 
-        private readonly IReadRepository<Brand> _repository;
+    #endregion
 
-        public ReadBrandsQueryHandler(IReadRepository<Brand> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<EntityResponse<GetEntitiesResponse<BrandResponse>>> Handle(ReadBrandsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new BrandSpec(query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
 
-        #endregion
+        //Get the total amount of entities
+        var total = await _repository.CountAsync(spec, cancellationToken);
 
-        public async Task<EntityResponse<GetEntitiesResponse<BrandResponse>>> Handle(ReadBrandsQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new BrandSpec(query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
+        //Get entity list
+        var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get the total amount of entities
-            var total = await _repository.CountAsync(spec, cancellationToken);
+        var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
 
-            //Get entity list
-            var entityCollection = await _repository.ListAsync(spec, cancellationToken);
-
-            var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
-
-            return new GetEntitiesResponse<BrandResponse>(
-                entityCollection.Select(BrandResponse.FromEntity).ToList(),
-                filterResponse
-            );
-        }
+        return new GetEntitiesResponse<BrandResponse>(
+            entityCollection.Select(BrandResponse.FromEntity).ToList(),
+            filterResponse
+        );
     }
 }

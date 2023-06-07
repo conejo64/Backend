@@ -1,38 +1,37 @@
 using Backend.Application.DTOs.Responses.ProfileResponses;
 using Backend.Application.Specifications.ProfileSpecs;
 
-namespace Backend.Application.Queries.ProfileQueries
+namespace Backend.Application.Queries.ProfileQueries;
+
+public class ReadProfilesQueryHandler : IRequestHandler<ReadProfilesQuery, GetEntitiesResponse<ReadProfilesResponse>>
 {
-    public class ReadProfilesQueryHandler : IRequestHandler<ReadProfilesQuery, GetEntitiesResponse<ReadProfilesResponse>>
+    #region Contructor && Properties
+
+    private readonly IReadRepository<Profile> _repository;
+
+    public ReadProfilesQueryHandler(IReadRepository<Profile> repository)
     {
-        #region Contructor && Properties
+        _repository = repository;
+    }
 
-        private readonly IReadRepository<Profile> _repository;
+    #endregion
 
-        public ReadProfilesQueryHandler(IReadRepository<Profile> repository)
-        {
-            _repository = repository;
-        }
+    public async Task<GetEntitiesResponse<ReadProfilesResponse>> Handle(ReadProfilesQuery query,
+        CancellationToken cancellationToken)
+    {
+        var spec = new ProfileSpec(query.Name, query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
 
-        #endregion
+        //Get the total amount of entities
+        var total = await _repository.CountAsync(spec, cancellationToken);
 
-        public async Task<GetEntitiesResponse<ReadProfilesResponse>> Handle(ReadProfilesQuery query,
-            CancellationToken cancellationToken)
-        {
-            var spec = new ProfileSpec(query.Name, query.Description, query.IsPagingEnabled, query.Page, query.PageSize);
+        //Get entity list
+        var profiles = await _repository.ListAsync(spec, cancellationToken);
 
-            //Get the total amount of entities
-            var total = await _repository.CountAsync(spec, cancellationToken);
+        var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
 
-            //Get entity list
-            var profiles = await _repository.ListAsync(spec, cancellationToken);
-
-            var filterResponse = new PaginationResponse(query.Page, query.PageSize, total);
-
-            return new GetEntitiesResponse<ReadProfilesResponse>(
-                profiles.Select(ReadProfilesResponse.FromEntity).ToList(),
-                filterResponse
-            );
-        }
+        return new GetEntitiesResponse<ReadProfilesResponse>(
+            profiles.Select(ReadProfilesResponse.FromEntity).ToList(),
+            filterResponse
+        );
     }
 }

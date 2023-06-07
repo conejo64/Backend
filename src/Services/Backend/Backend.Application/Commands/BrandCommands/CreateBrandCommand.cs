@@ -1,13 +1,11 @@
-namespace Backend.Application.Commands.BrandCommands
+namespace Backend.Application.Commands.BrandCommands;
 
+public class CreateBrandCommand : IRequest<EntityResponse<Guid>>
 {
-    public class CreateBrandCommand : IRequest<EntityResponse<Guid>>
-    {
-        public string Description { get; }
+    public string Description { get; }
 
-        public CreateBrandCommand(string description)
-        {
-            Description = description;
-        }
+    public CreateBrandCommand(string description)
+    {
+        Description = description;
     }
 }
