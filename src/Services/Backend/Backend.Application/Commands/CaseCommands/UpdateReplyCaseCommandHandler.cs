@@ -57,19 +57,19 @@ namespace Backend.Application.Commands.CaseCommands
             entity.Comments = entity.Comments + " / " + command.Comments;
             entity.CaseStage = StageEnum.Secretary;
             var replyDate = DateTime.Now;
+            var receptionDateShort = Convert.ToDateTime(entity.ReceptionDate);
             await _repository.UpdateAsync(entity, cancellationToken);
             var destinationUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
             var originUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
             string body = new("<p><br/>"
                     + "A continuación se adjunta un detalle de la respuesta al caso :<br/><br/>"
                     + "<b>Tipo Requerimiento:</b> " + typeRequirement!.Description + "<br/>"
-                    + "<b>Fecha de Recepción: </b>" + entity.ReceptionDate + "<br/>"
+                    + "<b>Fecha de Recepción: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
                     + "<b>Origen del Documento: </b>" + originDocument!.Description + "<br/>"
                     + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
                     + "<b>Descripción: </b>" + entity.Description + "<br/>"
                     + "<b>Entidad: </b>" + brand!.Description + "<br/>"
-                    + "<b>Area Responsable: </b>" + department + "<br/>"
-                    + "<b>Nro.Documento: </ b > " + entity.DocumentNumber + " < br /> "
+                    + "<b>Area Responsable: </b>" + department!.Description + "<br/>"
                     + "<b>Fecha de Contestación: </b>" + replyDate.ToShortDateString() + "<br/>"
                     + "<b>Observaciones: </b>" + command.Comments+ "<br/>"
                     + "<a href=https://openkmapp/workflow/#/auth/login>Por favor haga click en el siguiente enlace</a>"

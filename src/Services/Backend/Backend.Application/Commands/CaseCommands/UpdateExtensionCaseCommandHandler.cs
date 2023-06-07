@@ -30,7 +30,8 @@ namespace Backend.Application.Commands.CaseCommands
             {
                 return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.CaseNotFound));
             }
-
+            var extensionDate = Convert.ToDateTime(command.ExtensionRequestDate);
+            var newExtensionDate = Convert.ToDateTime(command.NewExtensionRequestDate);
             entity.ExtensionRequestDate = command.ExtensionRequestDate;
             entity.NewExtensionRequestDate = command.NewExtensionRequestDate;
             entity.ObservationExtension = command.ObservationExtension;
@@ -40,9 +41,20 @@ namespace Backend.Application.Commands.CaseCommands
             var originUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
             string body = new("<p>Se le ha asignado una nueva tarea.<br/>"
                     + "A continuaciòn se adjunta un detalle de la Prorroga:<br/><br/>"
-                    + "<b>Fecha de Prorroga: </b>" + command.ExtensionRequestDate + "<br/>"
-                    + "<b>fecha Limite: </b>" + command.NewExtensionRequestDate + "<br/>"
+                    + "<b>Fecha de Prorroga: </b>" + extensionDate.ToShortDateString() + "<br/>"
+                    + "<b>fecha Limite: </b>" + newExtensionDate.ToShortDateString() + "<br/>"
                     + "<b>Observaciones: </b>" + command.ObservationExtension + "<br/>"
+                    + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
+                    + "<b>Descripción: </b>" + entity.Description + "<br/>"
+                    + "<a href=https://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
+                    + "<br />"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>Atentamente" + "<br/>"
+                    + "<b>Secretaria General</b>"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
                     + "</p>");
             if (destinationUser is not null)
             {

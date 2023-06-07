@@ -38,6 +38,17 @@ namespace Backend.Application.Commands.CaseCommands
                     + "A continuación los detalles de notficacion del caso:<br/><br/>"
                     + "<b>Fecha: </b>" + DateTime.Now.ToShortDateString() + "<br/>"
                     + "<b>Mensaje: </b>" + command.Message+ "<br/>"
+                    + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
+                    + "<b>Descripción: </b>" + entity.Description + "<br/>"
+                    + "<a href=https://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
+                    + "<br />"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>Atentamente" + "<br/>"
+                    + "<b>Secretaria General</b>"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
                     + "</p>");
             //Notificar a responsable
             if (destinationUser is not null)

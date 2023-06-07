@@ -35,10 +35,20 @@ namespace Backend.Application.Commands.CaseCommands
             var destinationUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
             var originUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
             string body = new("<p><br/>"
-                    + "A continuación se adjunta un detalle del caso:<br/><br/>"
+                    + "A continuación se adjunta un detalle del caso solicitando mas información:<br/><br/>"
                     + "<b>Fecha de Contestación: </b>" + DateTime.Now.ToString("dd/MM/yyyy") + "<br/>"
                     + "<b>Observaciones: </b>" + command.Comments + "<br/>"
+                    + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
+                    + "<b>Descripción: </b>" + entity.Description + "<br/>"
                     + "<a href=https://openkmapp/workflow/#/auth/login>Por favor haga click en el siguiente enlace</a>"
+                    + "<br />"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>Atentamente" + "<br/>"
+                    + "<b>Secretaria General</b>"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
                     + "</p>"); ;
             //Notificar a responsable
             if (destinationUser is not null)

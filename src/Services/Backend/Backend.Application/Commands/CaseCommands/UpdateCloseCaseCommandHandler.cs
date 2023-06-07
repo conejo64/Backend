@@ -60,6 +60,17 @@ namespace Backend.Application.Commands.CaseCommands
                     + "<b>Comentarios Finales: </b>" + command.ObservationDepartment! + "<br/>"
                     + "<b>Revisión de Secretaria: </b>" + caseStatusSecretary!.Description + "<br/>"
                     + "<b>Fecha Acuse recibido: </b>" + deadLineDateShort.ToShortDateString() + "<br/>"
+                    + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
+                    + "<b>Descripción: </b>" + entity.Description + "<br/>"
+                    + "<a href=https://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
+                    + "<br />"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>Atentamente" + "<br/>"
+                    + "<b>Secretaria General</b>"
+                    + "<br />"
+                    + "<br />"
+                    + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
                     + "</p>");
             if (destinationUser is not null)
             {
