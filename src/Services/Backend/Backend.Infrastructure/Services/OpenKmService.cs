@@ -1,7 +1,4 @@
 ﻿using Backend.Domain.Interfaces.Services;
-using com.openkm.sdk4csharp.impl;
-using com.openkm.sdk4csharp;
-using com.openkm.sdk4csharp.bean;
 using System;
 using System.Collections.Generic;
 using System.Linq;

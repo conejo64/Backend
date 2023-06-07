@@ -34,7 +34,7 @@ namespace Backend.Application.Queries.CaseQueries
             //Get entity list
             var entityCollection = await _repository.ListAsync(spec, cancellationToken);
 
-            var result = await _exportExcelService.GenerateExcel(entityCollection);
+            var result = await _exportExcelService.GenerateExcelV1(entityCollection);
 
             return result!;
         }

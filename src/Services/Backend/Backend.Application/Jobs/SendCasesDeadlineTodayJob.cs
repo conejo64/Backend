@@ -33,7 +33,7 @@ public class SendCasesDeadlineTodayJob : IJob
         var spec = new CaseSpec(today);
         var cases = await _repository.ListAsync(spec, context.CancellationToken);
 
-        var arrayBuffer = await _exportExcelService.GenerateExcel(cases);
+        var arrayBuffer = await _exportExcelService.GenerateExcelV1(cases);
 
         var attachemt = new List<string>
         {
