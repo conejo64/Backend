@@ -1,3 +1,5 @@
+using OfficeOpenXml;
+
 namespace Backend.API;
 
 internal static class HostingExtensions
@@ -23,6 +25,8 @@ internal static class HostingExtensions
         builder.Host.ConfigureContainer<ContainerBuilder>(b => b.RegisterModule(new MediatorModule()));
         builder.Host.ConfigureContainer<ContainerBuilder>(b => b.RegisterModule(new RepositoryModule()));
         builder.Host.ConfigureContainer<ContainerBuilder>(b => b.RegisterModule(new EventsModule()));
+        
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
         return builder.Build();
     }
