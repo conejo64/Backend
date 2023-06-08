@@ -48,7 +48,7 @@ public class SendNotificationCaseCommandHandler : IRequestHandler<SendNotificati
                           + "<b>Secretaria General</b>"
                           + "<br />"
                           + "<br />"
-                          + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
+                          + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
                           + "</p>");
         //Notificar a responsable
         if (destinationUser is not null)

@@ -44,7 +44,7 @@ public class SendCasesDeadlineTodayJob : IJob
         _notificationService.SendEmailNotification(new EmailNotifictionModel()
         {
             Subject = "GESTOR DOCUMENTAL - CASOS CON FECHA LIMITE HOY",
-            To = "mmoreira@dinersclub.com.ec,sordonez@dinersclub.com.ec",
+            To = "sordonez@dinersclub.com.ec",
             Attachment = attachemt!,
             AttachmentNames = attachmentNames,
             Body = "<p>A continuación se adjunta el reporte de casos que vencen el día de hoy</p>"

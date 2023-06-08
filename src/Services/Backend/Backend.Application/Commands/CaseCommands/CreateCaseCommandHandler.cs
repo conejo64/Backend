@@ -156,7 +156,7 @@ public class CreateCaseCommandHandler : IRequestHandler<CreateCaseCommand, Entit
                    + "<b>Secretaria General</b>"
                    + "<br />"
                    + "<br />"
-                   + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
+                   + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
                    + "</p>";
         return body!;
     }
@@ -184,7 +184,7 @@ public class CreateCaseCommandHandler : IRequestHandler<CreateCaseCommand, Entit
                    + "<b>Secretaria General</b>"
                    + "<br />"
                    + "<br />"
-                   + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
+                   + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
                    + "</p>";
         return body!;
     }

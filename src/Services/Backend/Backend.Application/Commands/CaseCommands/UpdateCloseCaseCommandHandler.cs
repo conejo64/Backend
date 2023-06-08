@@ -70,7 +70,7 @@ public class UpdateCloseCaseCommandHandler : IRequestHandler<UpdateCloseCaseComm
                                  + "<b>Secretaria General</b>"
                                  + "<br />"
                                  + "<br />"
-                                 + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
+                                 + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
                                  + "</p>");
         if (destinationUser is not null)
         {

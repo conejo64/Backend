@@ -47,12 +47,10 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
         var typeRequirement = await _typeRepository.GetByIdAsync(entity.TypeRequirementId, cancellationToken);
         var originDocument = await _originRepository.GetByIdAsync(entity.OriginDocumentId, cancellationToken);
         var department = await _departmentRepository.GetByIdAsync(entity.DepartmentId, cancellationToken);
-
         if (entity == null)
         {
             return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.CaseNotFound));
         }
-
         entity.ReplyDate = DateTime.Now;
         entity.Comments = entity.Comments + " / " + command.Comments;
         entity.CaseStage = StageEnum.Secretary;

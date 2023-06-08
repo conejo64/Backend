@@ -24,7 +24,7 @@ public sealed class CaseReminderSpec : Ardalis.Specification.Specification<CaseE
             .Include(x => x.CaseStatusSecretary)
             .Include(x => x.TypeRequirement)
             .Where(x => x.Status != CatalogsStatus.Deleted
-                        //&& x.CaseStage == StageEnum.Others
+                        && x.CaseStage == StageEnum.Others
                         && x.ReminderDate!.Value.Year == today.Year
                         && x.ReminderDate.Value.Month == today.Month
                         && x.ReminderDate.Value.Day == today.Day

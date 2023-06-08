@@ -36,6 +36,7 @@ public class UpdateExtensionCaseCommandHandler : IRequestHandler<UpdateExtension
         entity.NewExtensionRequestDate = command.NewExtensionRequestDate;
         entity.ObservationExtension = command.ObservationExtension;
         entity.Deadline = command.NewExtensionRequestDate;
+        entity.CaseStage = StageEnum.Others;
         await _repository.UpdateAsync(entity, cancellationToken);
         var destinationUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
         var originUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
@@ -54,7 +55,7 @@ public class UpdateExtensionCaseCommandHandler : IRequestHandler<UpdateExtension
                           + "<b>Secretaria General</b>"
                           + "<br />"
                           + "<br />"
-                          + "<b>PD: Cualquier duda o inquietud comunicarse con Lorena Moreira (mmoreira@dinersclub.com.ec)</b>"
+                          + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
                           + "</p>");
         if (destinationUser is not null)
         {
