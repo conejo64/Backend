@@ -29,7 +29,7 @@ public class DocumentResponse
 
     public static DocumentResponse FromEntity(DocumentEntity documentEntity)
     {
-        return new DocumentResponse(documentEntity.Id, documentEntity.CaseEntityId, documentEntity.Document64, documentEntity.Document64Name, 
+        return new DocumentResponse(documentEntity.Id, documentEntity.CaseEntityId, String.Empty, documentEntity.Document64Name, 
             documentEntity.Status, documentEntity.ContextType, documentEntity.DocumentSource);
     }
 }
