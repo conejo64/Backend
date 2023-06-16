@@ -126,7 +126,8 @@ public sealed class CaseSpec : Ardalis.Specification.Specification<CaseEntity>, 
             .Where(x => x.Status != CatalogsStatus.Deleted
                         && x.Deadline!.Value.Year == today.Year
                         && x.Deadline.Value.Month == today.Month
-                        && x.Deadline.Value.Day == today.Day)
+                        && x.Deadline.Value.Day == today.Day
+                        && x.CaseStatus!.Description!.Equals("ABIERTO"))
             .OrderByDescending(x => x.ReceptionDate);
 
     }
@@ -148,7 +149,8 @@ public sealed class CaseSpec : Ardalis.Specification.Specification<CaseEntity>, 
                         && x.ReminderDate!.Value.Year == today.Year
                         && x.ReminderDate.Value.Month == today.Month
                         && x.ReminderDate.Value.Day == today.Day
-                        && x.ReminderDate.Value.Hour == today.Hour)
+                        && x.ReminderDate.Value.Hour == today.Hour
+                        && x.CaseStatus!.Description!.Equals("ABIERTO"))
             .OrderByDescending(x => x.ReceptionDate);
 
     }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper.Execution;
 using Backend.Application.DTOs.Responses.CaseResponses;
+using Backend.Application.Specifications.CaseStatusSpecs;
 using Backend.Domain.DTOs.Requests;
 using Backend.Domain.Interfaces.Services;
 using Shared.Domain.Interfaces.Repositories;
@@ -23,10 +24,11 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
     private readonly IRepository<TypeRequirement> _typeRepository;
     private readonly IRepository<Department> _departmentRepository;
     private readonly IRepository<OriginDocument> _originRepository;
+    private readonly IRepository<CaseStatus> _caseStatusRepository;
     public UpdateReplyCaseCommandHandler(IRepository<CaseEntity> repository, IRepository<User> userRepository, INotificationService notificationService, 
         IRepository<DocumentEntity> documentRepository, IOpenKmService openKmService, IRepository<Brand> brandRepository,
         IRepository<OriginDocument> originRepository, IRepository<TypeRequirement> typeRepository,
-        IRepository<Department> departmentRepository)
+        IRepository<Department> departmentRepository, IRepository<CaseStatus> caseStatusRepository)
     {
         _repository = repository;
         _userRepository = userRepository;
@@ -38,6 +40,7 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
         _typeRepository = typeRepository;
         _departmentRepository = departmentRepository;
         _originRepository = originRepository;
+        _caseStatusRepository = caseStatusRepository;
     }
 
     public async Task<EntityResponse<bool>> Handle(UpdateReplyCaseCommand command, CancellationToken cancellationToken)
@@ -47,6 +50,8 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
         var typeRequirement = await _typeRepository.GetByIdAsync(entity.TypeRequirementId, cancellationToken);
         var originDocument = await _originRepository.GetByIdAsync(entity.OriginDocumentId, cancellationToken);
         var department = await _departmentRepository.GetByIdAsync(entity.DepartmentId, cancellationToken);
+        var statusSpec = new CaseStatusSpec("RESPONDIDO");
+        var statusId = await _caseStatusRepository.GetBySpecAsync(statusSpec, cancellationToken);
         if (entity == null)
         {
             return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.CaseNotFound));
@@ -54,6 +59,7 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
         entity.ReplyDate = DateTime.Now;
         entity.Comments = entity.Comments + " / " + command.Comments;
         entity.CaseStage = StageEnum.Secretary;
+        entity.CaseStatusId = statusId!.Id;
         var replyDate = DateTime.Now;
         var receptionDateShort = Convert.ToDateTime(entity.ReceptionDate);
         await _repository.UpdateAsync(entity, cancellationToken);
