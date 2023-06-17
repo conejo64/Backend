@@ -76,6 +76,10 @@ try
         FileProvider = new PhysicalFileProvider(
             Path.Combine(builder.Environment.ContentRootPath, @"wwwroot/dist"))
     });
+    if (!Directory.Exists($"{app.Environment.ContentRootPath}\\AppFiles\\Cases"))
+    {
+        Directory.CreateDirectory($"{app.Environment.ContentRootPath}\\AppFiles\\Cases");
+    }
     app.UseStaticFiles(new StaticFileOptions { 
         FileProvider = new PhysicalFileProvider($"{app.Environment.ContentRootPath}\\AppFiles\\Cases"),
         RequestPath = "/cases/files"
