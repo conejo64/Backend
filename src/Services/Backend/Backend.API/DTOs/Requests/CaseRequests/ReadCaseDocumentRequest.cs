@@ -13,9 +13,9 @@ namespace Backend.API.DTOs.Requests.CaseRequests
             AttachementId = attachementId;
         }
 
-        public ReadAttachmentCaseQuery ToApplicationRequest()
+        public ReadAttachmentCaseQuery ToApplicationRequest(string contentRootPath)
         {
-            return new ReadAttachmentCaseQuery(CaseId, AttachementId);
+            return new ReadAttachmentCaseQuery(CaseId, AttachementId, contentRootPath);
         }
     }
 }

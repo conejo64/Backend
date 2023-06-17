@@ -17,8 +17,11 @@ public class UpdateCloseCaseCommand : IRequest<EntityResponse<bool>>
     public DateTime? AcknowledgmentDate { get; set; }
     public List<string>? DocumentString { get; set; }
     public List<string>? DocumentStringNames { get; set; }
+    public string? ContentRootPath { get; set; }
 
-    public UpdateCloseCaseCommand(Guid id, DateTime? responseDate, Guid? caseStatusId, string? observationDepartment, Guid? caseStatusSecretaryId, DateTime? acknowledgmentDate, List<string>? documentString, List<string>? documentStringNames)
+    public UpdateCloseCaseCommand(Guid id, DateTime? responseDate, Guid? caseStatusId, string? observationDepartment,
+        Guid? caseStatusSecretaryId, DateTime? acknowledgmentDate, List<string>? documentString, List<string>? documentStringNames,
+        string? contentRootPath)
     {
         Id = id;
         ResponseDate = responseDate;
@@ -28,5 +31,6 @@ public class UpdateCloseCaseCommand : IRequest<EntityResponse<bool>>
         AcknowledgmentDate = acknowledgmentDate;
         DocumentString = documentString;
         DocumentStringNames = documentStringNames;
+        ContentRootPath = contentRootPath;
     }
 }

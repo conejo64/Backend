@@ -12,10 +12,12 @@ public class ReadAttachmentCaseQuery : IRequest<EntityResponse<DocumentResponse>
 {
     public Guid CaseId { get; }
     public Guid AttachmentId { get; }
+    public string? ContentRootPath { get; set; }
 
-    public ReadAttachmentCaseQuery(Guid caseId, Guid attachmentId)
+    public ReadAttachmentCaseQuery(Guid caseId, Guid attachmentId, string? contentRootPath)
     {
         CaseId = caseId;
         AttachmentId = attachmentId;
+        ContentRootPath = contentRootPath;
     }
 }

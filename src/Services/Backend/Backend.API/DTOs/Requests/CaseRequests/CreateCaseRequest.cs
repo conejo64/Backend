@@ -84,12 +84,12 @@ namespace Backend.API.DTOs.Requests.CaseRequests
             CaseStage = caseStage;
         }
 
-        public CreateCaseCommand ToApplicationRequest(Guid? userOriginId)
+        public CreateCaseCommand ToApplicationRequest(Guid? userOriginId, string contentRootPath)
         {
             return new CreateCaseCommand(RequirementNumber, ReceptionDate, OriginDocumentId, PhysicallyReceived, DigitallyReceived, DocumentNumber, SbsNumber, JudgmentNumber, 
                 IssueDate, Description, BrandId, DepartmentId, UserId, TypeRequirementId, Notification, Subject, TransferDate, Deadline, ProvinceId, DueDate, ReminderId, ReplyDate, 
                 Comments, ResponseDate, CaseStatusId, ObservationDepartment, CaseStatusSecretaryId, AcknowledgmentDate, ExtensionRequestDate, NewExtensionRequestDate, ObservationExtension, 
-                userOriginId, DocumentString, DocumentStringNames, CaseStage);
+                userOriginId, DocumentString, DocumentStringNames, CaseStage, contentRootPath);
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Backend.API.DTOs.Requests.CaseRequests
             DocumentStringNames = documentStringNames;
         }
 
-        public UpdateReplyCaseCommand ToApplicationRequest(Guid id)
+        public UpdateReplyCaseCommand ToApplicationRequest(Guid id, string contentRootPath)
         {
-            return new UpdateReplyCaseCommand(id, ReplyDate, Comments, DocumentString, DocumentStringNames);
+            return new UpdateReplyCaseCommand(id, ReplyDate, Comments, DocumentString, DocumentStringNames, contentRootPath);
         }
     }
 }

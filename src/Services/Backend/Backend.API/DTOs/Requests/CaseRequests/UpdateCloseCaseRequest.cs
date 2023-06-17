@@ -24,10 +24,10 @@ namespace Backend.API.DTOs.Requests.CaseRequests
             DocumentStringNames = documentStringNames;
         }
 
-        public UpdateCloseCaseCommand ToApplicationRequest(Guid id)
+        public UpdateCloseCaseCommand ToApplicationRequest(Guid id, string contentRootPath)
         {
             return new UpdateCloseCaseCommand(id, ResponseDate, CaseStatusId, ObservationDepartment, CaseStatusSecretaryId, AcknowledgmentDate, DocumentString, 
-                DocumentStringNames);
+                DocumentStringNames, contentRootPath);
         }
     }
 }

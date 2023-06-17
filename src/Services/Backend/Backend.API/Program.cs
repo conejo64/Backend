@@ -17,8 +17,7 @@ try
     builder
         .Host
         .ConfigureAppConfiguration(x => x.AddConfiguration(configuration));
-    //builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-
+    
     builder.Services.AddCors(options =>
     {
         options.AddPolicy("CorsPolicy",
@@ -27,15 +26,8 @@ try
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());
-    });
-    //builder.Services.Configure<IISServerOptions>(options =>
-    //{
-    //    options.AutomaticAuthentication = false;
-    //});
-    //builder.Services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
-    builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
-    //builder.WebHost.UseStaticWebAssets();
-
+    });builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
+    
 
     var app = builder
         .ConfigureServices(configuration)
@@ -83,6 +75,10 @@ try
     {
         FileProvider = new PhysicalFileProvider(
             Path.Combine(builder.Environment.ContentRootPath, @"wwwroot/dist"))
+    });
+    app.UseStaticFiles(new StaticFileOptions { 
+        FileProvider = new PhysicalFileProvider($"{app.Environment.ContentRootPath}\\AppFiles\\Cases"),
+        RequestPath = "/cases/files"
     });
     DefaultFilesOptions options = new DefaultFilesOptions();
     options.DefaultFileNames.Clear();

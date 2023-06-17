@@ -99,12 +99,18 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
                 {
                     CaseEntityId = entity.Id,
                     DocumentSource = DocumentSourceEnum.Reply,
-                    Document64 = documentSplit[1],
+                    Document64 = string.Empty,// documentSplit[1],
                     Document64Name = command.DocumentStringNames!.ElementAt(i),
                     ContextType = contentTypeSplit[1].Split(';')[0],
 
                 };
                 await _documentRepository.AddAsync(document, cancellationToken);
+                byte[] bytes = Convert.FromBase64String(documentSplit[1]);
+                var stream = new MemoryStream(bytes);
+                var fileName = command.DocumentStringNames!.ElementAt(i);
+                var path = $"Cases/{entity.DocumentNumber}";
+
+                await SaveFile(stream, fileName, command.ContentRootPath!,path,  cancellationToken);
                 document = new DocumentEntity();
             }
             await _documentRepository.SaveChangesAsync(cancellationToken);
@@ -112,5 +118,34 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
         }
         return true;
     }
+    
+    #region Files
+    public string GetSavePath(string fileName, string prefix, string contentRootPath)
+    {
+        var dir = $"{contentRootPath}/AppFiles";
+        if (prefix != null)
+            dir = Path.Combine(dir, prefix);
+
+        return Path.Combine(dir, fileName);
+    }
+
+    private async Task SaveFile(Stream fileStream, string fileName, string contentRootPath, string prefix = default,
+        CancellationToken cancellationToken = default)
+    {
+        var savePath = GetSavePath(fileName, prefix, contentRootPath);
+        var dir = $"{contentRootPath}/AppFiles";
+        if (prefix != null)
+            dir = Path.Combine(dir, prefix);
+
+        var exist = Directory.Exists(dir);
+        if (!exist)
+        {
+            Directory.CreateDirectory(dir);
+        }
+
+        await using var stream = File.Create(savePath);
+        await fileStream.CopyToAsync(stream, cancellationToken);
+    }
+    #endregion
 
 }

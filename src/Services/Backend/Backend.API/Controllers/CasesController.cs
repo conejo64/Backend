@@ -10,8 +10,13 @@ public class CasesController : BaseController
 {
     #region Contructor & Properties
 
-    public CasesController(IMediator mediator) : base(mediator)
+    private readonly IMediator _mediator;
+    private readonly IWebHostEnvironment _env;
+
+    public CasesController(IMediator mediator, IWebHostEnvironment env) : base(mediator)
     {
+        _mediator = mediator;
+        _env = env;
     }
 
     #endregion
@@ -28,7 +33,7 @@ public class CasesController : BaseController
 
         var query = request.ToApplicationRequest();
 
-        var response = await Mediator.Send(query);
+        var response = await _mediator.Send(query);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -55,7 +60,7 @@ public class CasesController : BaseController
         var userId = Guid.Parse(claimValue);
         var query = request.ToApplicationRequest(userId);
 
-        var response = await Mediator.Send(query);
+        var response = await _mediator.Send(query);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -75,7 +80,7 @@ public class CasesController : BaseController
     {
         var query = new ReadAllCasesQuery();
 
-        var response = await Mediator.Send(query);
+        var response = await _mediator.Send(query);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -96,7 +101,7 @@ public class CasesController : BaseController
         var request = new ReadCaseRequest(caseId);
         var query = request.ToApplicationRequest();
 
-        var response = await Mediator.Send(query);
+        var response = await _mediator.Send(query);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -118,10 +123,11 @@ public class CasesController : BaseController
         {
             return BadRequest();
         }
+        var contentRootPath = _env.ContentRootPath;
         var userId = Guid.Parse(claimValue);
-        var command = request.ToApplicationRequest(userId);
+        var command = request.ToApplicationRequest(userId, contentRootPath);
 
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -141,7 +147,7 @@ public class CasesController : BaseController
     {
         var command = request.ToApplicationRequest(caseId);
 
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -162,7 +168,7 @@ public class CasesController : BaseController
     {
         var request = new DeleteCaseRequest();
         var command = request.ToApplicationRequest(caseId);
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
 
         if (!response.IsSuccess)
         {
@@ -184,7 +190,7 @@ public class CasesController : BaseController
     {
         var command = request.ToApplicationRequest(caseId);
 
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -202,9 +208,10 @@ public class CasesController : BaseController
     public async Task<IActionResult> UpdateCloseCase(Guid caseId,
         [FromBody] UpdateCloseCaseRequest request)
     {
-        var command = request.ToApplicationRequest(caseId);
+        var contentRootPath = _env.ContentRootPath;
+        var command = request.ToApplicationRequest(caseId, contentRootPath);
 
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -222,9 +229,10 @@ public class CasesController : BaseController
     public async Task<IActionResult> UpdateReplyCase(Guid caseId,
         [FromBody] UpdateReplyCaseRequest request)
     {
-        var command = request.ToApplicationRequest(caseId);
+        var contentRootPath = _env.ContentRootPath;
+        var command = request.ToApplicationRequest(caseId, contentRootPath);
 
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -244,7 +252,7 @@ public class CasesController : BaseController
     {
         var command = request.ToApplicationRequest(caseId);
 
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -264,7 +272,7 @@ public class CasesController : BaseController
     {
         var command = request.ToApplicationRequest(caseId);
 
-        var response = await Mediator.Send(command);
+        var response = await _mediator.Send(command);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -285,7 +293,7 @@ public class CasesController : BaseController
         var request = new ReadCaseDocumentsRequest(caseId);
         var query = request.ToApplicationRequest();
 
-        var response = await Mediator.Send(query);
+        var response = await _mediator.Send(query);
         if (!response.IsSuccess)
         {
             return BadRequest();
@@ -303,10 +311,11 @@ public class CasesController : BaseController
     [Route("{caseId:guid}/attachment/{attachmentId:guid}")]
     public async Task<IActionResult> ReadAttachmentsCase(Guid caseId, Guid attachmentId)
     {
+        var contentRootPath = _env.ContentRootPath;
         var request = new ReadCaseDocumentRequest(caseId, attachmentId);
-        var query = request.ToApplicationRequest();
+        var query = request.ToApplicationRequest(contentRootPath);
 
-        var response = await Mediator.Send(query);
+        var response = await _mediator.Send(query);
         if (!response.IsSuccess)
         {
             return BadRequest();

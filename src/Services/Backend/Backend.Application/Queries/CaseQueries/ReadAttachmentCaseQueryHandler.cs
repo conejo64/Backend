@@ -33,6 +33,35 @@ public class ReadAttachmentCaseQueryHandler : IRequestHandler<ReadAttachmentCase
                 EntityResponseUtils.GenerateMsg(MessageHandler.AttachmentNotFound));
         }
 
-        return DocumentResponse.FromEntity(entity!);
+        var pathFile = string.Format("{0}/{1}", entity.Document64Name, entity.Document64Name);
+        var response = DocumentResponse.FromEntity(entity!);
+        var base64 = GetImage(pathFile, query.ContentRootPath!);
+        response.Document64 = base64;
+        return response;
+    }
+    
+    public string GetImage(string pathFile, string contentRootPath)
+    {
+        try
+        {
+            var base64 = string.Empty;
+            var dir = $"{contentRootPath}/AppFiles/Cases";
+            dir = Path.Combine(dir, pathFile);
+
+            if (File.Exists(dir))
+            {
+                var arrayByte = File.ReadAllBytes(dir);
+                if (arrayByte != null)
+                {
+                    base64 = Convert.ToBase64String(arrayByte);
+                }
+            }
+
+            return base64;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 }
