@@ -16,10 +16,12 @@ namespace Backend.Application.Queries.CaseQueries;
 public class ReadAttachmentCaseQueryHandler : IRequestHandler<ReadAttachmentCaseQuery, EntityResponse<DocumentResponse>>
 {
     private readonly IReadRepository<DocumentEntity> _repository;
+    private readonly IRepository<CaseEntity> _caseRepository;
 
-    public ReadAttachmentCaseQueryHandler(IReadRepository<DocumentEntity> repository)
+    public ReadAttachmentCaseQueryHandler(IReadRepository<DocumentEntity> repository, IRepository<CaseEntity> caseRepository)
     {
         _repository = repository;
+        _caseRepository = caseRepository;
     }
 
     public async Task<EntityResponse<DocumentResponse>> Handle(ReadAttachmentCaseQuery query,
@@ -33,7 +35,8 @@ public class ReadAttachmentCaseQueryHandler : IRequestHandler<ReadAttachmentCase
                 EntityResponseUtils.GenerateMsg(MessageHandler.AttachmentNotFound));
         }
 
-        var pathFile = string.Format("{0}/{1}", entity.Document64Name, entity.Document64Name);
+        var caseEntity = await _caseRepository.GetByIdAsync(query.CaseId, cancellationToken);
+        var pathFile = string.Format("{0}/{1}", caseEntity!.DocumentNumber, entity.Document64Name);
         var response = DocumentResponse.FromEntity(entity!);
         var base64 = GetImage(pathFile, query.ContentRootPath!);
         response.Document64 = base64;
