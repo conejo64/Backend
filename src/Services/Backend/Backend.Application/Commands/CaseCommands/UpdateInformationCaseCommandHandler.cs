@@ -48,7 +48,7 @@ public class UpdateInformationCaseCommandHandler : IRequestHandler<UpdateInforma
                           + "<b>Secretaria General</b>"
                           + "<br />"
                           + "<br />"
-                          + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
+                          + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General (secretariageneral@dinersclub.com.ec)</b>"
                           + "</p>"); ;
         //Notificar a responsable
         if (destinationUser is not null)
