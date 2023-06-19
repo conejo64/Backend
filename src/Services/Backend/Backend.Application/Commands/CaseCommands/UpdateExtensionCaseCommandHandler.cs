@@ -55,7 +55,7 @@ public class UpdateExtensionCaseCommandHandler : IRequestHandler<UpdateExtension
                           + "<b>Secretaria General</b>"
                           + "<br />"
                           + "<br />"
-                          + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
+                          + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General (secretariageneral@dinersclub.com.ec)</b>"
                           + "</p>");
         if (destinationUser is not null)
         {
