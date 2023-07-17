@@ -53,7 +53,7 @@ public class UpdateCloseCaseCommandHandler : IRequestHandler<UpdateCloseCaseComm
         var origintionUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
         var caseStatus = await _repositoryCaseStatus.GetByIdAsync(entity.CaseStatusId, cancellationToken);
         var caseStatusSecretary = await _repositoryCaseStatusSecretary.GetByIdAsync(entity.CaseStatusSecretaryId, cancellationToken);
-        string body = new string("<p><b>Se ha finalizado la tarea.</b><br/>"
+        string body = new string("<p><b>Se ha finalizado la gestión del Caso.</b><br/>"
                                  + "A continuación se adjunta un detalle del caso cerrado:<br/><br/>"
                                  + "<b>Fecha Respuesta: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
                                  + "<b>Estado del Caso: </b>" + caseStatus!.Description + "<br/>"
@@ -70,9 +70,9 @@ public class UpdateCloseCaseCommandHandler : IRequestHandler<UpdateCloseCaseComm
                                  + "<b>Secretaria General</b>"
                                  + "<br />"
                                  + "<br />"
-                                 + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General</b>"
+                                 + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General (secretariageneral@dinersclub.com.ec)</b>"
                                  + "</p>");
-        if (destinationUser is not null)
+        if (destinationUser is not null && entity.CaseStatus!.Description == "CERRADO")
         {
             _notificationService.SendEmailNotification(new EmailNotifictionModel()
             {

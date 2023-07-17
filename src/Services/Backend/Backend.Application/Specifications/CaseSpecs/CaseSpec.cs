@@ -49,7 +49,11 @@ public sealed class CaseSpec : Ardalis.Specification.Specification<CaseEntity>, 
         if (initialDate != null)
             Query.Where(x => x.ReceptionDate >= initialDate);
         if (finalDate != null)
+        {
+            finalDate = finalDate.Value.AddHours(23).AddMinutes(59).AddSeconds(59);
             Query.Where(x => x.ReceptionDate <= finalDate);
+        }
+            
         if (isPagingEnabled)
             Query
                 .OrderByDescending(x => x.ReceptionDate)
