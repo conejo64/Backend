@@ -1,3 +1,4 @@
+using Backend.API.DTOs.Requests.NotificationRequests;
 using Backend.API.DTOs.Requests.UserRequests;
 using ServiceReference;
 
@@ -7,8 +8,10 @@ public class NotificationsController : BaseController
 {
     #region Contructor && Properties
 
-    public NotificationsController(IMediator mediator) : base(mediator)
+    private readonly IWebHostEnvironment _env;
+    public NotificationsController(IMediator mediator, IWebHostEnvironment env) : base(mediator)
     {
+        _env = env;
     }
 
     #endregion   
@@ -22,6 +25,26 @@ public class NotificationsController : BaseController
     public async Task<IActionResult> SendEmail([FromBody] EmailNotificationRequest request)
     {
         var command = request.ToApplicationRequest();
+        var response = await Mediator.Send(command);
+
+        if (!response.IsSuccess)
+        {
+            return BadRequest(response);
+        }
+
+        return Ok();
+    }
+    
+    [HttpGet]
+    [AllowAnonymous]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [Route("{caseId:guid}/sendCreateNotification")]
+    public async Task<IActionResult> SendCreateNotification(Guid caseId)
+    {
+        var contentRootPath = _env.ContentRootPath;
+        var request = new CreateNotificationRequest();
+        var command = request.ToApplicationRequest(caseId, contentRootPath);
         var response = await Mediator.Send(command);
 
         if (!response.IsSuccess)

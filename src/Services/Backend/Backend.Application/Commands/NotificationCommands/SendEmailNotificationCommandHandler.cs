@@ -1,14 +1,7 @@
-using Backend.Application.Commands.AuthJwtCommands;
-using Backend.Application.Commands.NotificationCommands;
-using Backend.Application.DTOs;
-using Backend.Application.DTOs.Responses.UserResponses;
-using Backend.Application.Queries.UserQueries;
-using Backend.Application.Services.Reads;
-using Backend.Application.Utils;
 using Backend.Domain.DTOs.Requests;
 using Backend.Domain.Interfaces.Services;
 
-namespace Backend.Application.Commands.UserCommands;
+namespace Backend.Application.Commands.NotificationCommands;
 
 public class SendEmailNotificationCommandHandler : IRequestHandler<SendEmailNotificationCommand, EntityResponse<bool>>
 {
