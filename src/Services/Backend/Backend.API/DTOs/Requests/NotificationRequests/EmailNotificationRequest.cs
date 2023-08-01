@@ -1,7 +1,6 @@
 using Backend.Application.Commands.NotificationCommands;
-using Backend.Application.Commands.UserCommands;
 
-namespace Backend.API.DTOs.Requests.UserRequests;
+namespace Backend.API.DTOs.Requests.NotificationRequests;
 
 public class EmailNotificationRequest
 {

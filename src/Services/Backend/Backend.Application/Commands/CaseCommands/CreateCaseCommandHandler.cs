@@ -82,58 +82,58 @@ public class CreateCaseCommandHandler : IRequestHandler<CreateCaseCommand, Entit
             });
         }
         //Notification Attachement
-        var documentList = new List<string>();
-        var documentNamesList = new List<string>();
-        if (command.DocumentString != null)
-        {
-            for (int i = 0; i < command.DocumentString!.Count; i++)
-            {
-                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
-                documentList.Add(documentSplit[1]);
-                documentNamesList.Add(command.DocumentStringNames!.ElementAt(i));
-            }
-        }
-        var attachemt = documentList;
-        if (!string.IsNullOrEmpty(command.Notification))
-        {
-            _notificationService.SendEmailNotification(new EmailNotifictionModel()
-            {
-                Subject = string.IsNullOrEmpty(command.Subject) ? "NOTIFICACION SECRETARIA" : command.Subject,
-                To = command.Notification!,
-                Attachment = attachemt!,
-                AttachmentNames = documentNamesList!,
-                Body = bodyAttachment
-            });
-        }
+        // var documentList = new List<string>();
+        // var documentNamesList = new List<string>();
+        // if (command.DocumentString != null)
+        // {
+        //     for (int i = 0; i < command.DocumentString!.Count; i++)
+        //     {
+        //         var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+        //         documentList.Add(documentSplit[1]);
+        //         documentNamesList.Add(command.DocumentStringNames!.ElementAt(i));
+        //     }
+        // }
+        // var attachemt = documentList;
+        // if (!string.IsNullOrEmpty(command.Notification))
+        // {
+        //     _notificationService.SendEmailNotification(new EmailNotifictionModel()
+        //     {
+        //         Subject = string.IsNullOrEmpty(command.Subject) ? "NOTIFICACION SECRETARIA" : command.Subject,
+        //         To = command.Notification!,
+        //         Attachment = attachemt!,
+        //         AttachmentNames = documentNamesList!,
+        //         Body = bodyAttachment
+        //     });
+        // }
         //Save Documents
-        if (command.DocumentString != null && command.DocumentStringNames != null)
-        {
-            for (int i = 0; i < command.DocumentString!.Count; i++)
-            {
-                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
-                var contentTypeSplit = documentSplit[0].Split(':');
-                var document = new DocumentEntity
-                {
-                    CaseEntityId = entity.Id,
-                    DocumentSource = DocumentSourceEnum.Create,
-                    Document64 = String.Empty, 
-                    Document64Name = command.DocumentStringNames!.ElementAt(i),
-                    ContextType = contentTypeSplit[1].Split(';')[0],
-                };
-                await _documentRepository.AddAsync(document, cancellationToken);
-                byte[] bytes = Convert.FromBase64String(documentSplit[1]);
-                var stream = new MemoryStream(bytes);
-                var fileName = command.DocumentStringNames!.ElementAt(i);
-                var path = $"Cases/{command.DocumentNumber}";
-
-                await SaveFile(stream, fileName, command.ContentRootPath!,path,  cancellationToken);
-                //await _documentRepository.AddAsync(document, cancellationToken);
-                document = new DocumentEntity();
-            }
-            
-            await _documentRepository.SaveChangesAsync(cancellationToken);
-            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
-        }
+        // if (command.DocumentString != null && command.DocumentStringNames != null)
+        // {
+        //     for (int i = 0; i < command.DocumentString!.Count; i++)
+        //     {
+        //         var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+        //         var contentTypeSplit = documentSplit[0].Split(':');
+        //         var document = new DocumentEntity
+        //         {
+        //             CaseEntityId = entity.Id,
+        //             DocumentSource = DocumentSourceEnum.Create,
+        //             Document64 = String.Empty, 
+        //             Document64Name = command.DocumentStringNames!.ElementAt(i),
+        //             ContextType = contentTypeSplit[1].Split(';')[0],
+        //         };
+        //         await _documentRepository.AddAsync(document, cancellationToken);
+        //         byte[] bytes = Convert.FromBase64String(documentSplit[1]);
+        //         var stream = new MemoryStream(bytes);
+        //         var fileName = command.DocumentStringNames!.ElementAt(i);
+        //         var path = $"Cases/{command.DocumentNumber}";
+        //
+        //         await SaveFile(stream, fileName, command.ContentRootPath!,path,  cancellationToken);
+        //         //await _documentRepository.AddAsync(document, cancellationToken);
+        //         document = new DocumentEntity();
+        //     }
+        //     
+        //     await _documentRepository.SaveChangesAsync(cancellationToken);
+        //     _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
+        // }
             
         return EntityResponse.Success(entity.Id);
     }
