@@ -45,7 +45,7 @@ public class SendCasesDeadlineTodayJob : IJob
         {
             Subject = "GESTOR DOCUMENTAL - CASOS CON FECHA LIMITE HOY",
             To = "sordonez@dinersclub.com.ec",
-            Cc = "tsaabedra@dinersclub.com.ec",
+            Cc = "tsaabedra@dinersclub.com.ec,egonzalez@dinersclub.com.ec",
             Attachment = attachemt!,
             AttachmentNames = attachmentNames,
             Body = "<p>A continuación se adjunta el reporte de casos que vencen el día de hoy</p>"

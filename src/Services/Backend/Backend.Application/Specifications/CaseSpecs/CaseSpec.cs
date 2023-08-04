@@ -128,9 +128,9 @@ public sealed class CaseSpec : Ardalis.Specification.Specification<CaseEntity>, 
             .Include(x => x.CaseStatusSecretary)
             .Include(x => x.TypeRequirement)
             .Where(x => x.Status != CatalogsStatus.Deleted
-                        && x.Deadline!.Value.Year == today.Year
-                        && x.Deadline.Value.Month == today.Month
-                        && x.Deadline.Value.Day == today.Day
+                        && x.DueDate!.Value.Year == today.Year
+                        && x.DueDate.Value.Month == today.Month
+                        && x.DueDate.Value.Day == today.Day
                         && x.CaseStatus!.Description!.Equals("ABIERTO"))
             .OrderByDescending(x => x.ReceptionDate);
 
