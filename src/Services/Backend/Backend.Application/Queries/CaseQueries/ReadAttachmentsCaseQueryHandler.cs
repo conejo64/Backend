@@ -25,7 +25,7 @@ public class ReadAttachmentsCaseQueryHandler : IRequestHandler<ReadAttachmentsCa
     public async Task<EntityResponse<List<DocumentResponse>>> Handle(ReadAttachmentsCaseQuery query,
         CancellationToken cancellationToken)
     {
-        var spec = new CaseDocumentSpec(query.Id);
+        var spec = new CaseDocumentSpec(query.Id, null);
         var entities = await _repository.ListAsync(spec, cancellationToken);
         if (!entities.Any())
         {

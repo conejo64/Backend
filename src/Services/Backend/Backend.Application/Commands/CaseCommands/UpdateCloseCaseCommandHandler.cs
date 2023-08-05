@@ -40,8 +40,8 @@ public class UpdateCloseCaseCommandHandler : IRequestHandler<UpdateCloseCaseComm
         {
             return EntityResponse<bool>.Error(EntityResponseUtils.GenerateMsg(MessageHandler.CaseNotFound));
         }
-        var receptionDateShort = Convert.ToDateTime(command.ResponseDate);
-        var deadLineDateShort = Convert.ToDateTime(command.AcknowledgmentDate);
+        // var receptionDateShort = Convert.ToDateTime(command.ResponseDate);
+        // var deadLineDateShort = Convert.ToDateTime(command.AcknowledgmentDate);
         entity.ResponseDate = command.ResponseDate;
         entity.CaseStatusId = command.CaseStatusId;
         entity.ObservationDepartment = entity.ObservationDepartment + " / " + command.ObservationDepartment;
@@ -49,66 +49,66 @@ public class UpdateCloseCaseCommandHandler : IRequestHandler<UpdateCloseCaseComm
         entity.AcknowledgmentDate = command.AcknowledgmentDate;
         entity.CaseStage = StageEnum.Secretary;
         await _repository.UpdateAsync(entity, cancellationToken);
-        var destinationUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
-        var origintionUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
-        var caseStatus = await _repositoryCaseStatus.GetByIdAsync(entity.CaseStatusId, cancellationToken);
-        var caseStatusSecretary = await _repositoryCaseStatusSecretary.GetByIdAsync(entity.CaseStatusSecretaryId, cancellationToken);
-        string body = new string("<p><b>Se ha finalizado la gestión del Caso.</b><br/>"
-                                 + "A continuación se adjunta un detalle del caso cerrado:<br/><br/>"
-                                 + "<b>Fecha Respuesta: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
-                                 + "<b>Estado del Caso: </b>" + caseStatus!.Description + "<br/>"
-                                 + "<b>Comentarios Finales: </b>" + command.ObservationDepartment! + "<br/>"
-                                 + "<b>Revisión de Secretaria: </b>" + caseStatusSecretary!.Description + "<br/>"
-                                 + "<b>Fecha Acuse recibido: </b>" + deadLineDateShort.ToShortDateString() + "<br/>"
-                                 + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
-                                 + "<b>Descripción: </b>" + entity.Description + "<br/>"
-                                 + "<a href=https://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
-                                 + "<br />"
-                                 + "<br />"
-                                 + "<br />"
-                                 + "<b>Atentamente" + "<br/>"
-                                 + "<b>Secretaria General</b>"
-                                 + "<br />"
-                                 + "<br />"
-                                 + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General (secretariageneral@dinersclub.com.ec)</b>"
-                                 + "</p>");
-        if (destinationUser is not null && entity.CaseStatus!.Description == "CERRADO")
-        {
-            _notificationService.SendEmailNotification(new EmailNotifictionModel()
-            {
-                Subject = string.IsNullOrEmpty(entity.Subject) ? "NOTIFICACION CIERRE DE REQUERIMIENTO SECRETARIA" : entity.Subject,
-                To = destinationUser.Email,
-                Cc = origintionUser!.Email,
-                Body = body
-            });
-        }
-        if (command.DocumentString != null && command.DocumentStringNames != null)
-        {
-            for (int i = 0; i < command.DocumentString!.Count; i++)
-            {
-                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
-                var contentTypeSplit = documentSplit[0].Split(':');
-                var document = new DocumentEntity
-                {
-                    CaseEntityId = entity.Id,
-                    DocumentSource = DocumentSourceEnum.Close,
-                    Document64 = String.Empty, // documentSplit[1],
-                    Document64Name = command.DocumentStringNames!.ElementAt(i),
-                    ContextType = contentTypeSplit[1].Split(';')[0],
-
-                };
-                await _documentRepository.AddAsync(document, cancellationToken);
-                byte[] bytes = Convert.FromBase64String(documentSplit[1]);
-                var stream = new MemoryStream(bytes);
-                var fileName = command.DocumentStringNames!.ElementAt(i);
-                var path = $"Cases/{entity.DocumentNumber}";
-
-                await SaveFile(stream, fileName, command.ContentRootPath!,path,  cancellationToken);
-                document = new DocumentEntity();
-            }
-            await _documentRepository.SaveChangesAsync(cancellationToken);
-            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
-        }
+        // var destinationUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
+        // var origintionUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
+        // var caseStatus = await _repositoryCaseStatus.GetByIdAsync(entity.CaseStatusId, cancellationToken);
+        // var caseStatusSecretary = await _repositoryCaseStatusSecretary.GetByIdAsync(entity.CaseStatusSecretaryId, cancellationToken);
+        // string body = new string("<p><b>Se ha finalizado la gestión del Caso.</b><br/>"
+        //                          + "A continuación se adjunta un detalle del caso cerrado:<br/><br/>"
+        //                          + "<b>Fecha Respuesta: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
+        //                          + "<b>Estado del Caso: </b>" + caseStatus!.Description + "<br/>"
+        //                          + "<b>Comentarios Finales: </b>" + command.ObservationDepartment! + "<br/>"
+        //                          + "<b>Revisión de Secretaria: </b>" + caseStatusSecretary!.Description + "<br/>"
+        //                          + "<b>Fecha Acuse recibido: </b>" + deadLineDateShort.ToShortDateString() + "<br/>"
+        //                          + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
+        //                          + "<b>Descripción: </b>" + entity.Description + "<br/>"
+        //                          + "<a href=https://openkmapp/workflow/#/auth/login" + ">Por favor haga click en el siguiente enlace</a>"
+        //                          + "<br />"
+        //                          + "<br />"
+        //                          + "<br />"
+        //                          + "<b>Atentamente" + "<br/>"
+        //                          + "<b>Secretaria General</b>"
+        //                          + "<br />"
+        //                          + "<br />"
+        //                          + "<b>PD: Cualquier duda o inquietud comunicarse con Secretaria General (secretariageneral@dinersclub.com.ec)</b>"
+        //                          + "</p>");
+        // if (destinationUser is not null && entity.CaseStatus!.Description == "CERRADO")
+        // {
+        //     _notificationService.SendEmailNotification(new EmailNotifictionModel()
+        //     {
+        //         Subject = string.IsNullOrEmpty(entity.Subject) ? "NOTIFICACION CIERRE DE REQUERIMIENTO SECRETARIA" : entity.Subject,
+        //         To = destinationUser.Email,
+        //         Cc = origintionUser!.Email,
+        //         Body = body
+        //     });
+        // }
+        // if (command.DocumentString != null && command.DocumentStringNames != null)
+        // {
+        //     for (int i = 0; i < command.DocumentString!.Count; i++)
+        //     {
+        //         var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+        //         var contentTypeSplit = documentSplit[0].Split(':');
+        //         var document = new DocumentEntity
+        //         {
+        //             CaseEntityId = entity.Id,
+        //             DocumentSource = DocumentSourceEnum.Close,
+        //             Document64 = String.Empty, // documentSplit[1],
+        //             Document64Name = command.DocumentStringNames!.ElementAt(i),
+        //             ContextType = contentTypeSplit[1].Split(';')[0],
+        //
+        //         };
+        //         await _documentRepository.AddAsync(document, cancellationToken);
+        //         byte[] bytes = Convert.FromBase64String(documentSplit[1]);
+        //         var stream = new MemoryStream(bytes);
+        //         var fileName = command.DocumentStringNames!.ElementAt(i);
+        //         var path = $"Cases/{entity.DocumentNumber}";
+        //
+        //         await SaveFile(stream, fileName, command.ContentRootPath!,path,  cancellationToken);
+        //         document = new DocumentEntity();
+        //     }
+        //     await _documentRepository.SaveChangesAsync(cancellationToken);
+        //     _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
+        // }
         return true;
     }
     
