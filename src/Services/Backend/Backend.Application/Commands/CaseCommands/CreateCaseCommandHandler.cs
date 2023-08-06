@@ -69,8 +69,8 @@ public class CreateCaseCommandHandler : IRequestHandler<CreateCaseCommand, Entit
         var department = await _departmentRepository.GetByIdAsync(command.DepartmentId, cancellationToken);
         var body = GetBody(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.DocumentNumber, command.Description, brand!.Description,
             department!.Description, destinationUser!.FullName, command.Deadline.ToString());
-        var bodyAttachment = GetBodyAttachment(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.DocumentNumber, command.Description, brand!.Description,
-            department!.Description, destinationUser!.FullName, command.Deadline.ToString());
+        // var bodyAttachment = GetBodyAttachment(typeRequirement!.Description, command.ReceptionDate.ToString(), originDocument!.Description, command.DocumentNumber, command.Description, brand!.Description,
+        //     department!.Description, destinationUser!.FullName, command.Deadline.ToString());
         //Notification
         if (destinationUser is not null)
         {

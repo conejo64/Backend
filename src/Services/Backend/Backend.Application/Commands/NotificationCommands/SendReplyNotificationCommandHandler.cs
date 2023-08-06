@@ -1,44 +1,40 @@
 using Backend.Application.Specifications.CaseDocumentSpecs;
+using Backend.Application.Specifications.CaseStatusSpecs;
 using Backend.Domain.DTOs.Requests;
 using Backend.Domain.Interfaces.Services;
 
 namespace Backend.Application.Commands.NotificationCommands;
 
-public class SendCreateNotificationCommandHandler : IRequestHandler<SendCreateNotificationCommand, EntityResponse<bool>>
+public class SendReplyNotificationCommandHandler : IRequestHandler<SendReplyNotificationCommand, EntityResponse<bool>>
 {
-    private readonly IMediator _mediator;
     private readonly IRepository<CaseEntity> _repository;
-    private readonly IRepository<CaseStatus> _repositoryCaseStatus;
-    private readonly INotificationService _notificationService;
     private readonly IRepository<User> _userRepository;
-    private readonly IRepository<OriginDocument> _originRepository;
+    private readonly INotificationService _notificationService;
+    private readonly IRepository<DocumentEntity> _documentRepository;
     private readonly IRepository<Brand> _brandRepository;
     private readonly IRepository<TypeRequirement> _typeRepository;
     private readonly IRepository<Department> _departmentRepository;
-    private readonly IRepository<DocumentEntity> _documentRepository;
-    private readonly IRepository<Reminder> _reminderRepository;
+    private readonly IRepository<OriginDocument> _originRepository;
+    private readonly IRepository<CaseStatus> _caseStatusRepository;
 
-    public SendCreateNotificationCommandHandler(IMediator mediator, IRepository<CaseEntity> repository,
-        IRepository<CaseStatus> repositoryCaseStatus, INotificationService notificationService,
-        IRepository<User> userRepository, IRepository<OriginDocument> originRepository, 
-        IRepository<Brand> brandRepository, IRepository<TypeRequirement> typeRepository, 
-        IRepository<Department> departmentRepository, IRepository<DocumentEntity> documentRepository,
-        IRepository<Reminder> reminderRepository)
+    public SendReplyNotificationCommandHandler(IRepository<CaseEntity> repository, IRepository<User> userRepository,
+        INotificationService notificationService, IRepository<DocumentEntity> documentRepository, 
+        IRepository<Brand> brandRepository, IRepository<TypeRequirement> typeRepository,
+        IRepository<Department> departmentRepository, IRepository<OriginDocument> originRepository,
+        IRepository<CaseStatus> caseStatusRepository)
     {
-        _mediator = mediator;
         _repository = repository;
-        _repositoryCaseStatus = repositoryCaseStatus;
-        _notificationService = notificationService;
         _userRepository = userRepository;
-        _originRepository = originRepository;
+        _notificationService = notificationService;
+        _documentRepository = documentRepository;
         _brandRepository = brandRepository;
         _typeRepository = typeRepository;
         _departmentRepository = departmentRepository;
-        _documentRepository = documentRepository;
-        _reminderRepository = reminderRepository;
+        _originRepository = originRepository;
+        _caseStatusRepository = caseStatusRepository;
     }
 
-    public async Task<EntityResponse<bool>> Handle(SendCreateNotificationCommand command, CancellationToken cancellationToken)
+    public async Task<EntityResponse<bool>> Handle(SendReplyNotificationCommand command, CancellationToken cancellationToken)
     {
         var caseEntity = await _repository.GetByIdAsync(command.CaseEntityId, cancellationToken);
         if (caseEntity is null)
@@ -46,54 +42,42 @@ public class SendCreateNotificationCommandHandler : IRequestHandler<SendCreateNo
             return EntityResponse.Success(false); 
         }
         
-        var destinationUser = await _userRepository.GetByIdAsync(caseEntity.UserId, cancellationToken);
         var brand = await _brandRepository.GetByIdAsync(caseEntity.BrandId, cancellationToken);
         var typeRequirement = await _typeRepository.GetByIdAsync(caseEntity.TypeRequirementId, cancellationToken);
         var originDocument = await _originRepository.GetByIdAsync(caseEntity.OriginDocumentId, cancellationToken);
         var department = await _departmentRepository.GetByIdAsync(caseEntity.DepartmentId, cancellationToken);
-        var body = GetBody(typeRequirement!.Description, caseEntity.ReceptionDate.ToString(), originDocument!.Description, caseEntity.DocumentNumber, caseEntity.Description, brand!.Description,
-            department!.Description, destinationUser!.FullName, caseEntity.Deadline.ToString());
-        var bodyAttachment = GetBodyAttachment(typeRequirement!.Description, caseEntity.ReceptionDate.ToString(), originDocument!.Description, caseEntity.DocumentNumber, caseEntity.Description, brand!.Description,
-            department!.Description, destinationUser!.FullName, caseEntity.Deadline.ToString());
-        //Notification
-        // if (destinationUser is not null)
-        // {
-        //     _notificationService.SendEmailNotification(new EmailNotifictionModel()
-        //     {
-        //         Subject = string.IsNullOrEmpty(caseEntity.Subject) ? "NOTIFICACION SECRETARIA" : caseEntity.Subject,
-        //         To = destinationUser.Email,
-        //         Body = body
-        //     });
-        // }
-        //Notification Attachement
-        var spec = new CaseDocumentSpec(caseEntity.Id, DocumentSourceEnum.Create);
-        var entities = await _documentRepository.ListAsync(spec, cancellationToken);
-        var documentList = new List<string>();
-        var documentNamesList = new List<string>();
+        var statusSpec = new CaseStatusSpec("RESPONDIDO");
+        var statusId = await _caseStatusRepository.GetBySpecAsync(statusSpec, cancellationToken);
         
-        if (entities.Any())
-        {
-            for (int i = 0; i < entities.Count; i++)
-            {
-                var documentName = entities.ElementAt(i).Document64Name;
-                documentNamesList.Add(documentName!);
-                var pathFile = string.Format("{0}/{1}", caseEntity!.DocumentNumber, documentName);
-                var base64 = GetImage(pathFile, command.ContentRootPath!);
-                documentList.Add(base64);
-            }
-        }
-        var attachemt = documentList;
-        if (!string.IsNullOrEmpty(caseEntity.Notification))
+        var destinationUser = await _userRepository.GetByIdAsync(caseEntity.UserOriginId, cancellationToken);
+        var originUser = await _userRepository.GetByIdAsync(caseEntity.UserId, cancellationToken);
+        var receptionDateShort = Convert.ToDateTime(caseEntity.ReceptionDate);
+
+        string body = new("<p><br/>"
+                          + "A continuación se adjunta un detalle de la respuesta al caso :<br/><br/>"
+                          + "<b>Tipo Requerimiento:</b> " + typeRequirement!.Description + "<br/>"
+                          + "<b>Fecha de Recepción: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
+                          + "<b>Origen del Documento: </b>" + originDocument!.Description + "<br/>"
+                          + "<b>Nro. Documento: </b>" + caseEntity.DocumentNumber + "<br/>"
+                          + "<b>Descripción: </b>" + caseEntity.Description + "<br/>"
+                          + "<b>Entidad: </b>" + brand!.Description + "<br/>"
+                          + "<b>Area Responsable: </b>" + department!.Description + "<br/>"
+                          + "<b>Fecha de Contestación: </b>" + caseEntity.ReplyDate!.Value.ToShortDateString() + "<br/>"
+                          + "<b>Observaciones: </b>" + caseEntity.Comments+ "<br/>"
+                          + "<a href=https://openkmapp/workflow/#/auth/login>Por favor haga click en el siguiente enlace</a>"
+                          + "</p>");
+        
+        if (destinationUser is not null)
         {
             _notificationService.SendEmailNotification(new EmailNotifictionModel()
             {
-                Subject = string.IsNullOrEmpty(caseEntity.Subject) ? "NOTIFICACION SECRETARIA" : caseEntity.Subject,
-                To = caseEntity.Notification!,
-                Attachment = attachemt!,
-                AttachmentNames = documentNamesList!,
-                Body = bodyAttachment
+                Subject = string.IsNullOrEmpty(caseEntity.Subject) ? "NOTIFICACION RESPUESTA A SECRETARIA" : caseEntity.Subject,
+                To = destinationUser.Email,
+                Cc = originUser!.Email,
+                Body = body
             });
         }
+
         return EntityResponse.Success(true);
     }
 

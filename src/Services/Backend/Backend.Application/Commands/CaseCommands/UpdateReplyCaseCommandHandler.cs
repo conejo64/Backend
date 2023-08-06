@@ -63,59 +63,59 @@ public class UpdateReplyCaseCommandHandler : IRequestHandler<UpdateReplyCaseComm
         var replyDate = DateTime.Now;
         var receptionDateShort = Convert.ToDateTime(entity.ReceptionDate);
         await _repository.UpdateAsync(entity, cancellationToken);
-        var destinationUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
-        var originUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
-        string body = new("<p><br/>"
-                          + "A continuación se adjunta un detalle de la respuesta al caso :<br/><br/>"
-                          + "<b>Tipo Requerimiento:</b> " + typeRequirement!.Description + "<br/>"
-                          + "<b>Fecha de Recepción: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
-                          + "<b>Origen del Documento: </b>" + originDocument!.Description + "<br/>"
-                          + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
-                          + "<b>Descripción: </b>" + entity.Description + "<br/>"
-                          + "<b>Entidad: </b>" + brand!.Description + "<br/>"
-                          + "<b>Area Responsable: </b>" + department!.Description + "<br/>"
-                          + "<b>Fecha de Contestación: </b>" + replyDate.ToShortDateString() + "<br/>"
-                          + "<b>Observaciones: </b>" + command.Comments+ "<br/>"
-                          + "<a href=https://openkmapp/workflow/#/auth/login>Por favor haga click en el siguiente enlace</a>"
-                          + "</p>");
-        //Notificar a responsable
-        if (destinationUser is not null)
-        {
-            _notificationService.SendEmailNotification(new EmailNotifictionModel()
-            {
-                Subject = string.IsNullOrEmpty(entity.Subject) ? "NOTIFICACION RESPUESTA A SECRETARIA" : entity.Subject,
-                To = destinationUser.Email,
-                Cc = originUser!.Email,
-                Body = body
-            });
-        }
-        if (command.DocumentString != null && command.DocumentStringNames != null)
-        {
-            for (int i = 0; i < command.DocumentString!.Count; i++)
-            {
-                var documentSplit = command.DocumentString.ElementAt(i).Split(',');
-                var contentTypeSplit = documentSplit[0].Split(':');
-                var document = new DocumentEntity
-                {
-                    CaseEntityId = entity.Id,
-                    DocumentSource = DocumentSourceEnum.Reply,
-                    Document64 = string.Empty,// documentSplit[1],
-                    Document64Name = command.DocumentStringNames!.ElementAt(i),
-                    ContextType = contentTypeSplit[1].Split(';')[0],
-
-                };
-                await _documentRepository.AddAsync(document, cancellationToken);
-                byte[] bytes = Convert.FromBase64String(documentSplit[1]);
-                var stream = new MemoryStream(bytes);
-                var fileName = command.DocumentStringNames!.ElementAt(i);
-                var path = $"Cases/{entity.DocumentNumber}";
-
-                await SaveFile(stream, fileName, command.ContentRootPath!,path,  cancellationToken);
-                document = new DocumentEntity();
-            }
-            await _documentRepository.SaveChangesAsync(cancellationToken);
-            _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
-        }
+        // var destinationUser = await _userRepository.GetByIdAsync(entity.UserOriginId, cancellationToken);
+        // var originUser = await _userRepository.GetByIdAsync(entity.UserId, cancellationToken);
+        // string body = new("<p><br/>"
+        //                   + "A continuación se adjunta un detalle de la respuesta al caso :<br/><br/>"
+        //                   + "<b>Tipo Requerimiento:</b> " + typeRequirement!.Description + "<br/>"
+        //                   + "<b>Fecha de Recepción: </b>" + receptionDateShort.ToShortDateString() + "<br/>"
+        //                   + "<b>Origen del Documento: </b>" + originDocument!.Description + "<br/>"
+        //                   + "<b>Nro. Documento: </b>" + entity.DocumentNumber + "<br/>"
+        //                   + "<b>Descripción: </b>" + entity.Description + "<br/>"
+        //                   + "<b>Entidad: </b>" + brand!.Description + "<br/>"
+        //                   + "<b>Area Responsable: </b>" + department!.Description + "<br/>"
+        //                   + "<b>Fecha de Contestación: </b>" + replyDate.ToShortDateString() + "<br/>"
+        //                   + "<b>Observaciones: </b>" + command.Comments+ "<br/>"
+        //                   + "<a href=https://openkmapp/workflow/#/auth/login>Por favor haga click en el siguiente enlace</a>"
+        //                   + "</p>");
+        // //Notificar a responsable
+        // if (destinationUser is not null)
+        // {
+        //     _notificationService.SendEmailNotification(new EmailNotifictionModel()
+        //     {
+        //         Subject = string.IsNullOrEmpty(entity.Subject) ? "NOTIFICACION RESPUESTA A SECRETARIA" : entity.Subject,
+        //         To = destinationUser.Email,
+        //         Cc = originUser!.Email,
+        //         Body = body
+        //     });
+        // }
+        // if (command.DocumentString != null && command.DocumentStringNames != null)
+        // {
+        //     for (int i = 0; i < command.DocumentString!.Count; i++)
+        //     {
+        //         var documentSplit = command.DocumentString.ElementAt(i).Split(',');
+        //         var contentTypeSplit = documentSplit[0].Split(':');
+        //         var document = new DocumentEntity
+        //         {
+        //             CaseEntityId = entity.Id,
+        //             DocumentSource = DocumentSourceEnum.Reply,
+        //             Document64 = string.Empty,// documentSplit[1],
+        //             Document64Name = command.DocumentStringNames!.ElementAt(i),
+        //             ContextType = contentTypeSplit[1].Split(';')[0],
+        //
+        //         };
+        //         await _documentRepository.AddAsync(document, cancellationToken);
+        //         byte[] bytes = Convert.FromBase64String(documentSplit[1]);
+        //         var stream = new MemoryStream(bytes);
+        //         var fileName = command.DocumentStringNames!.ElementAt(i);
+        //         var path = $"Cases/{entity.DocumentNumber}";
+        //
+        //         await SaveFile(stream, fileName, command.ContentRootPath!,path,  cancellationToken);
+        //         document = new DocumentEntity();
+        //     }
+        //     await _documentRepository.SaveChangesAsync(cancellationToken);
+        //     _openKmService.SendOpenKm(command.DocumentString, command.DocumentString);
+        // }
         return true;
     }
     
