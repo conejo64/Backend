@@ -20,31 +20,30 @@ public class UploadDocumentCommandHandler : IRequestHandler<UploadDocumentComman
         {
             var documentSplit = command.DocumentString.Split(',');
             var contentTypeSplit = documentSplit[0].Split(':');
-            // if (saved)
-            // {
-                var document = new DocumentEntity
-                {
-                    CaseEntityId = command.CaseEntityId,
-                    DocumentSource = command.DocumentSource,
-                    Document64 = String.Empty,
-                    Document64Name = command.DocumentStringName,
-                    ContextType = contentTypeSplit[1].Split(';')[0],
-                };
-                await _documentRepository.AddAsync(document, cancellationToken);
-                byte[] bytes = Convert.FromBase64String(documentSplit[1]);
-                var stream = new MemoryStream(bytes);
-                var fileName = command.DocumentStringName;
-                var path = $"Cases/{command.DocumentNumber}";
 
-                var saved =await SaveFile(stream, fileName, command.ContentRootPath!, path, cancellationToken);
-                // await _documentRepository.SaveChangesAsync(cancellationToken); 
-                 return EntityResponse.Success(true);
-            // }
+            var document = new DocumentEntity
+            {
+                CaseEntityId = command.CaseEntityId,
+                DocumentSource = command.DocumentSource,
+                Document64 = String.Empty,
+                Document64Name = command.DocumentStringName,
+                ContextType = contentTypeSplit[1].Split(';')[0],
+            };
+            await _documentRepository.AddAsync(document, cancellationToken);
+            byte[] bytes = Convert.FromBase64String(documentSplit[1]);
+            var stream = new MemoryStream(bytes);
+            var fileName = command.DocumentStringName;
+            var path = $"Cases/{command.DocumentNumber}";
+
+            var saved = await SaveFile(stream, fileName, command.ContentRootPath!, path, cancellationToken);
+
+            return EntityResponse.Success(true);
+
         }
         return EntityResponse.Success(false);
-        
+
     }
-    
+
     #region Files
 
     public string GetSavePath(string fileName, string prefix, string contentRootPath)
