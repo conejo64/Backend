@@ -55,16 +55,6 @@ public class SendCreateNotificationCommandHandler : IRequestHandler<SendCreateNo
             department!.Description, destinationUser!.FullName, caseEntity.Deadline.ToString());
         var bodyAttachment = GetBodyAttachment(typeRequirement!.Description, caseEntity.ReceptionDate.ToString(), originDocument!.Description, caseEntity.DocumentNumber, caseEntity.Description, brand!.Description,
             department!.Description, destinationUser!.FullName, caseEntity.Deadline.ToString());
-        //Notification
-        // if (destinationUser is not null)
-        // {
-        //     _notificationService.SendEmailNotification(new EmailNotifictionModel()
-        //     {
-        //         Subject = string.IsNullOrEmpty(caseEntity.Subject) ? "NOTIFICACION SECRETARIA" : caseEntity.Subject,
-        //         To = destinationUser.Email,
-        //         Body = body
-        //     });
-        // }
         //Notification Attachement
         var spec = new CaseDocumentSpec(caseEntity.Id, DocumentSourceEnum.Create);
         var entities = await _documentRepository.ListAsync(spec, cancellationToken);
